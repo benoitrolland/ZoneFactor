@@ -1,20 +1,224 @@
-<!--The content below is only a placeholder and can be replaced.-->
+﻿<mat-toolbar color="primary" >
+
+	<button mat-button [matMenuTriggerFor]="appMenu" ><mat-icon>menu</mat-icon> Epidemium</button>
+	
+    <span class="example-spacer"  flex></span>
+	<!-- This fills the remaining space of the current row -->
+     <span class="fill-space" style="flex :1 1 auto"></span>
+  <img src="./assets/img/epidemium.png" height="65">
+  <!--
+    <span>Epidemium</span>
+    -->
+    
+</mat-toolbar>
+
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item (click)="sidenav.open()"> Settings </button>
+  <!--
+  <button mat-menu-item (click)="sidenav.open()"> Help </button>
+   <button type="button" mat-button (click)="sidenav.open()">
+      <b><<</b>
+    </button>
+  -->
+</mat-menu>
+<div layout="row">
+<!--
+    <div flex="10" style="width: 5; text-align: left;">
+      <button type="button" mat-button (click)="sidenav.open()">
+        <i class="material-icons">first_page</i>
+      </button>
+	</div>
+-->
+  <div flex="90">
+    <mat-sidenav-container class="example-container" >
+    <mat-sidenav #sidenav class="example-sidenav" >
+	<!-- direct update of myName from input
+	<div> 
+     <input type="text" name="myName" [(ngModel)]="myName">
+     <p>Bonjour {{myName}}</p>
+    </div>
+     -->
+	 <!-- #newname is a reference. "(click)="changeName(newname.value)"" an event, and [disabled]="newname.value == 'Angular 2'"> a property -->
+    <div> My name is {{ name }} </div>
+    <div>
+      <input   #newname   type="text">
+      <button (click)="changeName(newname.value)"
+           [disabled]="newname.value == 'Angular 2'">Change Name
+      </button>
+    </div>
+    
+    <span style="text-align: center;"><h2>Facteurs</h2></span> 
+	<mat-grid-list colspan="2" rowHeight="15px">
+	
+	  <mat-grid-tile colspan="1" rowspan="1" >&nbsp;&nbsp;&nbsp;1<mat-slider min="1" max="5" step="0.5" value="1.5" placeHolder="value" displayValue="F1" aria-label="aF1"></mat-slider>5</mat-grid-tile>
+	  <mat-grid-tile colspan="1" rowspan="1" style="text-align: right; justify-content: flex-end !important;">&nbsp;&nbsp;Fa</mat-grid-tile>
+	  <br/>
+	  <mat-grid-tile colspan="1" rowspan="1">&nbsp;10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">F2</mat-slider>100</mat-grid-tile>
+	  <mat-grid-tile colspan="1" rowspan="1">&nbsp;&nbsp;Fb</mat-grid-tile>
+	  <br/>
+	  <mat-grid-tile>&nbsp;&nbsp;&nbsp;0<mat-slider min="0" max="10" step="0.5" value="8">F3</mat-slider>&nbsp;&nbsp;10</mat-grid-tile>
+	  <mat-grid-tile>&nbsp;&nbsp;Fc</mat-grid-tile>
+	  <br/>
+	  <mat-grid-tile><mat-slide-toggle>F4</mat-slide-toggle></mat-grid-tile>
+	  <mat-grid-tile>&nbsp;&nbsp;Fd</mat-grid-tile>
+	  <!--  
+	  <mat-grid-tile>1<mat-slider thumbLabel tickInterval="1" min="1" max="5" step="0.5" value="1.5">F5</mat-slider>5</mat-grid-tile>
+	  <mat-grid-tile>&nbsp;&nbsp;Fe<mat-grid-tile>
+	  -->
+	</mat-grid-list>
+    <mat-list dense>
+    
+    <!--
+      <mat-progress-spinner mode="determinate">-->
+      <mat-list-item input-group>1<mat-slider min="1" max="5" step="0.5" value="1.5" placeHolder="value" displayValue="F1" aria-label="aF1"></mat-slider>5<h4 style="align:right">&nbsp;&nbsp;Fa</h4>
+      </mat-list-item>
+      <mat-list-item>10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">F2</mat-slider>100<h4 style="align:right">&nbsp;&nbsp;Fb</h4>
+      </mat-list-item>
+      <mat-list-item> 0<mat-slider min="0" max="10" step="0.5" value="8">F3</mat-slider>10<h4 style="align:right">&nbsp;&nbsp;Fc</h4>
+      </mat-list-item>
+      <mat-list-item><mat-slide-toggle>F4</mat-slide-toggle></mat-list-item>
+      <mat-list-item>1<mat-slider thumbLabel tickInterval="1" min="1" max="5" step="0.5" value="1.5">F5</mat-slider>5<h4 style="align:right">&nbsp;&nbsp;Fe</h4>
+      </mat-list-item>
+    </mat-list>
+  
+<!-- -->
+  <mat-form-field>
+    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+	<mat-autocomplete #auto="matAutocomplete">
+	  <!--
+	  <mat-option>chien</mat-option>
+	  <mat-option>chat</mat-option>
+	  <mat-option>abeille</mat-option>
+	  <mat-option>hibou</mat-option>
+      -->
+     <mat-option *ngFor="let data of (myPicMetaData ? myPicMetaData.slice(0,30): [])" [value]="data.title">
+       {{ data.title }}
+     </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  
+
+  <!--
+  <span><h2>Contexte</h2></span>
+  <span><h3>Genre</h3></span>
+  <mat-selection-list dense>
+    <mat-list-item> Homme </mat-list-item>
+    <mat-list-item> Femme </mat-list-item>
+    <mat-list-item> non dispo </mat-list-item>
+  </mat-selection-list>
+  <span><h3>Age</h3></span>
+  <mat-selection-list dense>
+  <mat-list-option>10</mat-list-option>  
+  <mat-list-option>11</mat-list-option>  
+  <mat-list-option>12</mat-list-option>
+  <mat-list-option>13</mat-list-option>
+  <mat-list-option>14</mat-list-option>
+  <mat-list-option>15</mat-list-option>
+  <mat-list-option>16</mat-list-option>
+  <mat-list-option>17</mat-list-option>
+  <mat-list-option>18</mat-list-option>
+  <mat-list-option>19</mat-list-option>
+  <mat-list-option>20</mat-list-option>  
+  <mat-list-option>21</mat-list-option>  
+  <mat-list-option>22</mat-list-option>
+  <mat-list-option>23</mat-list-option>
+  <mat-list-option>24</mat-list-option>
+  <mat-list-option>25</mat-list-option>
+  <mat-list-option>26</mat-list-option>
+  <mat-list-option>27</mat-list-option>
+  <mat-list-option>28</mat-list-option>
+  <mat-list-option>29</mat-list-option>
+  </mat-selection-list>-->
+  </mat-sidenav>
+<!-- -->
+	<mat-grid-list colspan="6" >
+	
+	  <mat-grid-tile colspan="1" >
+  <div class="example-sidenav-content" style="width: 10%; text-align: left;">
+  <!-- style="position: absolute;top: 50; left: 100;" -->
+      <button type="button" mat-icon-button (click)="sidenav.open()" >
+        <i class="material-icons">first_page</i> 
+      </button>
+	  <!--
+	  <div style="text-align:center">{{title}} :</div>-->
+    <!--
+    <div style="width: 100%; text-align: left;">
+    <button type="button" mat-button (click)="sidenav.open()">
+      <i class="material-icons">compare_arrow</i>
+    </button>
+	</div>
+	<div style="width: 100%; text-align: center;"><span style="display: inline-block;
+                    width:100px; background-color:blue; height: 40px;">{{title}} :</span></div>-->
+  </div>
+     </mat-grid-tile>
+	 <mat-grid-tile colspan="5" >
+  <!--
+  <div style="display:flex; flex-flow:row; justify-content:space-between;align-items:center">
+    <span style="text-align:right; display: none;"> </span> 
+    <div style="width: 100%; text-align: center;"><span style="display: inline-block;
+                    width:100px; background-color:blue; height: 40px;">Center</span></div>
+    <span style="width:70px;text-align:right">To the right</span>   
+ </div>-->
+ 
+  <!--<div class="example-sidenav-content" style="width: 100%; text-align: left;">-->
+  <mat-card class="map-card"> 
+    <app-map>Loading ...</app-map>
+    <mat-card-header>
+      <mat-card-title>Monde</mat-card-title>
+    </mat-card-header> 
+  
+    <!--
+	<mat-card-actions style="display: flex; justify-content: flex-end;">
+      <button mat-button>zoom in selection</button>
+      <button mat-button>zoom out of selection</button>
+    </mat-card-actions>
+  -->
+  </mat-card>
+  <!--</div>-->
+  </mat-grid-tile>
+  </mat-grid-list>
+
+<!--
+<mat-card class="example-card" *ngFor="let data of (myPicMetaData ? myPicMetaData.slice(0,3): []); let i = index">
+
+  <img mat-card-image src="{{ data.url }}">
+  <mat-card-header>
+    <mat-card-title>{{ data.title }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+ --> 
+
 <div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
+  <!--<h1>
+    {{title}} :
   </h1>
+  
+  <img src="./assets/img/epidemium.png" ngSrc="./assets/img/epidemium.png">
+  <img src="../assets/img/epidemium.png" ngSrc="../assets/img/epidemium.png">
+  -->
+  <!--
   <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  -->
 </div>
-<h2>Here are some links to help you start: </h2>
+<h2>Quelques liens: </h2>
 <ul>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+    <h2><a target="_blank" rel="noopener" href="http://wiki.epidemium.cc/wiki/Accueil">Wiki</a></h2>
   </li>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+    <h2><a target="_blank" rel="noopener" href="http://www.epidemium.cc/">Epidemium² | 2017 - 2018</a></h2>
   </li>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+    <h2><a target="_blank" rel="noopener" href="http://www.epidemium.cc/white-paper-fr/index.html">Livre blanc</a></h2>
   </li>
 </ul>
+</mat-sidenav-container>
+
+  </div>
+</div>
 
