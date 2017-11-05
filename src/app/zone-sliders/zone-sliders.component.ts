@@ -53,17 +53,13 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
     //working ok =-1console.log("this.currentSliderIndex=" + this.currentSliderIndex);
   }
   
-  ngOnInit() {
+  ngOnInit() { //https://github.com/angular/angular/issues/6005  e-oz commented on 12 Mar 2016: @tandu just replace ngAfterViewInit to ngOnInit
    //this.sliders = [new ZoneSliderItem(UnknownDynamicComponent,{text:'unknown ..'})]; //for this.sliders to have a length
-  }
-  
-  ngAfterViewInit() {
     this.loadComponent();
 	if(this.cycling > 0) this.reLoadComponent();
-
-  }
+//  }
   
-  ngOnDestroy() {
+//  ngOnDestroy() {
     clearInterval(this.interval);
   }
   
