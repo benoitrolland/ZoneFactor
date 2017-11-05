@@ -6,24 +6,41 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule , MatAutocompleteModule, MatListModule, MatSidenavModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule,MatSlideToggleModule,MatSliderModule,MatSelectModule } from '@angular/material';
+import { MatGridListModule, MatInputModule , MatAutocompleteModule, MatListModule, MatSidenavModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule,MatSlideToggleModule,MatSliderModule,MatSelectModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+import { ZonesService } from "./shared/index";
+import { ZoneSlidersComponent,TickSliderComponent,ToggleSliderComponent,UnknownDynamicComponent } from './zone-sliders/zone-sliders.component';
+import { ZoneSlidersDirective } from './zone-sliders.directive';
+import { ZoneSlidersService }   from './zone-sliders.service';
+import { BooleanComponent } from './zone-sliders/boolean/boolean.component';
 
 @NgModule({
+  entryComponents:[ 
+    TickSliderComponent,
+    ToggleSliderComponent,
+    UnknownDynamicComponent
+  ],
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    ZoneSlidersDirective,
+    ZoneSlidersComponent,
+    TickSliderComponent,
+    ToggleSliderComponent,
+    UnknownDynamicComponent,
+    BooleanComponent
   ],
   imports: [
     BrowserModule
     ,FormsModule
-	,ReactiveFormsModule
+    ,ReactiveFormsModule
     ,HttpModule
     ,JsonpModule
     ,FlexLayoutModule
     ,BrowserAnimationsModule
+	,MatGridListModule
 	,MatInputModule 
 	,MatAutocompleteModule
 	,MatListModule
@@ -37,7 +54,7 @@ import { MapComponent } from './map/map.component';
     ,MatSliderModule
     ,MatSelectModule
   ],
-  providers: [],
+  providers: [ZoneSlidersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

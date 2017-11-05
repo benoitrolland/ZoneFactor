@@ -1,3 +1,6 @@
+built from ng4-material
+https://coursetro.com/posts/code/67/Angular-4-Material-Tutorial
+plus 
 
 ng new ng4-material
 cd ng4-material
@@ -9,6 +12,7 @@ ctrl-c
 npm install --save @angular/flex-layout
 npm install --save @angular/forms
 npm install --save @angular/http
+npm install --save hammerjs
 
 #Truc: démarrer 
 ng serve

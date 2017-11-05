@@ -4,5 +4,16 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  backend: {
+    protocol: 'http',
+    host: '127.0.0.1',
+    port: '9000',
+    endpoints: {
+      allPeople: '/api/zones',
+      onePeople: '/api/zones/:id',
+      randomPeople: '/api/zones/random'
+    }
+  }
+
 };

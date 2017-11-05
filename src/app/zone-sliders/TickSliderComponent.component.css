@@ -1,0 +1,12 @@
+.grid-left  {
+  justify-content: flex-start !important;
+  display: flex;
+  align-items: left;
+  text-align: left;
+}
+.grid-right {
+  justify-content: flex-start !important;
+  display: flex;
+  align-items: right;
+  text-align: right;
+}
