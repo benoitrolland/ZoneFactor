@@ -40,7 +40,6 @@ export class UnknownDynamicComponent implements ZoneSlider {
 
 export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   @Input() sliders: ZoneSliderItem[];
-  //@Input() mode: string="all";//any or "cycling" 
   @Input() cycling: number = -1; 
   currentSliderIndex: number = -1;
   @ViewChild(ZoneSlidersDirective) sliderHost: ZoneSlidersDirective; //<ng-template slider-host></ng-template>
@@ -54,13 +53,17 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   }
   
   ngOnInit() { 
+  	//this.sliders = [];
+  }
+  
+  ngAfterViewInit() {
     this.loadComponent();
-	if(this.cycling > 0) this.reLoadComponent();
+	if(this.cycling > 0) this.reLoadComponent();	
+	this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/6005
   }
   
   ngOnDestroy() {
     clearInterval(this.interval);
-	this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/6005
   }
   
 
