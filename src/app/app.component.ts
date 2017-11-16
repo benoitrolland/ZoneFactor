@@ -34,16 +34,16 @@ export class AppComponent implements OnInit {
     //this.zoneSliders = this.zoneSlidersService.getZoneSliders();
     this.name='default';
     this.myControl = new FormControl();
-	
+	/*
     this.http.get('https://jsonplaceholder.typicode.com/photos')
       .map(response => response.json())
       .subscribe(res => this.myPicMetaData = res);
-      
-	//https://stackoverflow.com/questions/36368405/how-to-parse-xml-in-angular-2
-	//xml2js = require('xml2js');
-	//var parser = new xml2js.Parser({explicitArray : false});
-	//used xml2js parser from npm (https://www.npmjs.com/package/xml2js)
-	//and in my service i used this 
+    */
+//	https://stackoverflow.com/questions/36368405/how-to-parse-xml-in-angular-2
+//	xml2js = require('xml2js');
+//	var parser = new xml2js.Parser({explicitArray : false});
+//	used xml2js parser from npm (https://www.npmjs.com/package/xml2js)
+//	and in my service i used this 
 //	autocompleteGeoZones = this.http.get(this.worldMapURL)
 //					.flatMap(res=>{
 //							return Observable.fromPromise(this.getJSON(res.text()))

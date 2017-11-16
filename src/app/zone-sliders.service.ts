@@ -7,6 +7,11 @@ export class ZoneSlidersService {
 
   constructor() { }
   getZoneSliders() {
+/*  
+    this.http.get('https://jsonplaceholder.typicode.com/photos')
+      .map(response => response.json())
+      .subscribe(res => this.myPicMetaData = res);
+*/  
     return [
         new ZoneSliderItem(TickSliderComponent,{text:'Tick Slider'}),
         new ZoneSliderItem(ToggleSliderComponent,{text:'Toggle Slider'}),
