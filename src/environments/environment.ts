@@ -8,7 +8,8 @@ export const environment = {
   backend: {
     protocol: 'http',
     host: '127.0.0.1',
-    port: '9000',
+    port: '9001',
+	port_ko: 'process.env.PORT',
     endpoints: {
       allPeople: '/api/zones',
       onePeople: '/api/zones/:id',

@@ -1,0 +1,517 @@
+NA	Algeria, Algiers
+10120199	Algeria, Setif
+20320199	Argentina, Bahia Blanca
+NA	Argentina, Concordia
+20320699	Argentina, Córdoba
+20320799	Argentina, Mendoza
+20320899	Argentina, Tierra del Fuego
+60360199	Australian Capital Territory
+60360299	Australia, New South Wales
+60360899	Australia, Northern Territory
+60360862	Australia, Northern Territory: Indigenous
+60360863	Australia, Northern Territory: Non-Indigenous
+60360399	Australia, Queensland
+60360499	Australia, South
+60360599	Australia, Tasmania
+60360699	Australia, Victoria
+60360799	Australia, Western
+50400099	Austria
+50400799	Austria, Tyrol
+50400899	Austria, Vorarlberg
+40480046	Bahrain: Bahraini
+51120099	Belarus
+50560099	Belgium
+50560499	Belgium, Antwerp
+50560299	Belgium, Flanders
+NA	Belgium, Limburg
+NA	Bermuda, Black
+NA	Bermuda, White
+20761199	Brazil, Aracaju
+NA	Brazil, Belem
+20761899	Brazil, Belo Horizonte
+20760999	Brazil, Brasilia
+NA	Brazil, Campinas
+20761099	Brazil, Cuiaba
+20760199	Brazil, Fortaleza
+20760299	Brazil, Goiania
+NA	Brazil, Porto Alegre
+20760899	Brazil, Sao Paulo
+51000099	Bulgaria
+31240099	Canada
+31240199	Canada, Alberta
+31240299	Canada, British Columbia
+31240399	Canada, Manitoba
+31240599	Canada, New Brunswick
+31240899	Canada, Newfoundland and Labrador
+31240499	Canada, Northwest Territories
+31240699	Canada, Nova Scotia
+31241099	Canada, Ontario
+31240799	Canada, Prince Edward Island
+31241199	Canada, Quebec
+31241299	Canada, Saskatchewan
+31240999	Canada, Yukon
+21520299	Chile, Bío Bío Province
+21520399	Chile, Region of Antofagasta
+21520199	Chile, Valdivia
+41560199	China, Beijing City
+NA	China, Changle
+41560699	China, Cixian County
+41562499	China, Guangzhou City
+41562099	China, Haining County
+41563099	China, Hong Kong
+41560799	China, Jiashan
+41562399	China, Jiaxing City
+41564099	China, Macao
+41561599	China, Nangang District, Harbin City
+41560299	China, Qidong County
+41560399	China, Shanghai
+NA	China, Taiwan
+NA	China, Tianjin
+41560999	China, Wuhan City
+41563999	China, Yangcheng County
+41561899	China, Yanting County
+41561499	China, Zhongshan
+21700299	Colombia, Bucaramanga
+21700199	Colombia, Cali
+21700399	Colombia, Manizales
+21700499	Colombia, Pasto
+21880099	Costa Rica
+51910099	Croatia
+21920199	Cuba
+21920199	Cuba, Villa Clara
+51960099	Cyprus
+52030099	Czech Republic
+52080099	Denmark
+22180299	Ecuador, Cuenca
+22180199	Ecuador, Quito
+18180299	Egypt, Gharbiah
+52330099	Estonia
+52460099	Finland
+52500199	France, Bas-Rhin
+52500299	France, Calvados
+NA	France, Cote d'Or
+52500399	France, Doubs
+52500499	France, Haut-Rhin
+52500899	France, Herault
+52500599	France, Isere
+22509199	France, La Martinique
+NA	France, La Reunion
+52501499	France, Loire-Atlantique
+52501699	France, Manche
+52500699	France, Somme
+52500799	France, Tarn
+52501799	France, Vendee
+62509899	French Polynesia
+52762299	Germany, Brandenburg
+52761299	Germany, Bremen
+NA	Germany, East
+NA	Germany, Eastern States
+52762499	Germany, Free State of Saxony
+52760299	Germany, Hamburg
+52762399	Germany, Mecklenburg-Western Pomerania
+52760599	Germany, Munich
+52761199	Germany, Northrhine-Westphalia: Munster
+52763099	Germany, Saarland
+52761699	Germany, Schleswig-Holstein
+NA	Hungary, County Szabolcs-Szatmar
+NA	Hungary, County Vas
+53520099	Iceland
+NA	India, Ahmedabad
+43560299	India, Bangalore
+NA	India, Barshi
+NA	India, Barshi, Paranda, and Bhum
+43561499	India, Bhopal
+43560499	India, Chennai
+43561199	India, Dindigul, Ambilikkai
+43560999	India, Karunagappally
+NA	India, Madras
+43561999	India, Mizoram
+43560399	India, Mumbai
+43560599	India, Nagpur
+43561099	India, New Delhi
+43560699	India, Poona
+43561899	India, Sikkim State
+43560899	India, Trivandrum
+43640399	Iran
+53720099	Ireland
+43760099	Israel
+43760090	Israel: Jews
+NA	Israel: Jews born in Africa or Asia
+NA	Israel: Jews Born In Africa Or Asia
+NA	Israel: Jews Born In America Or Europe
+NA	Israel: Jews born in Europe or America
+NA	Israel: Jews born in Israel
+NA	Israel: Jews Born In Israel
+43760094	Israel: Non-Jews
+53801799	Italy, Biella Province
+53802599	Italy, Brescia Province
+53803799	Italy, Catania and Messina
+53803299	Italy, Catanzaro
+53803899	Italy, Como
+53801299	Italy, Ferrara Province
+53800199	Italy, Florence and Prato
+53801899	Italy, Friuli-Venezia Giulia
+53802299	Italy, Genoa Province
+53800399	Italy, Latina
+53803999	Italy, Lecco
+NA	Italy, Liguria
+53804099	Italy, Lombardy, South
+53801199	Italy, Macerata Province
+53802199	Italy, Mantua
+53802699	Italy, Milan
+53801099	Italy, Modena Province
+53801699	Italy, Naples
+53802099	Italy, North East Cancer Surveillance Network
+53803199	Italy, Nuoro
+53803399	Italy, Palermo
+53800599	Italy, Parma Province
+53800699	Italy, Ragusa Province
+53802399	Italy, Reggio Emilia Province
+53800799	Italy, Romagna Region
+53802799	Italy, Salerno Province
+53801599	Italy, Sassari Province
+53802899	Italy, Sondrio
+53803499	Italy, South Tyrol
+53802999	Italy, Syracuse Province
+53800899	Italy, Torino
+53803099	Italy, Trapani
+53801999	Italy, Trento
+NA	Italy, Trieste
+53801499	Italy, Umbria Region
+53800499	Italy, Varese Province
+53801399	Italy, Veneto Region
+23880199	Jamaica, Kingston and St Andrew
+43921099	Japan, Aichi Prefecture
+43920999	Japan, Fukui Prefecture
+43920199	Japan, Hiroshima
+43920299	Japan, Miyagi Prefecture
+43920399	Japan, Nagasaki Prefecture
+43920899	Japan, Niigata Prefecture
+43920499	Japan, Osaka Prefecture
+43920599	Japan, Saga Prefecture
+43920699	Japan, Yamagata Prefecture
+44100099	Korea
+44100299	Korea, Busan
+44100499	Korea, Daegu
+44100599	Korea, Daejeon
+44101099	Korea, Gwangju
+44101199	Korea, Incheon
+44100999	Korea, Jejudo
+NA	Korea, Kangwha County
+44100399	Korea, Seoul
+44100899	Korea, Ulsan
+44140099	Kuwait
+44140025	Kuwait: Kuwaitis
+44140026	Kuwait: Non-Kuwaitis
+NA	Kyrgyzstan
+54280099	Latvia
+14340199	Libya, Benghazi
+54400099	Lithuania
+14540199	Malawi, Blantyre
+44580299	Malaysia, Penang
+44580220	Malaysia, Penang: Chinese
+44580240	Malaysia, Penang: Indian
+44580227	Malaysia, Penang: Malay
+NA	Malaysia, Sarawak
+NA	Mali, Bamako
+54700099	Malta
+65540099	New Zealand
+NA	New Zealand, Maori
+65540028	New Zealand: Maori
+NA	New Zealand, Non-Maori
+NA	New Zealand: Non-Maori
+65540098	New Zealand: Other
+65540029	New Zealand: Pacific Islander
+55780099	Norway
+45120099	Oman: Omani
+45860199	Pakistan, South Karachi
+NA	Paraguay, Asuncion
+NA	Peru, Lima
+26040199	Peru, Trujillo
+46080299	Philippines, Manila
+46080399	Philippines, Rizal
+56160199	Poland, Cracow
+56160799	Poland, Kielce
+56160299	Poland, Lower Silesia
+NA	Poland, Nowy Sacz
+NA	Poland, Opole
+56161299	Poland, Podkarpackie
+56160599	Poland, Warsaw City
+NA	Poland, Warsaw Rural
+56200599	Portugal, Azores
+56200499	Portugal, Porto
+56200399	Portugal, South Regional
+NA	Portugal, Vila Nova de Gaia
+NA	Portugal, Vila Nova De Gaia
+46340068	Qatar: Qatari
+NA	Romania, County Cluj
+56430199	Russia, St Petersburg
+46820158	Saudi Arabia, Riyadh: Saudi
+58910299	Serbia
+47020099	Singapore
+47020020	Singapore: Chinese
+47020040	Singapore: Indian
+47020027	Singapore: Malay
+57030099	Slovak Republic
+57050099	Slovenia
+17100199	South Africa, PROMEC
+57240999	Spain, Albacete
+57240599	Spain, Asturias
+57240699	Spain, Basque Country
+57241199	Spain, Canary Islands
+57241699	Spain, Ciudad Real
+57241399	Spain, Cuenca
+57241099	Spain, Girona
+57240299	Spain, Granada
+57241499	Spain, La Rioja
+57240899	Spain, Mallorca
+57240399	Spain, Murcia
+57240499	Spain, Navarra
+57240199	Spain, Tarragona
+57240799	Spain, Zaragoza
+57520099	Sweden
+57560199	Switzerland, Basel
+57560299	Switzerland, Geneva
+57561199	Switzerland, Graubunden and Glarus
+57560399	Switzerland, Neuchatel
+57560499	Switzerland, St Gall-Appenzell
+57561099	Switzerland, Ticino
+57560899	Switzerland, Valais
+57560599	Switzerland, Vaud
+57560699	Switzerland, Zurich
+47640399	Thailand, Bangkok
+47640199	Thailand, Chiang Mai
+47640899	Thailand, Chonburi
+47640299	Thailand, Khon Kaen
+47640599	Thailand, Lampang
+47640499	Thailand, Songkhla
+NA	The Gambia
+55280099	The Netherlands
+55280199	The Netherlands, Eindhoven
+55280299	The Netherlands, Maastricht
+17880199	Tunisia, Centre, Sousse
+17880299	Tunisia, North
+47920299	Turkey, Antalya
+47920799	Turkey, Edirne
+47920199	Turkey, Izmir
+47920899	Turkey, Trabzon
+18000299	Uganda, Kyadondo County
+58261199	UK, East of England Region
+58260199	UK, England
+NA	UK, England and Wales
+NA	UK, England and Wales, England, Wessex
+58260899	UK, England, Merseyside and Cheshire
+58261499	UK, England, Northern and Yorkshire
+58260399	UK, England, North Western
+58260499	UK, England, Oxford Region
+58260699	UK, England, South and Western Regions
+58261599	UK, England, Thames
+58260799	UK, England, Trent
+58260299	UK, England, West Midlands
+58263099	UK, Northern Ireland
+58040099	Ukraine
+58262099	UK, Scotland
+NA	UK, Scotland, West
+58264099	UK, Wales
+NA	United Kingdom, England And Wales
+NA	United Kingdom, Scotland, East
+NA	United Kingdom, Scotland, N-E
+NA	United Kingdom, Scotland, North
+NA	United Kingdom, Scotland, S-E
+NA	United Kingdom, Scotland, West
+28580099	Uruguay
+NA	Uruguay, Montevideo
+38405199	USA, Alabama
+38405130	USA, Alabama: Black
+38405110	USA, Alabama: White
+38405099	USA, Alaska
+38405042	USA, Alaska: American Indian
+38405299	USA, Arizona
+38405242	USA, Arizona: American Indian
+38405229	USA, Arizona: Asian and Pacific Islander
+38405230	USA, Arizona: Black
+38405210	USA, Arizona: White
+38404099	USA, Arkansas
+38404030	USA, Arkansas: Black
+38404010	USA, Arkansas: White
+38402599	USA, California
+NA	Usa, California, Alameda County: Black
+NA	Usa, California, Alameda County: White
+38402542	USA, California: American Indian
+38402529	USA, California: Asian and Pacific Islander
+38402530	USA, California: Black
+NA	USA, California, Central Valley
+NA	USA, California, Central Valley: Hispanic
+NA	USA, California, Central Valley: Non-Hispanic White
+38400199	USA, California, Greater San Francisco Bay Area
+38400130	USA, California, Greater San Francisco Bay Area: Black
+38400120	USA, California, Greater San Francisco Bay Area: Chinese
+38400123	USA, California, Greater San Francisco Bay Area: Filipino
+38400150	USA, California, Greater San Francisco Bay Area: Hispanic White
+38400121	USA, California, Greater San Francisco Bay Area: Japanese
+38400160	USA, California, Greater San Francisco Bay Area: Non-Hispanic White
+38402550	USA, California: Hispanic White
+38400399	USA, California, Los Angeles County
+38400329	USA, California, Los Angeles County: Asian and Pacific Islander
+38400330	USA, California, Los Angeles County: Black
+38400320	USA, California, Los Angeles County: Chinese
+38400323	USA, California, Los Angeles County: Filipino
+38400350	USA, California, Los Angeles County: Hispanic White
+38400321	USA, California, Los Angeles County: Japanese
+38400322	USA, California, Los Angeles County: Korean
+38400360	USA, California, Los Angeles County: Non-Hispanic White
+38400310	USA, California, Los Angeles County: White
+38402560	USA, California: Non-Hispanic White
+38400299	USA, California, San Francisco Bay Area
+38400229	USA, California, San Francisco Bay Area: Asian and Pacific Islander
+38400230	USA, California, San Francisco Bay Area: Black
+38400250	USA, California, San Francisco Bay Area: Hispanic White
+38400260	USA, California, San Francisco Bay Area: Non-Hispanic White
+38400210	USA, California, San Francisco Bay Area: White
+38402510	USA, California: White
+38405399	USA, Colorado
+38405329	USA, Colorado: Asian and Pacific Islander
+38405330	USA, Colorado: Black
+38405310	USA, Colorado: White
+38400499	USA, Connecticut
+38400430	USA, Connecticut: Black
+38400410	USA, Connecticut: White
+38404199	USA, Delaware
+38404130	USA, Delaware: Black
+38404110	USA, Delaware: White
+38405499	USA, District of Columbia
+38405430	USA, District of Columbia: Black
+38405410	USA, District of Columbia: White
+38405599	USA, Florida
+38405529	USA, Florida: Asian and Pacific Islander
+38405530	USA, Florida: Black
+38405510	USA, Florida: White
+38405699	USA, Georgia
+38405629	USA, Georgia: Asian and Pacific Islander
+38400599	USA, Georgia, Atlanta
+38400530	USA, Georgia, Atlanta: Black
+38400510	USA, Georgia, Atlanta: White
+38405630	USA, Georgia: Black
+38405610	USA, Georgia: White
+68409999	USA, Hawaii
+68409920	USA, Hawaii: Chinese
+68409923	USA, Hawaii: Filipino
+68409945	USA, Hawaii: Hawaiian
+68409921	USA, Hawaii: Japanese
+68409910	USA, Hawaii: White
+38405799	USA, Idaho
+38405899	USA, Illinois
+38405829	USA, Illinois: Asian and Pacific Islander
+38405830	USA, Illinois: Black
+38405810	USA, Illinois: White
+38405999	USA, Indiana
+38405930	USA, Indiana: Black
+38405910	USA, Indiana: White
+38400699	USA, Iowa
+38401999	USA, Kentucky
+38402299	USA, Louisiana
+38402230	USA, Louisiana: Black
+NA	USA, Louisiana, Central Region
+NA	USA, Louisiana, Central Region: Black
+NA	USA, Louisiana, Central Region: White
+38400799	USA, Louisiana, New Orleans
+38400730	USA, Louisiana, New Orleans: Black
+38400710	USA, Louisiana, New Orleans: White
+38402210	USA, Louisiana: White
+38406199	USA, Maine
+38406099	USA, Massachusetts
+38406029	USA, Massachusetts: Asian and Pacific Islander
+38406030	USA, Massachusetts: Black
+38406010	USA, Massachusetts: White
+38406299	USA, Michigan
+38406229	USA, Michigan: Asian and Pacific Islander
+38406230	USA, Michigan: Black
+38400899	USA, Michigan, Detroit
+38400830	USA, Michigan, Detroit: Black
+38400810	USA, Michigan, Detroit: White
+38406210	USA, Michigan: White
+38404499	USA, Mississippi
+38406399	USA, Missouri
+38406330	USA, Missouri: Black
+38406310	USA, Missouri: White
+38406499	USA, Montana
+38406442	USA, Montana: American Indian
+38404799	USA, Nebraska
+38404730	USA, Nebraska: Black
+38404710	USA, Nebraska: White
+38404899	USA, New Hampshire
+38401599	USA, New Jersey
+38401530	USA, New Jersey: Black
+38401510	USA, New Jersey: White
+38400999	USA, New Mexico
+38400942	USA, New Mexico: American Indian
+38400950	USA, New Mexico: Hispanic White
+38400960	USA, New Mexico: Non-Hispanic White
+38400910	USA, New Mexico: White
+NA	Usa, New York City
+38401699	Usa, New York State
+38401699	USA, New York State
+38401629	USA, New York State: Asian and Pacific Islander
+38401630	USA, New York State: Black
+38401610	USA, New York State: White
+38404599	USA, North Carolina
+38404542	USA, North Carolina: American Indian
+38404529	USA, North Carolina: Asian and Pacific Islander
+38404530	USA, North Carolina: Black
+38404510	USA, North Carolina: White
+38404699	USA, North Dakota
+38408099	USA, NPCR
+38408030	USA, NPCR: Black
+38408010	USA, NPCR: White
+38406599	USA, Ohio
+38406529	USA, Ohio: Asian and Pacific Islander
+38406530	USA, Ohio: Black
+38406510	USA, Ohio: White
+38406699	USA, Oklahoma
+38406642	USA, Oklahoma: American Indian
+38406630	USA, Oklahoma: Black
+38406610	USA, Oklahoma: White
+38406799	USA, Oregon
+38406729	USA, Oregon: Asian and Pacific Islander
+38406730	USA, Oregon: Black
+38406710	USA, Oregon: White
+38406899	USA, Pennsylvania
+38406829	USA, Pennsylvania: Asian and Pacific Islander
+38406830	USA, Pennsylvania: Black
+38406810	USA, Pennsylvania: White
+26300099	Usa, Puerto Rico
+26300099	USA, Puerto Rico
+38406999	USA, Rhode Island
+38406930	USA, Rhode Island: Black
+38406910	USA, Rhode Island: White
+38402010	USA, SEER
+38407099	USA, South Carolina
+38407030	USA, South Carolina: Black
+38407010	USA, South Carolina: White
+38407899	USA, South Dakota
+38407999	USA, Tennessee
+38407930	USA, Tennessee: Black
+38407910	USA, Tennessee: White
+38407199	USA, Texas
+38407129	USA, Texas: Asian and Pacific Islander
+38407130	USA, Texas: Black
+38407110	USA, Texas: White
+38401299	USA, Utah
+38407299	USA, Vermont
+38407799	USA, Virginia
+38407729	USA, Virginia: Asian and Pacific Islander
+38407730	USA, Virginia: Black
+38407710	USA, Virginia: White
+38401399	USA, Washington, Seattle
+38407399	USA, Washington State
+38407499	USA, West Virginia
+38407599	USA, Wisconsin
+38407530	USA, Wisconsin: Black
+38407510	USA, Wisconsin: White
+38407699	USA, Wyoming
+NA	Viet Nam, Hanoi
+NA	Viet Nam, Ho Chi Minh City
+NA	Yugoslavia, Vojvodina
+NA	Zimbabwe, Harare
+17160270	Zimbabwe, Harare: African
+NA	Zimbabwe, Harare: European
