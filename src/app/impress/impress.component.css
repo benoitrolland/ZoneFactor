@@ -1,0 +1,5 @@
+@import "~impress.js/css/impress-demo.css";
+@import "~angular-hotkeys/build/hotkeys.css";
+body.impress-on-pr {
+  background: radial-gradient(#40a4df, #bebebe);
+}

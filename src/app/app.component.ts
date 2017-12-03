@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   private name: string;
   zoneSliders: ZoneSliderItem[];
 
-  constructor(private http:Http, private zoneSlidersService: ZoneSlidersService) {
+  constructor(private http:Http, private zoneSlidersService: ZoneSlidersService) {//OnInit?
   //constructor(private zoneSlidersService: ZoneSlidersService) {
     //this.zoneSliders = this.zoneSlidersService.getZoneSliders();
     this.name='default';

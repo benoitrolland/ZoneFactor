@@ -1,0 +1,30 @@
+step-list .rey {
+  margin: 0% 10%;
+  overflow: hidden;
+  opacity: 0;
+  animation: fade 0.1s ease-in-out forwards;
+  /* fade in */
+}
+step-list .rey li {
+  opacity: 0;
+  margin-bottom: 15px;
+}
+step-list .rey li.strikethrough:after {
+  content: '';
+  position: absolute;
+  width: 160px;
+  height: 3px;
+  background-color: red;
+  left: -50px;
+  top: 37px;
+  transform: rotateZ(3deg);
+}
+step-list .rey li.enter {
+  animation: fade 2s ease-in-out forwards;
+  animation-delay: 1s;
+}
+@keyframes fade {
+  100% {
+    opacity: 1;
+  }
+}

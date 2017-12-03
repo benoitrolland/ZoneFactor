@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
+//import { app.impress} from "./impress/module";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule, MatInputModule , MatAutocompleteModule, MatListModule, MatSidenavModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule,MatSlideToggleModule,MatSliderModule,MatSelectModule } from '@angular/material';
@@ -15,6 +16,8 @@ import { ZoneSlidersComponent,TickSliderComponent,ToggleSliderComponent,UnknownD
 import { ZoneSlidersDirective } from './zone-sliders.directive';
 import { ZoneSlidersService }   from './zone-sliders.service';
 import { BooleanComponent } from './zone-sliders/boolean/boolean.component';
+//import { ImpressComponent, ImpressService } from './impress.component';
+import { ImpressModule } from './impress/impress.module';
 
 @NgModule({
   entryComponents:[ 
@@ -34,6 +37,7 @@ import { BooleanComponent } from './zone-sliders/boolean/boolean.component';
   ],
   imports: [
     BrowserModule
+    ,ImpressModule
     ,FormsModule
     ,ReactiveFormsModule
     ,HttpModule

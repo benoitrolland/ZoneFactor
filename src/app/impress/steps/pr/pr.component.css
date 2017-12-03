@@ -1,0 +1,17 @@
+step-pr #pr {
+  width: 500px;
+  height: 165px;
+  text-align: center;
+  background-image: url("~assets/img/puerto-rico-map-outline-silhouette.png");
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+step-pr #pr .rey {
+  background-image: url("~assets/img/rey.jpg");
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 65px;
+  width: 100px;
+  height: 100px;
+}

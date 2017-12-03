@@ -1,0 +1,9 @@
+step-code #code {
+  text-align: center;
+  height: 700px;
+  background-image: url("~assets/img/collage-2017-03-11.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
