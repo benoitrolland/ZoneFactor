@@ -1,7 +1,7 @@
 {
   "name": "ng4-material",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "GPL",
   "scripts": {
     "ng": "ng",
     " __comment under unix: start": "PORT=9001 node server/server.js",
