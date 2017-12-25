@@ -18,6 +18,8 @@ import { ZoneSlidersService }   from './zone-sliders.service';
 import { BooleanComponent } from './zone-sliders/boolean/boolean.component';
 //import { ImpressComponent, ImpressService } from './impress.component';
 import { ImpressModule } from './impress/impress.module';
+import { ImpressService } from "./shared/impress.service";
+
 
 @NgModule({
   entryComponents:[ 
