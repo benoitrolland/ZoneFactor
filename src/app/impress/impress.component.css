@@ -2,4 +2,40 @@
 @import "~angular-hotkeys/build/hotkeys.css";
 body.impress-on-pr {
   background: radial-gradient(#40a4df, #bebebe);
+  height:100%; 
+  width: 100%;  
+  position: relative;
+}
+/* make the image fit the size of parent <div> with "step" class */
+.step img {
+    max-width: 100%;
+}
+.step.active {
+  transform: rotate(-345deg);
+  transition-delay: 0.25s;
+  color:green;
+}
+.present .rotating {
+  transform: rotate(-45deg);
+  transition-delay: 0.25s;
+  color:blue;
+}
+.no-support-message { display:none; }
+.impress-not-supported .no-support-message { display:block; }
+
+:host ::ng-deep .step  .impress  {
+  top: 0%;
+  left: 0%;
+  height:100%; 
+  width: 100%;
+  position: relative;
+}
+
+.impress  {
+  top: 0%;
+  left: 0%;
+  height:100%; 
+  width: 100%;
+  position: relative;
+	z-index:0;
 }

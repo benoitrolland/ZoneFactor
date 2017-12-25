@@ -28,6 +28,7 @@
         <i class="material-icons">first_page</i>
       </button>
 	</div>
+  <div flex="90">
 -->
   <div flex="90">
     <mat-sidenav-container class="example-container" >
@@ -64,7 +65,7 @@
       </button>
     </div>
     
-    <span style="text-align: center;"><h3>Facteurs significatifs zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</h3></span> 
+    <span style="text-align: center;"><h3>Facteurs significatifs </h3></span> 
 	<span style="text-align: left;">
 	
 	<app-zone-sliders [sliders]="(zoneSliders)" ></app-zone-sliders>
@@ -149,8 +150,8 @@
   <mat-list-option>17</mat-list-option>
   <mat-list-option>18</mat-list-option>
   <mat-list-option>19</mat-list-option>
-  <mat-list-option>20</mat-list-option>  
-  <mat-list-option>21</mat-list-option>  
+  <mat-list-option>20</mat-list-option>
+  <mat-list-option>21</mat-list-option>
   <mat-list-option>22</mat-list-option>
   <mat-list-option>23</mat-list-option>
   <mat-list-option>24</mat-list-option>
@@ -192,10 +193,15 @@
  </div>-->
  
   <!--<div class="example-sidenav-content" style="width: 100%; text-align: left;">-->
-  <mat-card class="map-card"> 
+  <!-- 
+  <mat-card class="map-card" style="display: flex; justify-content: center; margin:0; padding-top: 2px; !important;"> 
+  -->
+  <mat-card class="map-card" style="padding-top: 0px;"> 
     <app-map>Loading ...</app-map>
     <mat-card-header>
-      <mat-card-title>Monde</mat-card-title>
+      <mat-card-title style="display: flex; justify-content: center; !important;">	  
+                    <span class="display: flex; justify-content: center;">{{mapComponent.currentImpressStep_id}}</span>
+	  </mat-card-title>
     </mat-card-header> 
   
     <!--

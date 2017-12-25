@@ -4,3 +4,9 @@ h3      {  padding-top:20px; },
 .header {  background-color: lightyellow;  },
 .left   {  background-color: lightblue;  },
 .right  {  background-color: pink;  }
+
+
+.step.active {
+  transform: rotate(-145deg);
+  transition-delay: 0.25s;
+}
