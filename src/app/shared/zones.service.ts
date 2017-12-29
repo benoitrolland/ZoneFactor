@@ -139,7 +139,7 @@ export class ZonesService {
                 }
             });*/
     }
-	getParentZone(id: string): Observable<any> {
+	getParentZone(id: string): String {
 	/*
 		return this._http.get(this._backendURL.childZones.nameOf(':id', id), this._options())
             .map((res: Response) => {
@@ -155,7 +155,7 @@ export class ZonesService {
 					 || id == "Oceania"
 					 || id == "Central-America"
 					 || id == "North-America"
-					 ){ return Observable.of("World");}
+					 ){ return "World";}
 					 else if (
 						   id == "CH"
 						|| id == "DK"
@@ -168,27 +168,27 @@ export class ZonesService {
 						|| id == "FR"
 						|| id == "ES" 
 						|| id == "EE"
-					){ return Observable.of("Europe") ;}
+					){ return "Europe" ;}
 //					 else if ( id == "EE"
 //					){ return Observable.of("post-soviet-area") ;}
 					 else if ( id == "IL"
-					){ return Observable.of("Middle-East") ;}
+					){ return "Middle-East" ;}
 					 else if ( 
 							id == "IN"
 						 || id == "JP"
 						 || id == "SG" 
-					){ return Observable.of("Asia") ;}
+					){ return "Asia" ;}
 					 else if ( id == "AU"
-					){ return Observable.of("Oceania") ;}
+					){ return "Oceania" ;}
 					 else if ( id == "CR"
-					){ return Observable.of("Central-America") ;}
+					){ return "Central-America" ;}
 					 else if ( id == "CA"
 						 || id == "US" 
-					){ return Observable.of("North-America") ;}				
+					){ return "North-America" ;}				
 					else {
-						return Observable.of(id);
+						return id;
 					}
-	/*
+	/*return Observable.of(id);
                 }
             });
 	*/
