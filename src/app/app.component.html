@@ -72,8 +72,6 @@
 	<!-- <app-zone-sliders [sliders]="zoneSliders" ></app-zone-sliders> show all components at once -->
 	<!-- <app-zone-sliders [sliders]="zoneSliders" [cycling]="'0'"></app-zone-sliders> -->
 	<!-- <app-zone-sliders [sliders]="zoneSliders" [cycling]="'300'"></app-zone-sliders> -->	
-	
-	
 	</span> 
 	<mat-grid-list cols="4" rowHeight="25px" gutterSize="1">
 	<div><div>
@@ -111,8 +109,8 @@
   
 <!-- -->
   <mat-form-field colspan="1">
-    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-	<mat-autocomplete #auto="matAutocomplete">
+    <input type="text" matInput [formControl]="searchControl" [matAutocomplete]="auto1">
+	<mat-autocomplete #auto1="matAutocomplete">
 	  
 	  <mat-option>chien</mat-option>
 	  <mat-option>chat</mat-option>
@@ -166,7 +164,9 @@
 	<mat-grid-list cols="6" >
 	
 	  <mat-grid-tile colspan="1" >-->
-  <div class="example-sidenav-content" style="width: 10%; text-align: left;">
+	  
+<div flex-container="column" style="display: flex; flex-direction: column" flex="10">
+  <div class="example-sidenav-content"  flex-align="left left" colspan="1" style="width: 10%; text-align: left;">
   <!-- style="position: absolute;top: 50; left: 100;" -->
       <button type="button" mat-icon-button (click)="sidenav.open()" >
         <i class="material-icons">first_page</i> 
@@ -181,7 +181,73 @@
 	</div>
 	<div style="width: 100%; text-align: center;"><span style="display: inline-block;
                     width:100px; background-color:blue; height: 40px;">{{title}} :</span></div>-->
-  </div><!--
+  </div> <!--
+  <div class="query" flex="90" style="width: 90%; text-align: center;">
+ 
+    <input style="width: 90%; text-align: center;" _ngcontent-c0="" aria-autocomplete="list" autocomplete="off" class="mat-input-element mat-form-field-autofill-control ng-untouched ng-pristine ng-valid" matinput="" role="combobox" type="text" ng-reflect-autocomplete="[object Object]" ng-reflect-form="[object Object]" ng-reflect-type="text" aria-expanded="false" aria-owns="mat-autocomplete-0" id="mat-input-0" placeholder="" aria-invalid="false">
+	-->
+	<!-- https://material.angular.io/components/select/overview -->
+	 <!--<div>{{ zones }}</div>-->
+	  
+<!-- ng-change="console.log( 'onChange ' , $event )" 
+	(change)="onChange(console.log( 'onChange ' , $event )); impressComponent.goto($event);"
+	ng-change="console.log( 'onChange ' , 'hello' )" 
+	
+	-->	  
+	<!-- 
+		<mat-option style="align:center; text-align: center;">A</mat-option>
+		<mat-option style="align:center; text-align: center;">B</mat-option>
+		<mat-option style="align:center; text-align: center;">C</mat-option>-->
+		<!-- zonesService.getZoneName(zone) -->
+		<!--
+  <mat-form-field flex-align="center center"  colspan="30" style="width: 100%; text-align: center;  align: center;"
+	hintLabel="world:continent:country"
+	shouldPlaceholderFloat="false"
+	>
+	<mat-placeholder>search:</mat-placeholder>
+	
+    <input type="text" style="align:center; text-align: center;" matInput (change)="latestChangeEvent = $event; goto($event.value);" [formControl]="searchControl" [(ngModel)]="currentImpressStep_id" [matAutocomplete]="auto">
+	
+	<mat-autocomplete #auto="matAutocomplete" >	 
+        <mat-option style="align:center; text-align: center;" *ngFor="let zone of zones" [value]="zonesService.getZoneName(zone)">{{ zonesService.getZoneName(zone) }}</mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  -->
+  <!-- [color]="drinksTheme" [required]="drinksRequired" [disabled]="drinksDisabled"-->
+  
+    <mat-form-field  style="width: 100%; text-align: center;  align: center;" shouldPlaceholderFloat="false">
+      <mat-select [(ngModel)]="currentImpressStep_id"  #zoneControl="ngModel"  (change)="latestChangeEvent = $event; goto($event.value);" >
+		<mat-placeholder>search:</mat-placeholder>
+		
+        <mat-option *ngFor="let zone of zones" [value]="zone" [disabled]="zone.disabled" style="align:center; text-align: center;">
+          {{ zonesService.getZoneName(zone) }}
+        </mat-option>
+		
+		<!-- non selectable groups ... 
+		<mat-optgroup *ngFor="let continent of zonesService.getChildZones('World')" [label]="continent" 
+                  [disabled]="continent.disabled">
+			<mat-option *ngFor="let country of zonesService.getChildZones(continent);" [value]="country">
+			{{ zonesService.getZoneName(country) }}
+			</mat-option>
+		</mat-optgroup>
+		-->
+		
+      </mat-select>
+      <mat-hint>world:continent:country</mat-hint>
+      <mat-error>You must make a selection</mat-error>
+	</mat-form-field>
+	
+	<!-- debugging
+	<p> Change event value: {{ latestChangeEvent?.value }} </p>
+	-->
+  <!--
+     <mat-option *ngFor="let data of (myPicMetaData ? myPicMetaData.slice(0,30): [])" [value]="data.title">
+       {{ data.title }}
+     </mat-option>
+	 -->
+  <!--</div>-->
+</div>
+  <!--
      </mat-grid-tile>
 	 <mat-grid-tile colspan="5" >
   
@@ -200,7 +266,7 @@
     <app-map>Loading ...</app-map>
     <mat-card-header>
       <mat-card-title style="display: flex; justify-content: center; !important;">	  
-                    <span class="display: flex; justify-content: center;">{{mapComponent.currentImpressStep_id}}</span>
+                    <span class="display: flex; justify-content: center;">{{mapComponent.currentZoneName}}</span>
 	  </mat-card-title>
     </mat-card-header> 
   

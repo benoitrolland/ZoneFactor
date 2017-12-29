@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, AfterViewChecked } from '@angular/core';
 
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
@@ -9,23 +9,26 @@ import { FormControl }      from '@angular/forms';
 import { ZoneSlidersService } from './zone-sliders.service';
 import { ZoneSliderItem }     from './zone-slider-item';
 import { ImpressService } from './shared/impress.service';
+import { ZonesService } from './shared/zones.service';
 import { MapComponent } from './map/map.component';
+import { ImpressComponent } from './impress/impress.component';
 	
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ImpressService]
+  providers: [ImpressService,ZonesService]
 //https://stackoverflow.com/questions/39410417/how-to-import-component-into-another-root-component-in-angular-2/39410510#39410510
 //  ,  directives: [MapComponent] 
 //  , declarations: [MapComponent] 
 })
 //,  directives: [MapComponent] 
 
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
+  //imp : Impress;
   title = 'Resultats';
-  myControl: FormControl;
+  searchControl: FormControl;
   myPicMetaData: Array<any>;
   worldMapURL: "assets/img/world.svg";
   continent: Array<any>;
@@ -36,12 +39,17 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentCountry='France';
   private name: string;
   zoneSliders: ZoneSliderItem[];
+  zones: String[];
   //currentImpressStep : HTMLElement;
   
   @ViewChild(MapComponent) mapComponent:MapComponent;
-  currentImpressStep_id : String = "_";
+  //https://stackoverflow.com/questions/47559141/angular-2-viewchild-not-working-cannot-read-property-title-of-undefined?rq=1
+  //@ViewChild(ImpressComponent) impressComponent:ImpressComponent;
+  impressComponent:ImpressComponent;
+  
+  currentImpressStep_id : String = "World";
 
-  constructor(private http:Http, private zoneSlidersService: ZoneSlidersService, private impressService: ImpressService) {//OnInit?
+  constructor(private http:Http, private zoneSlidersService: ZoneSlidersService, private impressService: ImpressService, private zonesService: ZonesService) {//OnInit?
     
   console.log( "AppComponent Constructor" );
 	
@@ -51,7 +59,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     //this.zoneSliders = this.zoneSlidersService.getZoneSliders();
 	
     this.name='default';
-    this.myControl = new FormControl();
+    this.searchControl = new FormControl();
 	/*
     this.http.get('https://jsonplaceholder.typicode.com/photos')
       .map(response => response.json())
@@ -75,6 +83,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   
     console.log( "AppComponent ngOnInit" );
+	this.zonesService.getAllZones().subscribe((zones: any[]) => this.zones = zones);
+
     this.zoneSliders = this.zoneSlidersService.getZoneSliders();
 	/*
 	this.impressService.stepEnter$.subscribe((event) => {
@@ -85,7 +95,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         );
 */		
   } 
-  ngAfterViewInit() {
+    ngAfterViewInit() {
         //this.currentImpressStep_id = this.mapComponent.currentImpressStep_id;
 			this.impressService.stepEnter$.subscribe((event) => {
 	        this.currentImpressStep_id = event.target.id; // And he have data here too!
@@ -93,9 +103,16 @@ export class AppComponent implements OnInit, AfterViewInit {
                 
             });
     }
+	
+	ngAfterViewChecked(){
+		this.impressComponent = this.mapComponent.impressComponent;
+	}
   
   changeName(newName:string) {
     this.name=newName;
   }
   
+  public goto(index:any) {
+     this.impressComponent.imp.goto(index); 
+  }
 }
