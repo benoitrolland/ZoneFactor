@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { } from '@types/impress';
 import { ImpressService } from '../shared/impress.service';
 import { ZonesService } from '../shared/zones.service';
@@ -19,6 +19,7 @@ export class MapComponent implements OnInit {
 	
 	currentImpressStep_id : String = "";
 	currentZoneName : any = "*";
+	@Input() sidenav;
 
   constructor(private impressService: ImpressService,private zonesService: ZonesService) { 
   

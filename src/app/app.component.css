@@ -10,3 +10,12 @@ h3      {  padding-top:20px; },
   transform: rotate(-145deg);
   transition-delay: 0.25s;
 }
+
+mat-sidenav {
+	min-width: 270px;
+}
+/* inactive ..
+.mat-input-flex.mat-form-field-flex {
+    border-top-width: 1px;
+}
+*/

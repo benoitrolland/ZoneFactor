@@ -13,7 +13,7 @@
 </mat-toolbar>
 
 <mat-menu #appMenu="matMenu">
-  <button mat-menu-item (click)="sidenav.open()"> Settings </button>
+  <button mat-menu-item (click)="sidenav.toggle()"> Settings </button>
   <!--
   <button mat-menu-item (click)="sidenav.open()"> Help </button>
    <button type="button" mat-button (click)="sidenav.open()">
@@ -32,7 +32,8 @@
 -->
   <div flex="90">
     <mat-sidenav-container class="example-container" >
-    <mat-sidenav #sidenav class="example-sidenav" >
+	<!-- https://github.com/angular/material2/blob/master/src/lib/sidenav/sidenav.md -->
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
 	<!-- direct update of myName from input
 	<div> 
      <input type="text" name="myName" [(ngModel)]="myName">
@@ -57,6 +58,7 @@
       </div>
       -->
 	 <!-- #newname is a reference. "(click)="changeName(newname.value)"" an event, and [disabled]="newname.value == 'Angular 2'"> a property -->
+	 <!--
     <div> My name is {{ name }} </div>
     <div>
       <input   #newname   type="text">
@@ -64,8 +66,8 @@
            [disabled]="newname.value == 'Angular 2'">Change Name
       </button>
     </div>
-    
-    <span style="text-align: center;"><h3>Facteurs significatifs </h3></span> 
+    -->
+    <span style="text-align: center;"><h3>Significant factors</h3></span> 
 	<span style="text-align: left;">
 	
 	<app-zone-sliders [sliders]="(zoneSliders)" ></app-zone-sliders>
@@ -73,6 +75,7 @@
 	<!-- <app-zone-sliders [sliders]="zoneSliders" [cycling]="'0'"></app-zone-sliders> -->
 	<!-- <app-zone-sliders [sliders]="zoneSliders" [cycling]="'300'"></app-zone-sliders> -->	
 	</span> 
+	<!--
 	<mat-grid-list cols="4" rowHeight="25px" gutterSize="1">
 	<div><div>
 	  <mat-grid-tile colspan="3" rowspan="1" style="align:right">1<mat-slider min="1" max="5" step="0.5" value="1.5" placeHolder="value" displayValue="F1" aria-label="aF1"></mat-slider>5</mat-grid-tile>
@@ -86,12 +89,14 @@
 	  <br/></div><div>
 	  <mat-grid-tile colspan="3" rowspan="1"><mat-slide-toggle>F4</mat-slide-toggle></mat-grid-tile>
 	  <mat-grid-tile colspan="1" rowspan="1">&nbsp;&nbsp;Fd</mat-grid-tile>
-	  <!--  
+	  --><!--  
 	  <mat-grid-tile>1<mat-slider thumbLabel tickInterval="1" min="1" max="5" step="0.5" value="1.5">F5</mat-slider>5</mat-grid-tile>
 	  <mat-grid-tile>&nbsp;&nbsp;Fe<mat-grid-tile>
-	  --></div>
+	  --><!--</div>
 	</div>
 	</mat-grid-list>
+	-->
+	
     <mat-list dense>
     
     <!--
@@ -107,7 +112,7 @@
       </mat-list-item>
     </mat-list>
   
-<!-- -->
+<!-- 
   <mat-form-field colspan="1">
     <input type="text" matInput [formControl]="searchControl" [matAutocomplete]="auto1">
 	<mat-autocomplete #auto1="matAutocomplete">
@@ -117,15 +122,15 @@
 	  <mat-option>abeille</mat-option>
 	  <mat-option>hibou</mat-option>
 	  <mat-option>apolon</mat-option>
-      <!--
+      --><!--
      <mat-option *ngFor="let data of (myPicMetaData ? myPicMetaData.slice(0,30): [])" [value]="data.title">
        {{ data.title }}
      </mat-option>
-	 -->
+	 --><!--
     </mat-autocomplete>
   </mat-form-field><div colspan="1"></div>
   <input name="currentCountry" [(ngModel)]="currentCountry" />
-
+-->
   
 
   <!--
@@ -168,9 +173,12 @@
 <div flex-container="column" style="display: flex; flex-direction: column" flex="10">
   <div class="example-sidenav-content"  flex-align="left left" colspan="1" style="width: 10%; text-align: left;">
   <!-- style="position: absolute;top: 50; left: 100;" -->
-      <button type="button" mat-icon-button (click)="sidenav.open()" >
+  <!-- OK
+      <button type="button" mat-icon-button (click)="sidenav.toggle()" >
         <i class="material-icons">first_page</i> 
       </button>
+	-->  
+	  
 	  <!--
 	  <div style="text-align:center">{{title}} :</div>-->
     <!--
@@ -217,12 +225,10 @@
   
     <mat-form-field  style="width: 100%; text-align: center;  align: center;" shouldPlaceholderFloat="false">
       <mat-select [(ngModel)]="currentImpressStep_id"  #zoneControl="ngModel"  (change)="latestChangeEvent = $event; goto($event.value);" >
-		<mat-placeholder>search:</mat-placeholder>
-		
+		<mat-placeholder>search:</mat-placeholder>		
         <mat-option *ngFor="let zone of zones" [value]="zone" [disabled]="zone.disabled" style="align:center; text-align: center;">
           {{ zonesService.getZoneName(zone) }}
-        </mat-option>
-		
+        </mat-option>		
 		<!-- non selectable groups ... 
 		<mat-optgroup *ngFor="let continent of zonesService.getChildZones('World')" [label]="continent" 
                   [disabled]="continent.disabled">
@@ -230,8 +236,7 @@
 			{{ zonesService.getZoneName(country) }}
 			</mat-option>
 		</mat-optgroup>
-		-->
-		
+		-->		
       </mat-select>
       <mat-hint>world:continent:country</mat-hint>
       <mat-error>You must make a selection</mat-error>
@@ -263,7 +268,8 @@
   <mat-card class="map-card" style="display: flex; justify-content: center; margin:0; padding-top: 2px; !important;"> 
   -->
   <mat-card class="map-card" style="padding-top: 0px;"> 
-    <app-map>Loading ...</app-map>
+  <!-- https://stackoverflow.com/questions/45400447/angular-2-material-2-toolbar-nested-sidenav-how-call-toggle-button-outside-s -->
+    <app-map  [sidenav]="sidenav">Loading ...</app-map>
     <mat-card-header>
       <mat-card-title style="display: flex; justify-content: center; !important;">	  
                     <span class="display: flex; justify-content: center;">{{mapComponent.currentZoneName}}</span>
@@ -308,7 +314,7 @@
   <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
   -->
 </div>
-<h2>Quelques liens: </h2>
+<h2>Some links: </h2>
 <ul>
   <li>
     <h2><a target="_blank" rel="noopener" href="http://wiki.epidemium.cc/wiki/Accueil">Wiki</a></h2>
