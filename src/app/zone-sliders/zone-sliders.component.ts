@@ -3,6 +3,7 @@ import { Component, Input, AfterViewInit, ViewChild, ComponentFactoryResolver, O
 import { ZoneSlider }           from '../zone-slider.interface';  
 import { ZoneSliderItem }       from '../zone-slider-item';
 import { ZoneSlidersDirective } from '../zone-sliders.directive';
+import { ZoneSlidersService } from '../zone-sliders.service';
 import { ChangeDetectorRef,ViewContainerRef } from '@angular/core';
 
 @Component({
@@ -39,7 +40,8 @@ export class UnknownDynamicComponent implements ZoneSlider {
 })
 
 export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
-  @Input() sliders: ZoneSliderItem[];
+  //@Input() 
+  public sliders: ZoneSliderItem[];
   @Input() cycling: number = -1; 
   currentSliderIndex: number = -1;
   @ViewChild(ZoneSlidersDirective) sliderHost: ZoneSlidersDirective; //<ng-template slider-host></ng-template>
@@ -48,12 +50,19 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   interval: any;
   //data:any; 
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private _changeDetectionRef : ChangeDetectorRef) { 
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private _changeDetectionRef : ChangeDetectorRef, private zoneSlidersService: ZoneSlidersService) { 
     //working ok =-1console.log("this.currentSliderIndex=" + this.currentSliderIndex);
+	
   }
-  
+  setSliders(sliders: ZoneSliderItem[]) { 
+    console.log( "zonesliderComp setSliders: " , sliders );
+  	this.sliders = sliders;
+	this.reLoadComponent();
+  }
   ngOnInit() { 
-  	//this.sliders = [];
+  	//this.sliders = this.zoneSlidersService.getGeneralZoneSliders();
+	//this.setSliders(this.zoneSlidersService.getGeneralZoneSliders());
+	this.setSliders([]);
   }
   
   ngAfterViewInit() {
@@ -66,8 +75,6 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
     clearInterval(this.interval);
   }
   
-
-
   reLoadComponent() {
     this.interval = setInterval(() => {
       this.loadComponent();

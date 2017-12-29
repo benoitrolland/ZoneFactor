@@ -1,11 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewChild, AfterViewChecked } from '@angular/core';
-
+import { Component, OnInit, AfterViewInit, ViewChild, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'hammerjs/hammer';
 import { FormControl }      from '@angular/forms';
-	
+import { ZoneSlidersComponent } from './zone-sliders/zone-sliders.component';
 import { ZoneSlidersService } from './zone-sliders.service';
 import { ZoneSliderItem }     from './zone-slider-item';
 import { ImpressService } from './shared/impress.service';
@@ -38,8 +37,9 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   departement: Array<any>;
   currentCountry='France';
   private name: string;
-  zoneSliders: ZoneSliderItem[];
+  //zoneSliders: ZoneSliderItem[];
   zones: String[];
+  @ViewChild(ZoneSlidersComponent) zoneSlidersComponent : ZoneSlidersComponent;
   //currentImpressStep : HTMLElement;
   
   @ViewChild(MapComponent) mapComponent:MapComponent;
@@ -49,17 +49,29 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   
   currentImpressStep_id : String = "World";
 
-  constructor(private http:Http, private zoneSlidersService: ZoneSlidersService, private impressService: ImpressService, private zonesService: ZonesService) {//OnInit?
+  constructor(private http:Http, private zoneSlidersService: ZoneSlidersService, private impressService: ImpressService, private zonesService: ZonesService, private _changeDetectionRef : ChangeDetectorRef) {//OnInit?
     
-  console.log( "AppComponent Constructor" );
-	
-  
+  console.log( "AppComponent Constructor" );  
   
   //constructor(private zoneSlidersService: ZoneSlidersService) {
     //this.zoneSliders = this.zoneSlidersService.getZoneSliders();
 	
     this.name='default';
     this.searchControl = new FormControl();
+	/*
+	this.impressService.stepEnter$.subscribe((event) => {
+				this.currentImpressStep_id = event.target.id; // And he have data here too!
+				console.log( "App Entered the Step Element '" + this.currentImpressStep_id + "'" );
+				this.zoneSliders = this.zoneSlidersService.getZoneSliders(event.target.id);    
+				this.zoneSlidersComponent.reLoadComponent();
+				this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/17572
+
+				//console.log( "App Entered the Step Element '" + this.currentImpressStep_id + "'" );
+                
+            }
+        );
+	*/
+	
 	/*
     this.http.get('https://jsonplaceholder.typicode.com/photos')
       .map(response => response.json())
@@ -76,8 +88,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 //					})
 //					.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 //	autocompleteGeoZones
-
-	
+//loadComponent()	
   }
   
   ngOnInit() {
@@ -85,7 +96,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
     console.log( "AppComponent ngOnInit" );
 	this.zonesService.getAllZones().subscribe((zones: any[]) => this.zones = zones);
 
-    this.zoneSliders = this.zoneSlidersService.getZoneSliders();
+    //this.zoneSliders = this.zoneSlidersService.getGeneralZoneSliders();
 	/*
 	this.impressService.stepEnter$.subscribe((event) => {
 	        this.currentImpressStep_id = event.target.id; // And he have data here too!
@@ -93,26 +104,51 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
                 
             }
         );
-*/		
+   */		
   } 
     ngAfterViewInit() {
+		console.log( "- ngAfterViewInit " );
         //this.currentImpressStep_id = this.mapComponent.currentImpressStep_id;
+		/*
 			this.impressService.stepEnter$.subscribe((event) => {
-	        this.currentImpressStep_id = event.target.id; // And he have data here too!
-	        console.log( "App Entered the Step Element '" + this.currentImpressStep_id + "'" );
-                
+				this.currentImpressStep_id = event.target.id; // And he have data here too!
+				console.log( "App Entered the Step Element '" + this.currentImpressStep_id + "'" );
+				this.zoneSliders = this.zoneSlidersService.getZoneSliders(event.target.id);    
+				this.zoneSlidersComponent.reLoadComponent();
+				this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/17572
             });
+		*/
+		// this.zoneSliders = this.zoneSlidersService.getZoneSliders(this.mapComponent.currentZoneName); 
+		 //this.zoneSlidersComponent.reLoadComponent();
+		// this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/17572
+           // this.zoneSliders = this.zoneSlidersService.getZoneSliders(this.mapComponent.currentZoneName);  
+			
     }
 	
 	ngAfterViewChecked(){
 		this.impressComponent = this.mapComponent.impressComponent;
+		//this.zoneSliders = this.zoneSlidersService.getZoneSliders(this.mapComponent.currentZoneName); 
+		//this.zoneSlidersComponent.reLoadComponent();
+		//this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/17572
+		//console.log( "- ngAfterViewChecked " + this.mapComponent.currentZoneName);
+	}
+	onStepUpdate(event:any){
+		console.log( "App onStepUpdate: " , event.target.id );
+		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getZoneSliders(event.target.id)); 
+		//sidenav.open();
+		//this._changeDetectionRef.detectChanges();
 	}
   
-  changeName(newName:string) {
-    this.name=newName;
-  }
+	changeName(newName:string) {
+		this.name=newName;
+	}
   
-  public goto(index:any) {
-     this.impressComponent.imp.goto(index); 
-  }
+	public goto(index:any) {
+		this.impressComponent.imp.goto(index); 
+	}
+	
+	public getzoneSlidersLength() {
+	    if (this.zoneSlidersComponent.sliders === undefined) return 0;
+		return this.zoneSlidersComponent.sliders.length;
+	}
 }

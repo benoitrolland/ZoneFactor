@@ -32,8 +32,15 @@
 -->
   <div flex="90">
     <mat-sidenav-container class="example-container" >
-	<!-- https://github.com/angular/material2/blob/master/src/lib/sidenav/sidenav.md -->
-    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+	<!-- https://github.com/angular/material2/blob/master/src/lib/sidenav/sidenav.md  
+	KO *ngIf="zoneSlidersComponent.sliders.length>0"  
+	KO opened="(currentImpressStep_id != 'World')? true: false;" 
+	KO opened="if(currentImpressStep_id != 'World')then true; else false;"
+	sidenav.toggle()
+	OK but sidenav function like toggle(), open() and close() no longer work ... : *ngIf="currentImpressStep_id != 'World'" 	
+	OK! [opened]="currentImpressStep_id != 'World'"
+	-->
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" [opened]="getzoneSlidersLength() > 0"   >
 	<!-- direct update of myName from input
 	<div> 
      <input type="text" name="myName" [(ngModel)]="myName">
@@ -69,8 +76,8 @@
     -->
     <span style="text-align: center;"><h3>Significant factors</h3></span> 
 	<span style="text-align: left;">
-	
-	<app-zone-sliders [sliders]="(zoneSliders)" ></app-zone-sliders>
+	<!-- [sliders]="(zoneSliders)" -->
+	<app-zone-sliders  ></app-zone-sliders>
 	<!-- <app-zone-sliders [sliders]="zoneSliders" ></app-zone-sliders> show all components at once -->
 	<!-- <app-zone-sliders [sliders]="zoneSliders" [cycling]="'0'"></app-zone-sliders> -->
 	<!-- <app-zone-sliders [sliders]="zoneSliders" [cycling]="'300'"></app-zone-sliders> -->	
@@ -97,10 +104,9 @@
 	</mat-grid-list>
 	-->
 	
-    <mat-list dense>
-    
-    <!--
-      <mat-progress-spinner mode="determinate">-->
+    <!-- <mat-progress-spinner mode="determinate"></mat-progress-spinner> -->
+	<!-- OK
+    <mat-list dense>      
       <mat-list-item input-group>1<mat-slider min="1" max="5" step="0.5" value="1.5" placeHolder="value" displayValue="F1" aria-label="aF1"></mat-slider>5<h4 style="align:right">&nbsp;&nbsp;Fa</h4>
       </mat-list-item>
       <mat-list-item>10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">F2</mat-slider>100<h4 style="align:right">&nbsp;&nbsp;Fb</h4>
@@ -110,8 +116,9 @@
       <mat-list-item><mat-slide-toggle>F4</mat-slide-toggle></mat-list-item>
       <mat-list-item>1<mat-slider thumbLabel tickInterval="1" min="1" max="5" step="0.5" value="1.5">F5</mat-slider>5<h4 style="align:right">&nbsp;&nbsp;Fe</h4>
       </mat-list-item>
+	  
     </mat-list>
-  
+  -->
 <!-- 
   <mat-form-field colspan="1">
     <input type="text" matInput [formControl]="searchControl" [matAutocomplete]="auto1">
@@ -267,9 +274,9 @@
   <!-- 
   <mat-card class="map-card" style="display: flex; justify-content: center; margin:0; padding-top: 2px; !important;"> 
   -->
-  <mat-card class="map-card" style="padding-top: 0px;"> 
+  <mat-card class="map-card" style="padding-top: 0px; padding-left: 37px;"> 
   <!-- https://stackoverflow.com/questions/45400447/angular-2-material-2-toolbar-nested-sidenav-how-call-toggle-button-outside-s -->
-    <app-map  [sidenav]="sidenav">Loading ...</app-map>
+    <app-map  [sidenav]="sidenav" (stepUpdate)="onStepUpdate($event)">Loading ...</app-map>
     <mat-card-header>
       <mat-card-title style="display: flex; justify-content: center; !important;">	  
                     <span class="display: flex; justify-content: center;">{{mapComponent.currentZoneName}}</span>

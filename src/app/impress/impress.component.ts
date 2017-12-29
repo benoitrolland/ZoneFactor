@@ -53,7 +53,7 @@ export class ImpressComponent implements OnInit {
   ngOnImpressStepEnter(event:any) {
     this.currentImpressStep = event.target;	
 	  console.log( "Entered the Step Element '" + this.currentImpressStep.id + "'" );
-	  console.log( "this.myImpressService ngOnInit ", this.myImpressService );
+	  console.log( "this.myImpressService ngOnInit ", this.myImpressService );	 
       this.myImpressService.stepEnter(event);
   }
   goto(index:any) {

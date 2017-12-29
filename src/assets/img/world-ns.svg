@@ -45,7 +45,9 @@ THE SOFTWARE.
    width="20000px"
    id="svg2"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="world.svg">
+   sodipodi:docname="world.svg"   
+   >
+   <!-- shape-rendering="crispEdges" -->
   <svg:defs
      id="defs4">
     <svg:style
