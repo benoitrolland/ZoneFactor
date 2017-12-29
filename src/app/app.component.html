@@ -39,8 +39,10 @@
 	sidenav.toggle()
 	OK but sidenav function like toggle(), open() and close() no longer work ... : *ngIf="currentImpressStep_id != 'World'" 	
 	OK! [opened]="currentImpressStep_id != 'World'"
+	OK! [opened]="getzoneSlidersLength() > 0"
+	Removed because sometimes... first slide disapear on resize when sidenav is opened after first slide was loaded ...
 	-->
-    <mat-sidenav #sidenav class="example-sidenav" mode="side" [opened]="getzoneSlidersLength() > 0"   >
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" [opened]="true"   >
 	<!-- direct update of myName from input
 	<div> 
      <input type="text" name="myName" [(ngModel)]="myName">

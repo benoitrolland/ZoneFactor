@@ -16,7 +16,7 @@ export class MapComponent implements OnInit {
 	//public data = {};
 	@ViewChild(ImpressComponent) impressComponent : ImpressComponent;
 	currentImpressStep : HTMLElement;	
-	currentImpressStep_id : String = "";
+	currentImpressStep_id : String = "World";
 	currentZoneName : any = "*";
 	@Input() sidenav;	
 	//to be used in parent html: <app-map (stepUpdate)="doSomething($event)"></app-map>
