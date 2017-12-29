@@ -9,6 +9,7 @@ import { ChangeDetectorRef,ViewContainerRef } from '@angular/core';
 @Component({
     selector: 'tick-slider',
 	styleUrls: ['./TickSliderComponent.component.css'],
+//  thumbLabel:
 //    template: '<mat-grid-tile colspan="1" rowspan="1">&nbsp;10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100</mat-grid-tile>'
 //    template: '<div>&nbsp;{{data?.text}}&nbsp;</div>'
 //      template: '10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100<h4 style="align:right">a</h4>'
@@ -57,7 +58,8 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   setSliders(sliders: ZoneSliderItem[]) { 
     console.log( "zonesliderComp setSliders: " , sliders );
   	this.sliders = sliders;
-	this.reLoadComponent();
+	this.loadComponent();
+	if(this.cycling > 0) this.reLoadComponent();
   }
   ngOnInit() { 
   	//this.sliders = this.zoneSlidersService.getGeneralZoneSliders();
