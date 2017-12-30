@@ -4,6 +4,11 @@ All the material for the GUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.8.
 
+## Compatibility
+Beter use Chrome. 
+For sharp country edges, use Microsoft Edge. But you will not see the whole world map. 
+Don't use Firefox for now, Events are not fired correctly yet. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4201/`. The app will automatically reload if you change any of the source files.
