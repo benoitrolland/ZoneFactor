@@ -13,18 +13,26 @@ import { ChangeDetectorRef,ViewContainerRef } from '@angular/core';
 //    template: '<mat-grid-tile colspan="1" rowspan="1">&nbsp;10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100</mat-grid-tile>'
 //    template: '<div>&nbsp;{{data?.text}}&nbsp;</div>'
 //      template: '10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100<h4 style="align:right">a</h4>'
-    template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1" ><mat-grid-tile colspan="4" rowspan="1"  class="grid-right">&nbsp;10<mat-slider thumbLabel tickInterval="5" min="10" max="100" step="5" value="75">F2</mat-slider>100</mat-grid-tile><mat-grid-tile colspan="2" rowspan="1" class="grid-left">&nbsp;&nbsp;{{data?.text}}</mat-grid-tile></mat-grid-list>'
+    template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1" ><mat-grid-tile colspan="4" rowspan="1"  class="grid-right">&nbsp;10<mat-slider thumbLabel tickInterval="5" min="10" max="100" step="5" value="{{data?.value}}" (change)="onChange($event, data.value)">F2</mat-slider>100</mat-grid-tile><mat-grid-tile colspan="2" rowspan="1" class="grid-left">&nbsp;={{data?.text}}:{{data.value}}=</mat-grid-tile></mat-grid-list>'
 })
 export class TickSliderComponent implements ZoneSlider {
   @Input() data: any; 
+  onChange($event){
+	//console.log("$event:",$event);
+    this.data.value=$event.value;
+  }
 }
 
 @Component({
     selector: 'toggle-slider',
-    template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1"><mat-grid-tile colspan="4" rowspan="1" ><mat-slide-toggle>F4</mat-slide-toggle></mat-grid-tile><mat-grid-tile  colspan="2" rowspan="1" >&nbsp;&nbsp;Fd</mat-grid-tile></mat-grid-list>'
+    template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1"><mat-grid-tile colspan="4" rowspan="1" ><mat-slide-toggle [checked]="data?.value" (change)="onChange($event, data.value)" >F4</mat-slide-toggle></mat-grid-tile><mat-grid-tile  colspan="2" rowspan="1" >&nbsp;&nbsp;=Fd:{{checked}}-{{data.value}}=</mat-grid-tile></mat-grid-list>'
 })
 export class ToggleSliderComponent implements ZoneSlider {
   @Input() data: any; 
+  onChange($event){
+	console.log("$event:",$event);
+    this.data.value=$event.checked;
+  }
 }
 @Component({
     selector: 'unknown-component',

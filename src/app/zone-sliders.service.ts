@@ -14,8 +14,8 @@ export class ZoneSlidersService {
       .subscribe(res => this.myPicMetaData = res);
 */  
     return [
-        new ZoneSliderItem(TickSliderComponent,{text:'Tick Slider'}),
-        new ZoneSliderItem(ToggleSliderComponent,{text:'Toggle Slider'}),
+        new ZoneSliderItem(TickSliderComponent,{text:'Tick Slider',value:50}),
+        new ZoneSliderItem(ToggleSliderComponent,{text:'Toggle Slider',value:'checked'}),
         new ZoneSliderItem(UnknownDynamicComponent,{text:'unknown ..'})
 //      new ZoneSliderItem(HeroProfileComponent, {name: 'Bombasto', bio: 'Brave as they come'}),
 //      new ZoneSliderItem(HeroProfileComponent, {name: 'Dr IQ', bio: 'Smart as they come'}),
