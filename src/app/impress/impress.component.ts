@@ -16,19 +16,38 @@ export class ImpressComponent implements OnInit {
   impressElement : HTMLElement;
   currentImpressStep : HTMLElement;
   myImpressService:ImpressService;
-  
+  //private countrySettings: Observable<any[]>;
+  //color ="param-fill:red";
+  //styleb:String = "fill:red;fill-rule:evenodd";
+  //fillruleb:String = "evenodd";
+  //circumferenceb:String = "circumference";
+  fillb:String = "red";
+  classb:String = "FR current";
+  some:any = JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
   constructor(myImpressService:ImpressService) {
-   this.myImpressService = myImpressService;
-   console.log("this.myImpressService constructeur ", this.myImpressService);
-    //Impress.init();
-  //private imp:Impress 
-    //impress().init();
-	//Impress.init();//TypeError: Cannot read property 'init' of undefined
+	this.myImpressService = myImpressService;
+	console.log("this.myImpressService constructeur ", this.myImpressService);
+	//Impress.init();
+	//private imp:Impress 
+	//impress().init();
+	//Impress.init();
+	//TypeError: Cannot read property 'init' of undefined
 	//this.imp.init();
 	//this.imp = impress();
   }
 
+  getStyle(zoneId:string):String{
+	var test = this.some.find(x => x.id === zoneId);
+	//.fill ;
+	//hsl(240, 100%, 35%)
+	if( test === undefined) return "#f2f2f2" ;
+	//console.log("zonid " + zoneId + " test=" , test);
+	if( test.fill != undefined) return test.fill;
+	return "red";	
+  }
+  
   ngOnInit() {
+  console.log( "JSON: '" , this.some );
     this.imp = impress();
      //this.imp.init();
 	 //impress().init();
