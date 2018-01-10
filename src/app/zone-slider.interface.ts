@@ -1,5 +1,6 @@
-import { Type } from '@angular/core';
+import { Type, EventEmitter } from '@angular/core';
 export interface ZoneSlider {
-  data: any;  
+  data: any; 
+  change:EventEmitter<any>;
   //component: Type<any>;
 }

@@ -1,10 +1,10 @@
-import { Component, Input, AfterViewInit, ViewChild, ComponentFactoryResolver, OnDestroy } from '@angular/core'; 
+import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ComponentFactoryResolver, OnDestroy } from '@angular/core'; 
 //OnInit , 
 import { ZoneSlider }           from '../zone-slider.interface';  
 import { ZoneSliderItem }       from '../zone-slider-item';
 import { ZoneSlidersDirective } from '../zone-sliders.directive';
-import { ZoneSlidersService } from '../zone-sliders.service';
-import { ChangeDetectorRef,ViewContainerRef } from '@angular/core';
+//import { ZoneSlidersService } from '../zone-sliders.service';
+import { ChangeDetectorRef, ViewContainerRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 
 @Component({
     selector: 'tick-slider',
@@ -17,9 +17,12 @@ import { ChangeDetectorRef,ViewContainerRef } from '@angular/core';
 })
 export class TickSliderComponent implements ZoneSlider {
   @Input() data: any; 
+  @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
+
   onChange($event){
-	//console.log("$event:",$event);
+	console.log("onChange $event=",$event);
     this.data.value=$event.value;
+	this.change.emit($event);
   }
 }
 
@@ -28,10 +31,14 @@ export class TickSliderComponent implements ZoneSlider {
     template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1"><mat-grid-tile colspan="4" rowspan="1" ><mat-slide-toggle [checked]="data?.value" (change)="onChange($event, data.value)" >F4</mat-slide-toggle></mat-grid-tile><mat-grid-tile  colspan="2" rowspan="1" >&nbsp;&nbsp;=Fd:{{checked}}-{{data.value}}=</mat-grid-tile></mat-grid-list>'
 })
 export class ToggleSliderComponent implements ZoneSlider {
+//inpout used for initialisation rather than for update
   @Input() data: any; 
+  @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
+
   onChange($event){
-	console.log("$event:",$event);
+	console.log("onChange $event=",$event);
     this.data.value=$event.checked;
+	this.change.emit($event);
   }
 }
 @Component({
@@ -40,6 +47,7 @@ export class ToggleSliderComponent implements ZoneSlider {
 })
 export class UnknownDynamicComponent implements ZoneSlider {
   @Input() data: any; 
+  @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
 }
 
 @Component({
@@ -57,22 +65,33 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   //@ViewChild('container', { read: ViewContainerRef }) //<div><div #container></div></div>
   subscription: any;
   interval: any;
+  zoneId: String;
+  slidersValues:number[] = [];
   //data:any; 
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private _changeDetectionRef : ChangeDetectorRef, private zoneSlidersService: ZoneSlidersService) { 
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private _changeDetectionRef : ChangeDetectorRef
+  //, private zoneSlidersService: ZoneSlidersService
+  ) { 
     //working ok =-1console.log("this.currentSliderIndex=" + this.currentSliderIndex);
 	
   }
-  setSliders(sliders: ZoneSliderItem[]) { 
+  
+  setSliders(sliders: ZoneSliderItem[], id:String) { 
     console.log( "zonesliderComp setSliders: " , sliders );
+	this.zoneId = id;
   	this.sliders = sliders;
 	this.loadComponent();
 	if(this.cycling > 0) this.reLoadComponent();
   }
+  
+  getSlidersDatas() { 
+  
+  }
+  
   ngOnInit() { 
   	//this.sliders = this.zoneSlidersService.getGeneralZoneSliders();
 	//this.setSliders(this.zoneSlidersService.getGeneralZoneSliders());
-	this.setSliders([]);
+	this.setSliders([],"none");
   }
   
   ngAfterViewInit() {
@@ -83,6 +102,19 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   
   ngOnDestroy() {
     clearInterval(this.interval);
+  }
+  
+  //needed on selector: (change)="onChildChange($event)
+  onChildChange(event){
+	console.log('onChildChange(event): event: ', event);
+  }
+  /* UNUSED when Angular (re)sets data-bound @Input properties */
+  ngOnChanges(changes: SimpleChanges) {
+	console.log('ngOnChanges(): SimpleChanges: ', changes);
+ //   const name: SimpleChange = changes.name;
+ //   console.log('prev value: ', name.previousValue);
+ //   console.log('got name: ', name.currentValue);
+    //this._name = name.currentValue.toUpperCase();
   }
   
   reLoadComponent() {
@@ -102,6 +134,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 	 for (; i < len; i++) { 
       this.loadNextComponent(viewContainerRef);
 	 }
+	 //this.onLoadedComponent();
    }
    
    loadNextComponent(viewContainerRef: ViewContainerRef){ //ComponentRef<{}>) {
@@ -114,9 +147,20 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
-    (<ZoneSlider>componentRef.instance).data = zoneSliderItem.data;
-  } 
+    (<ZoneSlider>componentRef.instance).data = zoneSliderItem.data;	
+	(<ZoneSlider>componentRef.instance).change.subscribe(msg => this.onChildChange(msg));
+  }
   
+  /*
+  onLoadedComponent() {
+	console.log("onLoadedComponent");
+	var i = 0;
+	for (; i < this.sliders.length; i++) { 
+		let zoneSliderItem = this.sliders[i];
+		console.log("zoneSliderItem.data.value: ",zoneSliderItem.data.value);
+	}
+  }
+  */
 } 
 
 

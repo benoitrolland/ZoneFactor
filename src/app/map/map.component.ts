@@ -18,6 +18,8 @@ export class MapComponent implements OnInit {
 	currentImpressStep : HTMLElement;	
 	currentImpressStep_id : String = "World";
 	currentZoneName : any = "*";
+	//how-to-detect-when-an-input-value-changes-in-angular
+	//https://stackoverflow.com/questions/38571812/how-to-detect-when-an-input-value-changes-in-angular
 	@Input() sidenav;	
 	//to be used in parent html: <app-map (stepUpdate)="doSomething($event)"></app-map>
 	@Output('stepUpdate') stepChange: EventEmitter<any> = new EventEmitter<any>(); //https://toddmotto.com/component-events-event-emitter-output-angular-2
