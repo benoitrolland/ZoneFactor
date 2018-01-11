@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {TickSliderComponent,ToggleSliderComponent,UnknownDynamicComponent} from './zone-sliders/zone-sliders.component';
-import { ZoneSliderItem } from './zone-slider-item';
+import {TickSliderComponent,ToggleSliderComponent,UnknownDynamicComponent} from '../zone-sliders/zone-sliders.component';
+import { ZoneSliderItem } from '../zone-slider-item';
 
 @Injectable()
 export class ZoneSlidersService {

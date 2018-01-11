@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'hammerjs/hammer';
 import { FormControl }      from '@angular/forms';
 import { ZoneSlidersComponent } from './zone-sliders/zone-sliders.component';
-import { ZoneSlidersService } from './zone-sliders.service';
+import { ZoneSlidersService } from './shared/zone-sliders.service';
 import { ZoneSliderItem }     from './zone-slider-item';
 import { ImpressService } from './shared/impress.service';
 import { ZonesService } from './shared/zones.service';

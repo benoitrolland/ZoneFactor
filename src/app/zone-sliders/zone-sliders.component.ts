@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, Compo
 import { ZoneSlider }           from '../zone-slider.interface';  
 import { ZoneSliderItem }       from '../zone-slider-item';
 import { ZoneSlidersDirective } from '../zone-sliders.directive';
-//import { ZoneSlidersService } from '../zone-sliders.service';
+//import { ZoneSlidersService } from '../shared/zone-sliders.service';
 import { ChangeDetectorRef, ViewContainerRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 
 @Component({

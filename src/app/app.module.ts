@@ -14,7 +14,7 @@ import { MapComponent } from './map/map.component';
 import { ZonesService } from "./shared/index";
 import { ZoneSlidersComponent,TickSliderComponent,ToggleSliderComponent,UnknownDynamicComponent } from './zone-sliders/zone-sliders.component';
 import { ZoneSlidersDirective } from './zone-sliders.directive';
-import { ZoneSlidersService }   from './zone-sliders.service';
+import { ZoneSlidersService }   from './shared/zone-sliders.service';
 import { BooleanComponent } from './zone-sliders/boolean/boolean.component';
 //import { ImpressComponent, ImpressService } from './impress.component';
 import { ImpressModule } from './impress/impress.module';
