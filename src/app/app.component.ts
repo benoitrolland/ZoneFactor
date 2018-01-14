@@ -95,7 +95,15 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   
     console.log( "AppComponent ngOnInit" );
 	this.zonesService.getAllZones().subscribe((zones: any[]) => this.zones = zones);
-
+/*
+	this.zonesService.getAllLeafZones().subscribe((zones: any[]) => {
+				var i = zones.length;
+				for (; i >= 0; i--) { 
+				    this.zoneSlidersService.getZoneSliders(event.target.id).lenght
+					this.zonesService.setZoneValues(zones[i], values:number[]);
+				}
+			}
+*/			
     //this.zoneSliders = this.zoneSlidersService.getGeneralZoneSliders();
 	/*
 	this.impressService.stepEnter$.subscribe((event) => {

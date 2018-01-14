@@ -9,9 +9,47 @@ import { Observable } from "rxjs";
 @Injectable()
 export class ZonesService {
 
+	zonesColors: Map<String, String> = new Map<String, String>();
+	
+	zonesValues: Map<String, number[]> = new Map<String, number[]>();
+    //some:any = JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
+  
+	zonesRules:any = JSON.parse(`[
+		{"id":"GB",
+			"context":{"sexe":"male"},
+			"factors":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01}},
+		{"id":"GB",
+			"context":{"sexe":"female"},
+			"factors":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.15, "CO2":-0.01}},
+		{"id":"FR",
+			"context":{"sexe":"male","meteo":"Beau temps"},
+			"factors":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01}},
+		{"id":"FR",
+			"context":{"sexe":"male","meteo":"Nuageux"},
+			"factors":{"Shampoing":0.3, "Temperature":0.15, "Vent":0.2, "CO2":-0.01}},
+		{"id":"FR",
+			"context":{"sexe":"female","Saison":"été"},
+			"factors":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01}},
+		{"id":"FR",
+			"context":{"sexe":"female","Saison":"Automne"},
+			"factors":{"Pétrole":0.3, "Shampoing":0.2, "Soleil":0.15, "CO2":-0.01}},
+		{"id":"FR",
+			"context":{"sexe":"female","Saison":"Hiver"},
+			"factors":{"Pétrole":0.15, "Shampoing":0.3, "Soleil":0.2, "CO2":-0.01}},
+		{"id":"FR",
+			"context":{"sexe":"female","Saison":"printemps"},
+			"factors":{"Pétrole":0.2, "Shampoing":-0.01, "Soleil":0.15, "CO2":0.3}},
+		{"id":"ES",
+			"context":{"sexe":"female","Saison":"Eté"},
+			"factors":{"Corrida":0.2, "Shampoing":-0.01, "Vent":0.15, "CO2":0.3}},
+		{"id":"IT",
+			"context":{"sexe":"male","Saison":"Automne"},
+			"factors":{"Opera":0.2, "Danse":-0.01, "Température":0.15, "CO2":0.3}}
+	]`);
+
     // private property to store all backend URLs
     private _backendURL: any;
-	/*
+	/* 
 	//return Observable.of(["World",
 	"Europe","CH","DK","GB","IS","IT","NL","PL","SK","FR","ES","EE",
 	"Middle-East","IL",
@@ -30,7 +68,8 @@ export class ZonesService {
     },
     {
 	*/
-      /**
+	
+    /**
      * Service constructor
      */
     constructor(private _http: Http) {
@@ -44,8 +83,109 @@ export class ZonesService {
 
         // build all backend urls
         Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
+		//zones values initialisation.
+		console.log("== zones values initialisation");
+		this.getAllLeafZones().subscribe((zones: any[]) => {
+				var i = zones.length - 1;
+				for (; i >= 0; i--) { 
+				
+					//console.log("LeafZone " + zones[i] + ".");
+					var factors = this.getFactors(zones[i]);
+					
+				    //console.log("factors= ",factors);
+					if(factors != undefined){
+						var nbFactors = Object.keys(factors).length;
+						console.log("factors.lenght= ", nbFactors);
+						var values = Array(nbFactors);
+						var  j = 0;
+						for (; j < nbFactors ; j++) { 
+							values[j] = 0.5;
+						}
+						//console.log("init setZoneValues for " + zones[i] + ": ",values);
+						this.setZoneValues(zones[i], values);
+					}
+				}
+			}
+		);
     }
+	
+	getFactorsValues(zoneId:String){
+		//var nbFactors = Object.keys().length;
+		var factors = this.getFactors(zoneId)
+		if(factors != undefined)		return Object.values(factors);
+		return undefined;
+	}
+	
+	getFactors(zoneId:String){
+		console.log("getFactors(zoneId="+zoneId+")");
+		var zoneRules = this.zonesRules.find(x => x.id === zoneId);
+		if(zoneRules != undefined) {
+			if(zoneRules != undefined) {
+				console.log("zoneRules for zoneId="+zoneId+" ",zoneRules);
+			}
+			return zoneRules.factors;
+			//if(zoneRules === undefined) console.log("factors=",zoneRules);
+			
+		}
+		return undefined;
+	}
+	
+	getZoneColor(zoneId:String):String {
+		var polyRes:number = 0.0;
+		/*
+		var zoneRules = this.zonesRules.find(x => x.id === zoneId);
+		if(zoneRules != undefined) {
+			if(zoneRules[0] === undefined) console.log("zoneRules[zoneId="+zoneId+"][0]",zoneRules);
+			zoneRules = zoneRules.factors;
+			//if(zoneRules === undefined) console.log("factors=",zoneRules);
+			
+		}*/
+		console.log("getZoneColor="+zoneId+" ");
+		var factors = this.getFactorsValues(zoneId);
+		if(factors != undefined) {
+			console.log("factors=",factors);
+			console.log("zonesValues=",this.zonesValues);
+			//zoneRules = zoneRules[0].factors;
+			var values = this.zonesValues.get(zoneId);
+			if(values != undefined) {
+				console.log("values:",values);
+				var i = values.length - 1;
+				for (; i > 0; i--) { 
+				    console.log(""+values[i]+" *  Math.pow(" +factors[i] +"," + (i+1) + ")" ,polyRes);
+					let polyResI = values[i] * Math.pow(factors[i],i+1);
+					console.log("polyResI"+i+":",polyResI);
+					console.log("polyRes["+i+"]:" + polyRes + "  + " + polyResI + " =");
+					polyRes += polyResI;
+					console.log(polyRes);
+				}
+			}
+		}
+		console.log("polyRes:",polyRes);
+		let htmlColor:String = "hsl(240, 100%, "+Math.round(polyRes * 1000)+"%)";
+		console.log("htmlColor:",htmlColor);
+		 
+		return htmlColor; //this.zonesColors.get(zone);
+		
+	}
+	
+	setZoneValues(zone:String, values:number[]){
 
+		this.zonesValues.set(zone, values);		
+		console.log("setZoneValues("+zone+")=",values);
+		this.zonesColors.set(zone, this.colorFromValues(values));
+	}
+	
+	setZoneValue(zone:String, index, val){
+		var values = this.zonesValues.get(zone);
+		values[index]=val;
+		this.setZoneValues(zone, values);
+	}
+	
+	colorFromValues(values:number[]){
+		
+		return "#f2f2f2"; //"hsl(240, 100%, 60%)";
+	}
+	
     /**
      * Function to return request options
      *
@@ -78,16 +218,30 @@ export class ZonesService {
             });
 	*/
     }
+	isColorable(zone:String): boolean {
+		let ret = false;
+		this.getAllLeafZones().subscribe((zones: any[]) => {
+			var i = zones.length;
+			for (; i >= 0; i--) { 
+				
+				if (zones[i] == zone) {  console.log("comparing " + zones[i] + " to " + zone); ret = true; }
+			}
+		});
+		return ret;
+	}
 	getAllLeafZones(): Observable<any[]> {
+	/*
         return this._http.get(this._backendURL.allChildZones, this._options())
             .map((res: Response) => {
                 if (res.status === 200) {
                     return res.json();
                 }
                 else {
-                    return ["CH","DK","EE","GB","IS","IT","NL","PL","SK","FR","ES","IN","IL","JP","SG","AU","CR","CA","US"];					
+				*/
+                    return Observable.of(["CH","DK","EE","GB","IS","IT","NL","PL","SK","FR","ES","IN","IL","JP","SG","AU","CR","CA","US"]);
+/*					
                 }
-            });
+            }); */
     }
 	/**
      * Function to return list of Zones

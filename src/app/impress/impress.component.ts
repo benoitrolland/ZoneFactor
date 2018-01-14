@@ -4,6 +4,7 @@ import { } from '@types/impress';
 //import { AccessoComponent } from './steps/accesso/accesso.component';
 //import { ListComponent } from './steps/list/list.component';
 import { ImpressService } from '../shared/impress.service';
+import { ZonesService,ZoneSlidersService,InputSettingsService } from "../shared/index";
 
 @Component({
   selector: '[impress]',
@@ -16,6 +17,7 @@ export class ImpressComponent implements OnInit {
   impressElement : HTMLElement;
   currentImpressStep : HTMLElement;
   myImpressService:ImpressService;
+  zonesService:ZonesService;
   //private countrySettings: Observable<any[]>;
   //color ="param-fill:red";
   //styleb:String = "fill:red;fill-rule:evenodd";
@@ -23,9 +25,10 @@ export class ImpressComponent implements OnInit {
   //circumferenceb:String = "circumference";
   fillb:String = "red";
   classb:String = "FR current";
-  some:any = JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
-  constructor(myImpressService:ImpressService) {
+  some:any = JSON.parse('[{"id":"GB","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
+  constructor(myImpressService:ImpressService,zonesService:ZonesService) {
 	this.myImpressService = myImpressService;
+	this.zonesService = zonesService;
 	console.log("this.myImpressService constructeur ", this.myImpressService);
 	//Impress.init();
 	//private imp:Impress 
@@ -37,13 +40,29 @@ export class ImpressComponent implements OnInit {
   }
 
   getStyle(zoneId:string):String{
+	
+	//var test = this.some.find(x => x.id === zoneId);
+	let isColorable: Boolean = false;
+	//if( test != undefined) 	{
+		isColorable = this.zonesService.isColorable(zoneId);
+		//console.log("zonesService.isColorable("+zoneId+")",isColorable);
+	//}
+	if(isColorable){
+		console.log("zonesService.isColorable("+zoneId+")");
+		return this.zonesService.getZoneColor(zoneId);
+	}
+	//console.log("zonesService.isColorable("+zoneId+")",isColorable);
+	return "#f2f2f2";
+  /*
 	var test = this.some.find(x => x.id === zoneId);
 	//.fill ;
 	//hsl(240, 100%, 35%)
-	if( test === undefined) return "#f2f2f2" ;
-	//console.log("zonid " + zoneId + " test=" , test);
+	if( test === undefined) return this.zonesService.getZoneColor(zoneId);//"#f2f2f2" ; "hsl(240, 100%, 60%)";
+	
+	console.log("getStyle zonid " + zoneId + " test=" , test);
 	if( test.fill != undefined) return test.fill;
-	return "red";	
+	return "red";
+    */	
   }
   
   ngOnInit() {

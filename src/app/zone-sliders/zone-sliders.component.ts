@@ -3,6 +3,7 @@ import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, Compo
 import { ZoneSlider }           from '../zone-slider.interface';  
 import { ZoneSliderItem }       from '../zone-slider-item';
 import { ZoneSlidersDirective } from '../zone-sliders.directive';
+import { ZonesService } from '../shared/index';
 //import { ZoneSlidersService } from '../shared/zone-sliders.service';
 import { ChangeDetectorRef, ViewContainerRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 
@@ -69,7 +70,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   slidersValues:number[] = [];
   //data:any; 
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private _changeDetectionRef : ChangeDetectorRef
+  constructor(private zonesService: ZonesService, private componentFactoryResolver: ComponentFactoryResolver, private _changeDetectionRef : ChangeDetectorRef
   //, private zoneSlidersService: ZoneSlidersService
   ) { 
     //working ok =-1console.log("this.currentSliderIndex=" + this.currentSliderIndex);
@@ -105,9 +106,27 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   }
   
   //needed on selector: (change)="onChildChange($event)
-  onChildChange(event){
-	console.log('onChildChange(event): event: ', event);
+  onChildChange(event, index:number){
+	console.log('onChildChange(event,' + index + '): event: ', event);
+	var val = 0;
+	if(event.Checked != undefined) val = (event.checked == "true")?1:0;
+	if(event.value != undefined) {
+	/*
+		val unite = event.value % 10;
+		val dizaine = event.value / 10 % 10;
+		val centaine = event.value / 100 % 10;
+		val centaine = event.value / 100 % 10;
+		val = (event.checked == "true")?1:0;
+	*/
+		console.log('onChildChange: _min: ' + event.source._min + ' _max: ' + event.source._max);
+		//10 --- 20 --------- 110 -> 0.1
+		val = (event.value - event.source._min) / (event.source._max - event.source._min);
+	}
+	
+	//if(typeof event.value  === "string")
+	this.zonesService.setZoneValue(this.zoneId, index, val);
   }
+  
   /* UNUSED when Angular (re)sets data-bound @Input properties */
   ngOnChanges(changes: SimpleChanges) {
 	console.log('ngOnChanges(): SimpleChanges: ', changes);
@@ -125,20 +144,23 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 
    loadComponent() {
    
-     let viewContainerRef = this.sliderHost.viewContainerRef;
-     
+     let viewContainerRef = this.sliderHost.viewContainerRef;     
 	 viewContainerRef.clear();
 	 let len = this.sliders.length;
+	 this.slidersValues = Array(len) ;
 	 if(this.cycling >= 0)  {viewContainerRef.clear();len = 1;}
 	 var i = 0;
 	 for (; i < len; i++) { 
-      this.loadNextComponent(viewContainerRef);
+      this.loadNextComponent(viewContainerRef,i);
+	  this.slidersValues[i] = 0.5;
 	 }
+	 this.zonesService.setZoneValues(this.zoneId, this.slidersValues);
 	 //this.onLoadedComponent();
    }
    
-   loadNextComponent(viewContainerRef: ViewContainerRef){ //ComponentRef<{}>) {
-    //recupère le prochin indexe de la liste et reprend à 0 si currentSliderIndex est au max
+   loadNextComponent(viewContainerRef: ViewContainerRef, index:number){ //ComponentRef<{}>) {
+    // recupère le prochain indexe de la liste et reprend à 0 si currentSliderIndex est au max 
+	// permet un affichage "circulaire" de composants
     this.currentSliderIndex = (this.currentSliderIndex + 1) % this.sliders.length;
 
     let zoneSliderItem = this.sliders[this.currentSliderIndex];
@@ -148,7 +170,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
     (<ZoneSlider>componentRef.instance).data = zoneSliderItem.data;	
-	(<ZoneSlider>componentRef.instance).change.subscribe(msg => this.onChildChange(msg));
+	(<ZoneSlider>componentRef.instance).change.subscribe(msg => this.onChildChange(msg,index));
   }
   
   /*

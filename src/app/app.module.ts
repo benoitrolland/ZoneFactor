@@ -11,10 +11,10 @@ import { MatGridListModule, MatInputModule , MatAutocompleteModule, MatListModul
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import { ZonesService } from "./shared/index";
+import { ZonesService,ZoneSlidersService,InputSettingsService } from "./shared/index";
 import { ZoneSlidersComponent,TickSliderComponent,ToggleSliderComponent,UnknownDynamicComponent } from './zone-sliders/zone-sliders.component';
 import { ZoneSlidersDirective } from './zone-sliders.directive';
-import { ZoneSlidersService }   from './shared/zone-sliders.service';
+//import { ZoneSlidersService }   from './shared/zone-sliders.service';
 import { BooleanComponent } from './zone-sliders/boolean/boolean.component';
 //import { ImpressComponent, ImpressService } from './impress.component';
 import { ImpressModule } from './impress/impress.module';
@@ -60,7 +60,7 @@ import { ImpressService } from "./shared/impress.service";
     ,MatSliderModule
     ,MatSelectModule
   ],
-  providers: [ZoneSlidersService],
+  providers: [ZoneSlidersService,ZonesService,InputSettingsService,ImpressService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
