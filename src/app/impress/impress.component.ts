@@ -16,8 +16,8 @@ export class ImpressComponent implements OnInit {
   imp : Impress;
   impressElement : HTMLElement;
   currentImpressStep : HTMLElement;
-  myImpressService:ImpressService;
-  zonesService:ZonesService;
+  //myImpressService:ImpressService;
+  //zonesService:ZonesService;
   //private countrySettings: Observable<any[]>;
   //color ="param-fill:red";
   //styleb:String = "fill:red;fill-rule:evenodd";
@@ -26,9 +26,9 @@ export class ImpressComponent implements OnInit {
   fillb:String = "red";
   classb:String = "FR current";
   some:any = JSON.parse('[{"id":"GB","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
-  constructor(myImpressService:ImpressService,zonesService:ZonesService) {
-	this.myImpressService = myImpressService;
-	this.zonesService = zonesService;
+  constructor(private myImpressService:ImpressService,private zonesService:ZonesService) {
+	//this.myImpressService = myImpressService;
+	//this.zonesService = zonesService;
 	console.log("this.myImpressService constructeur ", this.myImpressService);
 	//Impress.init();
 	//private imp:Impress 
@@ -48,7 +48,7 @@ export class ImpressComponent implements OnInit {
 		//console.log("zonesService.isColorable("+zoneId+")",isColorable);
 	//}
 	if(isColorable){
-		console.log("zonesService.isColorable("+zoneId+")");
+		//console.log("zonesService.isColorable("+zoneId+")");
 		return this.zonesService.getZoneColor(zoneId);
 	}
 	//console.log("zonesService.isColorable("+zoneId+")",isColorable);

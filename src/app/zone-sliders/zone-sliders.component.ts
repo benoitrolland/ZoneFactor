@@ -109,7 +109,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   onChildChange(event, index:number){
 	console.log('onChildChange(event,' + index + '): event: ', event);
 	var val = 0;
-	if(event.Checked != undefined) val = (event.checked == "true")?1:0;
+	if(event.checked != undefined) val = (event.checked == true)?1:0;
 	if(event.value != undefined) {
 	/*
 		val unite = event.value % 10;
@@ -124,7 +124,14 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 	}
 	
 	//if(typeof event.value  === "string")
+	console.log("zs: start setZoneValue");
 	this.zonesService.setZoneValue(this.zoneId, index, val);
+	console.log("zs: end setZoneValue");
+	if(this.zoneId=="FR") {
+		console.log("zs: FR zonesColorsReady: "+this.zonesService.zonesColorsReady.get(this.zoneId));
+		console.log("zs: FR color="+this.zonesService.getZoneColor("FR"));
+	}
+	
   }
   
   /* UNUSED when Angular (re)sets data-bound @Input properties */

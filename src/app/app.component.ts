@@ -15,13 +15,12 @@ import { ImpressComponent } from './impress/impress.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [ImpressService,ZonesService]
+  styleUrls: ['./app.component.css']
+  
 //https://stackoverflow.com/questions/39410417/how-to-import-component-into-another-root-component-in-angular-2/39410510#39410510
 //  ,  directives: [MapComponent] 
 //  , declarations: [MapComponent] 
 })
-//,  directives: [MapComponent] 
 
 export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 

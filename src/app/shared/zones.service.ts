@@ -10,6 +10,7 @@ import { Observable } from "rxjs";
 export class ZonesService {
 
 	zonesColors: Map<String, String> = new Map<String, String>();
+	zonesColorsReady: Map<String, Boolean> = new Map<String, Boolean>();
 	
 	zonesValues: Map<String, number[]> = new Map<String, number[]>();
     //some:any = JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
@@ -84,7 +85,7 @@ export class ZonesService {
         // build all backend urls
         Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
 		//zones values initialisation.
-		console.log("== zones values initialisation");
+		console.log("zse == zones values initialisation");
 		this.getAllLeafZones().subscribe((zones: any[]) => {
 				var i = zones.length - 1;
 				for (; i >= 0; i--) { 
@@ -95,13 +96,13 @@ export class ZonesService {
 				    //console.log("factors= ",factors);
 					if(factors != undefined){
 						var nbFactors = Object.keys(factors).length;
-						console.log("factors.lenght= ", nbFactors);
+						console.log("zse factors.lenght= ", nbFactors);
 						var values = Array(nbFactors);
 						var  j = 0;
 						for (; j < nbFactors ; j++) { 
 							values[j] = 0.5;
 						}
-						//console.log("init setZoneValues for " + zones[i] + ": ",values);
+						console.log("zse init setZoneValues for " + zones[i] + ": ",values);
 						this.setZoneValues(zones[i], values);
 					}
 				}
@@ -117,11 +118,11 @@ export class ZonesService {
 	}
 	
 	getFactors(zoneId:String){
-		console.log("getFactors(zoneId="+zoneId+")");
+		console.log("zse getFactors(zoneId="+zoneId+")");
 		var zoneRules = this.zonesRules.find(x => x.id === zoneId);
 		if(zoneRules != undefined) {
 			if(zoneRules != undefined) {
-				console.log("zoneRules for zoneId="+zoneId+" ",zoneRules);
+				console.log("zse zoneRules for zoneId="+zoneId+" ",zoneRules);
 			}
 			return zoneRules.factors;
 			//if(zoneRules === undefined) console.log("factors=",zoneRules);
@@ -131,39 +132,20 @@ export class ZonesService {
 	}
 	
 	getZoneColor(zoneId:String):String {
-		var polyRes:number = 0.0;
-		/*
-		var zoneRules = this.zonesRules.find(x => x.id === zoneId);
-		if(zoneRules != undefined) {
-			if(zoneRules[0] === undefined) console.log("zoneRules[zoneId="+zoneId+"][0]",zoneRules);
-			zoneRules = zoneRules.factors;
-			//if(zoneRules === undefined) console.log("factors=",zoneRules);
-			
-		}*/
-		console.log("getZoneColor="+zoneId+" ");
-		var factors = this.getFactorsValues(zoneId);
-		if(factors != undefined) {
-			console.log("factors=",factors);
-			console.log("zonesValues=",this.zonesValues);
-			//zoneRules = zoneRules[0].factors;
-			var values = this.zonesValues.get(zoneId);
-			if(values != undefined) {
-				console.log("values:",values);
-				var i = values.length - 1;
-				for (; i > 0; i--) { 
-				    console.log(""+values[i]+" *  Math.pow(" +factors[i] +"," + (i+1) + ")" ,polyRes);
-					let polyResI = values[i] * Math.pow(factors[i],i+1);
-					console.log("polyResI"+i+":",polyResI);
-					console.log("polyRes["+i+"]:" + polyRes + "  + " + polyResI + " =");
-					polyRes += polyResI;
-					console.log(polyRes);
-				}
-			}
+		if(zoneId == "FR"){
+			console.log("zse getZoneColor(FR) zonesColorsReady:" + this.zonesColorsReady.get(zoneId) + " color= " + this.zonesColors.get(zoneId));
 		}
-		console.log("polyRes:",polyRes);
-		let htmlColor:String = "hsl(240, 100%, "+Math.round(polyRes * 1000)+"%)";
-		console.log("htmlColor:",htmlColor);
-		 
+		if(this.zonesColorsReady.get(zoneId) == true)
+			return this.zonesColors.get(zoneId);
+	
+		let polyRes:number = 0.0;
+
+		var values = this.zonesValues.get(zoneId);
+		let htmlColor:String = this.colorFromValues(zoneId,values);
+		//let htmlColor:String = "hsl(240, 100%, "+Math.round(polyRes * 1000)+"%)";
+		this.zonesColors.set(zoneId,htmlColor);
+		this.zonesColorsReady.set(zoneId,true);
+		console.log("zse htmlColor:",this.zonesColors.get(zoneId));
 		return htmlColor; //this.zonesColors.get(zone);
 		
 	}
@@ -171,19 +153,46 @@ export class ZonesService {
 	setZoneValues(zone:String, values:number[]){
 
 		this.zonesValues.set(zone, values);		
-		console.log("setZoneValues("+zone+")=",values);
-		this.zonesColors.set(zone, this.colorFromValues(values));
+		console.log("zse setZoneValues("+zone+")=",values);
+		this.zonesColors.set(zone, this.colorFromValues(zone,values));
+		if(zone=="FR") {
+			console.log("zse New Color for " + zone + ": " + this.zonesColors.get(zone));
+			console.log("zse Setting zonesColorsReady " + zone + " to false");
+		}
+		this.zonesColorsReady.set(zone,false);
+		if(zone=="FR") console.log("zse zonesColorsReady " + zone + " is ", this.zonesColorsReady.get(zone));
 	}
 	
 	setZoneValue(zone:String, index, val){
 		var values = this.zonesValues.get(zone);
 		values[index]=val;
+		console.log("zse setZoneValue: updating "+ val +" at index " + index,values[index]);
 		this.setZoneValues(zone, values);
 	}
 	
-	colorFromValues(values:number[]){
-		
-		return "#f2f2f2"; //"hsl(240, 100%, 60%)";
+	colorFromValues(zone:String,values:number[]):String{
+		let polyRes = this.polynom(zone,values);
+		let htmlColor:String = "hsl(240, 100%, "+Math.round(polyRes * 1000)+"%)";
+		return htmlColor;
+	}
+	
+	polynom(zone:String,values:number[]){	
+		var factors = this.getFactorsValues(zone);
+		let polyRes:number = 0.0;
+		if(values != undefined) {
+				console.log("zse values:",values);
+				let i = values.length - 1;
+				for (; i > 0; i--) { 
+				    console.log("zse "+values[i]+" *  Math.pow(" +factors[i] +"," + (i+1) + ")" ,polyRes);
+					let polyResI = values[i] * Math.pow(factors[i],i+1);
+					console.log("zse polyResI"+i+":",polyResI);
+					console.log("zse polyRes["+i+"]:" + polyRes + "  + " + polyResI + " =");
+					polyRes += polyResI;
+					console.log(polyRes);
+				}
+		}
+		console.log("zse polyRes:",polyRes);
+		return polyRes;
 	}
 	
     /**
@@ -218,17 +227,19 @@ export class ZonesService {
             });
 	*/
     }
+	
 	isColorable(zone:String): boolean {
 		let ret = false;
 		this.getAllLeafZones().subscribe((zones: any[]) => {
 			var i = zones.length;
-			for (; i >= 0; i--) { 
-				
-				if (zones[i] == zone) {  console.log("comparing " + zones[i] + " to " + zone); ret = true; }
+			for (; i >= 0; i--) { 				
+				//if (zones[i] == zone) {  console.log("zse comparing2 " + zones[i] + " to " + zone); ret = true; }
+				if (zones[i] == zone)  ret = true; 
 			}
 		});
 		return ret;
 	}
+	
 	getAllLeafZones(): Observable<any[]> {
 	/*
         return this._http.get(this._backendURL.allChildZones, this._options())
