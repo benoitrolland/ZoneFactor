@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="570" height="190" version="1.1">
+  <defs>
+    <rect id="r" y="5" width="80" height="50" stroke="black" stroke-width="1"/>
+	<rect id="s" y="5" width="80" height="25" stroke="black" stroke-width="1"/>
+	<rect id="t" y="5" width="5" height="5" stroke="black" stroke-width="1"/>
+  </defs>
+  	<!--
+		0    : blue   (hsl(240, 100%, 0%))
+		0.25 : cyan   (hsl(180, 100%, 25%))
+		0.5  : green  (hsl(120, 100%, 50%))
+		0.75 : yellow (hsl(60, 100%, 75%))
+		1    : red    (hsl(0, 100%, 100%))
+		-->
+<g transform="translate(0,160)">
+  <use xlink:href="#t" x="10" fill="hsl(240, 100%, 100%)"/>
+  <use xlink:href="#t" x="15" fill="hsl(240, 100%, 90%)"/>
+  <use xlink:href="#t" x="20" fill="hsl(240, 100%, 80%)"/>
+  <use xlink:href="#t" x="25" fill="hsl(240, 100%, 70%)"/>
+  <use xlink:href="#t" x="30" fill="hsl(240, 100%, 60%)"/>
+  <use xlink:href="#t" x="35" fill="hsl(240, 100%, 50%)"/>
+  <use xlink:href="#t" x="40" fill="hsl(240, 100%, 40%)"/>
+  <use xlink:href="#t" x="45" fill="hsl(240, 100%, 30%)"/>
+  <use xlink:href="#t" x="50" fill="hsl(240, 100%, 20%)"/>
+  <use xlink:href="#t" x="55" fill="hsl(240, 100%, 10%)"/>
+  <use xlink:href="#t" x="60" fill="hsl(240, 100%, 0%)"/>
+</g>
+ <g transform="translate(0,105)">
+  <use xlink:href="#s" x="5" fill="hsl(240, 100%, 0%)"/>
+  <use xlink:href="#s" x="85" fill="hsl(240, 100%, 25%)"/>
+  <use xlink:href="#s" x="165" fill="hsl(240, 100%, 50%)"/>
+  <use xlink:href="#s" x="245" fill="hsl(240, 100%, 75%)"/>
+  <use xlink:href="#s" x="325" fill="hsl(240, 100%, 99%)"/>
+</g> 
+<g transform="translate(0,55)">
+  <use xlink:href="#r" x="5" fill="hsl(240, 100%, 0%)"/>
+  <use xlink:href="#r" x="85" fill="hsl(180, 100%, 25%)"/>
+  <use xlink:href="#r" x="165" fill="hsl(120, 100%, 50%)"/>
+  <use xlink:href="#r" x="245" fill="hsl(60, 100%, 75%)"/>
+  <use xlink:href="#r" x="325" fill="hsl(0, 100%, 100%)"/>
+</g> 
+<g transform="translate(0,27)">
+  <use xlink:href="#s" x="5" fill="hsl(240, 100%, 15%)"/>
+  <use xlink:href="#s" x="85" fill="hsl(240, 100%, 25%)"/>
+  <use xlink:href="#s" x="165" fill="hsl(240, 100%, 50%)"/>
+  <use xlink:href="#s" x="245" fill="hsl(240, 100%, 75%)"/>
+  <use xlink:href="#s" x="325" fill="hsl(240, 100%, 85%)"/>
+</g> 
+<g >
+  <use xlink:href="#s" x="5" fill="hsl(240, 100%, 50%)"/>
+  <use xlink:href="#s" x="85" fill="hsl(180, 100%, 50%)"/>
+  <use xlink:href="#s" x="165" fill="hsl(120, 100%, 50%)"/>
+  <use xlink:href="#s" x="245" fill="hsl(60, 100%, 50%)"/>
+  <use xlink:href="#s" x="325" fill="hsl(0, 100%, 50%)"/>
+</g>
+</svg>

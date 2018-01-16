@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="182" height="175"  version="1.1">
+  <defs>
+	<rect id="t" y="5" width="10" height="10" stroke="black" stroke-width="1"/>
+  </defs>
+  <text x="0" y="23" transform="scale(1, 1)" style="color:SteelBlue; mix-blend-mode:difference;">0</text>
+  <text x="10" y="12" textLength="108" style="color:SteelBlue; mix-blend-mode:difference;">Incidence</text>
+  <text x="122" y="23" transform="scale(1, 1)" style="color:SteelBlue; mix-blend-mode:difference;">100</text>
+<g transform="translate(0,10)"> 
+  
+  <use xlink:href="#t" x="10" fill="hsl(240, 100%, 100%)"/>
+  <use xlink:href="#t" x="20" fill="hsl(240, 100%, 90%)"/>
+  <use xlink:href="#t" x="30" fill="hsl(240, 100%, 80%)"/>
+  <use xlink:href="#t" x="40" fill="hsl(240, 100%, 70%)"/>
+  <use xlink:href="#t" x="50" fill="hsl(240, 100%, 60%)"/>
+  <use xlink:href="#t" x="60" fill="hsl(240, 100%, 50%)"/>
+  <use xlink:href="#t" x="70" fill="hsl(240, 100%, 40%)"/>
+  <use xlink:href="#t" x="80" fill="hsl(240, 100%, 30%)"/>
+  <use xlink:href="#t" x="90" fill="hsl(240, 100%, 20%)"/>
+  <use xlink:href="#t" x="100" fill="hsl(240, 100%, 10%)"/>
+  <use xlink:href="#t" x="110" fill="hsl(240, 100%, 0%)"/>
+</g>
+</svg>

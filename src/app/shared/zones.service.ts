@@ -15,7 +15,8 @@ export class ZonesService {
 	zonesValues: Map<String, number[]> = new Map<String, number[]>();
     //some:any = JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
   
-	zonesRules:any = JSON.parse(`[
+	//zonesRules:any = JSON.parse(`[
+	zonesRules:any = [
 		{"id":"GB",
 			"context":{"sexe":"male"},
 			"factors":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01}},
@@ -46,7 +47,8 @@ export class ZonesService {
 		{"id":"IT",
 			"context":{"sexe":"male","Saison":"Automne"},
 			"factors":{"Opera":0.2, "Danse":-0.01, "Température":0.15, "CO2":0.3}}
-	]`);
+	];
+	//]`);
 
     // private property to store all backend URLs
     private _backendURL: any;
@@ -172,8 +174,24 @@ export class ZonesService {
 	
 	colorFromValues(zone:String,values:number[]):String{
 		let polyRes = this.polynom(zone,values);
+		//let htmlColor:String = heatMapColorforValue(/100000)
+		
 		let htmlColor:String = "hsl(240, 100%, "+Math.round(polyRes * 1000)+"%)";
 		return htmlColor;
+	}
+	
+	/*	https://stackoverflow.com/questions/12875486/what-is-the-algorithm-to-create-colors-for-a-heatmap
+		5 colors based heatmap, modified by adding color intensity linearly with value:
+		0    : blue   (hsl(240, 100%, 0%))
+		0.25 : cyan   (hsl(180, 100%, 25%))
+		0.5  : green  (hsl(120, 100%, 50%))
+		0.75 : yellow (hsl(60, 100%, 75%))
+		1    : red    (hsl(0, 100%, 100%))		
+	*/
+	//value shoud vary from 0 to 1:
+	heatMapColorforValue(value){
+	  var h = (1.0 - value) * 240
+	  return "hsl(" + h + ", 100%, "+Math.round(value * 10)+"%)";
 	}
 	
 	polynom(zone:String,values:number[]){	
