@@ -3,9 +3,13 @@
   <defs>
 	<rect id="t" y="5" width="10" height="10" stroke="black" stroke-width="1"/>
   </defs>
+  <!--
   <text x="0" y="23" transform="scale(1, 1)" style="color:SteelBlue; mix-blend-mode:difference;">0</text>
+  -->
   <text x="10" y="12" textLength="108" style="color:SteelBlue; mix-blend-mode:difference;">Incidence</text>
+  <!--
   <text x="122" y="23" transform="scale(1, 1)" style="color:SteelBlue; mix-blend-mode:difference;">100</text>
+  -->
 <g transform="translate(0,10)"> 
   
   <use xlink:href="#t" x="10" fill="hsl(240, 100%, 100%)"/>
