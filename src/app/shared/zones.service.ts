@@ -4,7 +4,6 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import { Observable } from "rxjs";
 
-
 // @see angular2-200\src\app\shared\people-service\people.service.ts
 @Injectable()
 export class ZonesService {
@@ -14,46 +13,94 @@ export class ZonesService {
 	
 	zonesValues: Map<String, number[]> = new Map<String, number[]>();
     //some:any = JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
-  
+	//see http://papaparse.com/
 	//zonesRules:any = JSON.parse(`[
+	
 	zonesRules:any = [
-		{"id":"GB",
-			"context":{"sexe":"male"},
-			"factors":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01}},
-		{"id":"GB",
-			"context":{"sexe":"female"},
-			"factors":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.15, "CO2":-0.01}},
+		{
+			"id":"GB",
+			"factorsConsts":[
+				{"id":"Pétrole" , unit:"barrels", "min":0 , "max":100000 ,"lastValue":70000},
+				{"id":"Shampoing" , unit:"litters", "min":0 , "max":100000, "lastValue":30000},
+				{"id":"Soleil" , unit:"lumens", "min":0 , "max":100000, "lastValue":55000},
+				{"id":"CO2" , unit:"ton", "min":0 , "max":100000, "lastValue":5000},
+				{"id":"Viande", unit:"kg", "min":0 , "max":100000 ,"lastValue":95000},
+				{"id":"Rouge à lèvres", unit:"kg", "min":0 , "max":100000 ,"lastValue":7000}
+			],
+			"factorsForContext":[{
+				"context":{"sexe":"male"},
+				"factors":{Intercpet:0.1,"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01},
+				"lastValues":{"Pétrole":0.8, "Shampoing":0.6, "Soleil":0.4, "CO2":0.3}
+			},
+			{
+				"context":{"sexe":"female"},
+				"factors":{Intercpet:0.3,"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.15, "CO2":-0.01},
+				"lastValues":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.6, "CO2":0.7}
+			}]
+		},
 		{"id":"FR",
-			"context":{"sexe":"male","meteo":"Beau temps"},
-			"factors":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01}},
-		{"id":"FR",
-			"context":{"sexe":"male","meteo":"Nuageux"},
-			"factors":{"Shampoing":0.3, "Temperature":0.15, "Vent":0.2, "CO2":-0.01}},
-		{"id":"FR",
-			"context":{"sexe":"female","Saison":"été"},
-			"factors":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01}},
-		{"id":"FR",
-			"context":{"sexe":"female","Saison":"Automne"},
-			"factors":{"Pétrole":0.3, "Shampoing":0.2, "Soleil":0.15, "CO2":-0.01}},
-		{"id":"FR",
-			"context":{"sexe":"female","Saison":"Hiver"},
-			"factors":{"Pétrole":0.15, "Shampoing":0.3, "Soleil":0.2, "CO2":-0.01}},
-		{"id":"FR",
-			"context":{"sexe":"female","Saison":"printemps"},
-			"factors":{"Pétrole":0.2, "Shampoing":-0.01, "Soleil":0.15, "CO2":0.3}},
-		{"id":"ES",
-			"context":{"sexe":"female","Saison":"Eté"},
-			"factors":{"Corrida":0.2, "Shampoing":-0.01, "Vent":0.15, "CO2":0.3}},
-		{"id":"IT",
-			"context":{"sexe":"male","Saison":"Automne"},
-			"factors":{"Opera":0.2, "Danse":-0.01, "Température":0.15, "CO2":0.3}}
+		//e:\brl\proj\2017\epidemium\map\*.csv  unit, name
+		//e:\brl\proj\2017\epidemium\benscham\*mean.csv mean
+			"factorsConsts":[
+				{"id":"X1034..7211", "min":0, "max":100000, "lastValue":0, mean:0, category:"Environment", subCategory:"Pigs", name:"% of Total Livestock", unit:"%" },
+				{"id":"X2961..5142", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Balance", subCategory:"Aquatic Products, Other", name:"Food", unit:"1000 tonnes" },
+				{"id":"X2515..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2531..5520", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Potatoes and products", name:"Feed", unit:"tonnes" },
+				{"id":"X2827..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar, Raw Equivalent", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X1755..5111", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"All Animals", name:"Stocks", unit:"Head" },
+				{"id":"X2961..645", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Aquatic Products, Other", name:"Food supply quantity (kg/capita/yr)", unit:"kg" },
+				{"id":"X6803..724410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2eq) from CH4 (Energy)", unit:"Gigagrams" }, 
+				{"id":"SP.RUR.TOTL.ZG", "min":0, "max":100000, "lastValue":0, mean:0, category:"Environnement", subCategory:"Environnement", name:"Rural population growth", unit:"annual %" }, 
+				{"id":"GC.NLD.TOTL.GD.ZS", "min":0, "max":100000, "lastValue":0, mean:0, category:"Public Sector", subCategory:"Public_sector", name:"Net lending", unit:"% of GDP" }, 
+				{"id":"X6803..719410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2) (Energy)", unit:"Gigagrams" }, 
+				{"id":"X221..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Almonds, with shell", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2597..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sesameseed Cake", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X2549..5141", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Pulses, Other and products", name:"Food supply quantity (tonnes)", unit:"tonnes" }, 
+				{"id":"X1375..5922", "min":0, "max":100000, "lastValue":0, mean:0, category:"Inputs", subCategory:"Phosphate fertilizers", name:"Export Value", unit:"1000 US$" }, 
+				{"id":"X2556..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Groundnuts (Shelled Eq)", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X407..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Leeks, other alliaceous vegetables", name:"Yield", unit:"hg/ha" }, 
+				{"id":"X2659..5153", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Other uses", unit:"tonnes" }, 
+				{"id":"X426..5510", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Carrots and turnips", name:"Production", unit:"tonnes" }, 
+				{"id":"X1717..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Cereals,Total", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2659..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X960..72290", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Cattle, dairy", name:"Implied emission factor for N2O (Manure on pasture)", unit:"kg N2O-N/kg N" },
+				{"id":"X2515..674", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Protein supply quantity (g/capita/day)", unit:"g/capita/day" },
+				{"id":"SP.POP.7579.MA.5Y", "min":0, "max":100000, "lastValue":0, mean:0, category:"Health", subCategory:"Health", name:"Population ages 75-79, male", unit:"% of male population" },
+				{"id":"X2613..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Grapefruit and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2922..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Stimulants", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2537..5610", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar beet", name:"Import Quantity", unit:"tonnes" },
+				{"id":"X2562..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Palm kernels", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2582..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Maize Germ Oil", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2671..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Tobacco", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X1801..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Fruit excl Melons,Total", name:"Yield", unit:"hg/ha" },
+				{"id":"X2520..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Cereals, Other", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2815..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Roots & Tuber Dry Equiv", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2542..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar (Raw Equivalent)", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2848..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Milk - Excluding Butter", name:"Stock Variation", unit:"tonnes" }
+			],
+			//from e:\brl\proj\2017\epidemium\benscham\*.csv
+			"factorsForContext":[{
+				"context":{"sexe":"female","age":11},
+				"factors":{"(Intercept)":3.677697114, "X1034..7211":1.127590663, "X2961..5142":0.522560226, "X2515..664":-0.776697244, "X2531..5520":-3.23E-06, "X2827..5071":-1.80E-06, "X1755..5111":-3.43E-09},
+				"lastValues":{"X1034..7211":0, "X2961..5142":0, "X2515..664":0, "X2531..5520":0, "X2827..5071":0, "X1755..5111":0}
+			},{
+				"context":{"sexe":"male","age":11},
+				"factors":{"(Intercept)":-36.6258836611159, "X2961..645":11.5217514273827, "X6803..724410":8337.1140410464, "SP.RUR.TOTL.ZG":-0.916593021217523, "GC.NLD.TOTL.GD.ZS":-0.0932946133036694, "X6803..719410":-9.79030966009668, "X221..5312":-0.000485087169767695, "X2597..5910":0.00230324857352038, "X2549..5141":3.24897853331008e-05, "X1375..5922":-1.68852939258363e-05, "X2556..5910":8.46048020290979e-05, "X407..5419":3.33979464654383e-05, "X2659..5153":0.171594159080541, "X426..5510":2.84202191828236e-06, "X1717..5312":1.37928501881495e-06, "X2659..5300":-0.171603943714509},
+				"lastValues":{"X2961..645":0, "X6803..724410":0, "SP.RUR.TOTL.ZG":0, "GC.NLD.TOTL.GD.ZS":0, "X6803..719410":0, "X221..5312":0, "X2597..5910":0, "X2549..5141":0, "X1375..5922":0, "X2556..5910":0, "X407..5419":0, "X2659..5153":0, "X426..5510":0, "X1717..5312":0, "X2659..5300":0}
+			},{
+				"context":{"sexe":"male","age":17},
+				"factors":{"(Intercept)":131.740660037701,"X960..72290":-4886.13968634094,"X2515..674":-89.0709110086175,"SP.POP.7579.MA.5Y":-2.36634069005173,"X2613..664":-0.336683842936539,"X2922..664":0.610158134719119,"X2537..5610":-0.00026469045006892,"X2562..5910":0.0176180471681411,"X2582..5910":0.000828625618244055,"X2671..5300":-0.000206944589760498,"X1801..5419":0.000133725982210252,"X2520..5071":0.000208098775798847,"X2815..5910":3.50080127683297e-06,"X2542..5071":1.81340064471598e-06,"X2848..5071":-9.07657722711329e-06},
+				"lastValues":{"X960..72290":0,"X2515..674":0,"SP.POP.7579.MA.5Y":0,"X2613..664":0,"X2922..664":0,"X2537..5610":0,"X2562..5910":0,"X2582..5910":0,"X2671..5300":0,"X1801..5419":0,"X2520..5071":0,"X2815..5910":0,"X2542..5071":0,"X2848..5071":0}
+			}]
+		}
+		
 	];
 	//]`);
 
     // private property to store all backend URLs
     private _backendURL: any;
 	/* 
-	//return Observable.of(["World",
+	//return Observable.of(["START",
 	"Europe","CH","DK","GB","IS","IT","NL","PL","SK","FR","ES","EE",
 	"Middle-East","IL",
 	"Asia","IN","JP","SG",
@@ -111,14 +158,41 @@ export class ZonesService {
 			}
 		);
     }
-	
-	getFactorsValues(zoneId:String){
+	getContextNames(zoneId:String){
 		//var nbFactors = Object.keys().length;
-		var factors = this.getFactors(zoneId)
+		let factors = this.getContexts(zoneId)
+		if(factors != undefined)		return Object.keys(factors);
+		return undefined;
+	}
+	getContextValues(zoneId:String){
+		//var nbFactors = Object.keys().length;
+		let factors = this.getContexts(zoneId)
 		if(factors != undefined)		return Object.values(factors);
 		return undefined;
 	}
 	
+	getContexts(zoneId:String){
+		console.log("zse getContextElements(zoneId="+zoneId+")");
+		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
+		if(zoneRules != undefined) {
+			console.log("zse zoneRules for zoneId="+zoneId+" ",zoneRules);
+			return zoneRules.context;			
+		}
+		return undefined;
+	}	
+	getFactorsNames(zoneId:String){
+		//var nbFactors = Object.keys().length;
+		let factors = this.getFactors(zoneId)
+		if(factors != undefined)		return Object.values(factors);
+		return undefined;
+	}
+	getFactorsValues(zoneId:String){
+		//var nbFactors = Object.keys().length;
+		let factors = this.getFactors(zoneId)
+		if(factors != undefined)		return Object.values(factors);
+		return undefined;
+	}
+
 	getFactors(zoneId:String){
 		console.log("zse getFactors(zoneId="+zoneId+")");
 		var zoneRules = this.zonesRules.find(x => x.id === zoneId);
@@ -153,16 +227,17 @@ export class ZonesService {
 	}
 	
 	setZoneValues(zone:String, values:number[]){
-
-		this.zonesValues.set(zone, values);		
-		console.log("zse setZoneValues("+zone+")=",values);
-		this.zonesColors.set(zone, this.colorFromValues(zone,values));
-		if(zone=="FR") {
-			console.log("zse New Color for " + zone + ": " + this.zonesColors.get(zone));
-			console.log("zse Setting zonesColorsReady " + zone + " to false");
+		if(this.isColorable(zone)){
+			this.zonesValues.set(zone, values);		
+			console.log("zse setZoneValues("+zone+")=",values);
+			this.zonesColors.set(zone, this.colorFromValues(zone,values));
+			if(zone=="FR") {
+				console.log("zse New Color for " + zone + ": " + this.zonesColors.get(zone));
+				console.log("zse Setting zonesColorsReady " + zone + " to false");
+			}
+			this.zonesColorsReady.set(zone,false);
+			if(zone=="FR") console.log("zse zonesColorsReady " + zone + " is ", this.zonesColorsReady.get(zone));
 		}
-		this.zonesColorsReady.set(zone,false);
-		if(zone=="FR") console.log("zse zonesColorsReady " + zone + " is ", this.zonesColorsReady.get(zone));
 	}
 	
 	setZoneValue(zone:String, index, val){
@@ -199,6 +274,7 @@ export class ZonesService {
 		let polyRes:number = 0.0;
 		if(values != undefined) {
 				console.log("zse values:",values);
+				console.log("zse factors:",factors);
 				let i = values.length - 1;
 				for (; i > 0; i--) { 
 				    console.log("zse "+values[i]+" *  Math.pow(" +factors[i] +"," + (i+1) + ")" ,polyRes);
@@ -239,7 +315,7 @@ export class ZonesService {
                 else {
 	*/
 				//,"africa","south-america"
-                    return Observable.of(["World","Europe","CH","DK","GB","IS","IT","NL","PL","SK","FR","ES","EE","Middle-East","IL","Asia","IN","JP","SG","Oceania","AU","Central-America","CR","North-America","CA","US"]);					
+                    return Observable.of(["START","Europe","CH","DK","GB","IS","IT","NL","PL","SK","FR","ES","EE","Middle-East","IL","Asia","IN","JP","SG","Oceania","AU","Central-America","CR","North-America","CA","US"]);					
     /*
 				}
             });
@@ -287,7 +363,7 @@ export class ZonesService {
                 }				
                 else {
 	*/
-                    if (id == "World") 
+                    if (id == "START") 
 					{ 
 						return ["Europe","Middle-East","Asia","Oceania","Central-America","North-America"];
 					}
@@ -338,7 +414,7 @@ export class ZonesService {
 					 || id == "Oceania"
 					 || id == "Central-America"
 					 || id == "North-America"
-					 ){ return "World";}
+					 ){ return "START";}
 					 else if (
 						   id == "CH"
 						|| id == "DK"

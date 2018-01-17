@@ -52,8 +52,6 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
     
   console.log( "AppComponent Constructor" );  
   
-  //constructor(private zoneSlidersService: ZoneSlidersService) {
-    //this.zoneSliders = this.zoneSlidersService.getZoneSliders();
 	
     this.name='default';
     this.searchControl = new FormControl();
@@ -61,7 +59,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	this.impressService.stepEnter$.subscribe((event) => {
 				this.currentImpressStep_id = event.target.id; // And he have data here too!
 				console.log( "App Entered the Step Element '" + this.currentImpressStep_id + "'" );
-				this.zoneSliders = this.zoneSlidersService.getZoneSliders(event.target.id);    
+				this.zoneSliders = this.zoneSlidersService.getFactorSlidersForZone(event.target.id);    
 				this.zoneSlidersComponent.reLoadComponent();
 				this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/17572
 
@@ -98,7 +96,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	this.zonesService.getAllLeafZones().subscribe((zones: any[]) => {
 				var i = zones.length;
 				for (; i >= 0; i--) { 
-				    this.zoneSlidersService.getZoneSliders(event.target.id).lenght
+				    this.zoneSlidersService.getFactorSlidersForZone(event.target.id).lenght
 					this.zonesService.setZoneValues(zones[i], values:number[]);
 				}
 			}
@@ -120,7 +118,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 			this.impressService.stepEnter$.subscribe((event) => {
 				this.currentImpressStep_id = event.target.id; // And he have data here too!
 				console.log( "App Entered the Step Element '" + this.currentImpressStep_id + "'" );
-				this.zoneSliders = this.zoneSlidersService.getZoneSliders(event.target.id);    
+				this.zoneSliders = this.zoneSlidersService.getFactorSlidersForZone(event.target.id);    
 				this.zoneSlidersComponent.reLoadComponent();
 				this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/17572
             });
@@ -128,13 +126,13 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 		// this.zoneSliders = this.zoneSlidersService.getZoneSliders(this.mapComponent.currentZoneName); 
 		 //this.zoneSlidersComponent.reLoadComponent();
 		// this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/17572
-           // this.zoneSliders = this.zoneSlidersService.getZoneSliders(this.mapComponent.currentZoneName);  
+           // this.zoneSliders = this.zoneSlidersService.getFactorSlidersForZone(this.mapComponent.currentZoneName);  
 			
     }
 	
 	ngAfterViewChecked(){
 		this.impressComponent = this.mapComponent.impressComponent;
-		//this.zoneSliders = this.zoneSlidersService.getZoneSliders(this.mapComponent.currentZoneName); 
+		//this.zoneSliders = this.zoneSlidersService.getFactorSlidersForZone(this.mapComponent.currentZoneName); 
 		//this.zoneSlidersComponent.reLoadComponent();
 		//this._changeDetectionRef.detectChanges();//https://github.com/angular/angular/issues/17572
 		//console.log( "- ngAfterViewChecked " + this.mapComponent.currentZoneName);
@@ -143,7 +141,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	onStepUpdate(event:any){
 		console.log( "App onStepUpdate: " , event.target.id );
 		this.currentImpressStep_id = event.target.id;
-		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getZoneSliders(event.target.id), event.target.id); 
+		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZone(event.target.id), event.target.id); 
 		//sidenav.open();
 		//this._changeDetectionRef.detectChanges();
 	}
