@@ -141,7 +141,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	onStepUpdate(event:any){
 		console.log( "App onStepUpdate: " , event.target.id );
 		this.currentImpressStep_id = event.target.id;
-		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZone(event.target.id), event.target.id); 
+		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZoneAndContext(event.target.id), event.target.id); 
 		//sidenav.open();
 		//this._changeDetectionRef.detectChanges();
 	}
