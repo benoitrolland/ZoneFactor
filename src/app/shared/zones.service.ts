@@ -35,15 +35,15 @@ export class ZonesService {
 			],
 			"factorsForContext":[{
 				"context":{"sexe":"male"},
-				"Intercpet":0.1,
-				"factors":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01},
-				"lastValues":{"Pétrole":0.8, "Shampoing":0.6, "Soleil":0.4, "CO2":0.3}
+				"intercept":0.1,
+				"factorsCoef":{"Pétrole":0.2, "Shampoing":0.3, "Soleil":0.15, "CO2":-0.01},
+				"lastImputedValues":{"Pétrole":0.8, "Shampoing":0.6, "Soleil":0.4, "CO2":0.3}
 			},
 			{
 				"context":{"sexe":"female"},
-				"Intercpet":0.3,
-				"factors":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.15, "CO2":-0.01},
-				"lastValues":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.6, "CO2":0.7}
+				"intercept":0.3,
+				"factorsCoef":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.15, "CO2":-0.01},
+				"lastImputedValues":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.6, "CO2":0.7}
 			}]
 		},
 		{"id":"FR",
@@ -89,19 +89,19 @@ export class ZonesService {
 			//from e:\brl\proj\2017\epidemium\benscham\*.csv
 			"factorsForContext":[{
 				"context":{"sexe":"female","age":11, region:"br", ethnie:"all"},
-				"Intercept":3.677697114, 
-				"factors":{"X1034..7211":1.127590663, "X2961..5142":0.522560226, "X2515..664":-0.776697244, "X2531..5520":-3.23E-06, "X2827..5071":-1.80E-06, "X1755..5111":-3.43E-09},
-				"lastValues":{"X1034..7211":0, "X2961..5142":0, "X2515..664":0, "X2531..5520":0, "X2827..5071":0, "X1755..5111":0}
+				"intercept":3.677697114, 
+				"factorsCoef":{"X1034..7211":1.127590663, "X2961..5142":0.522560226, "X2515..664":-0.776697244, "X2531..5520":-3.23E-06, "X2827..5071":-1.80E-06, "X1755..5111":-3.43E-09},
+				"lastImputedValues":{"X1034..7211":0, "X2961..5142":0, "X2515..664":0, "X2531..5520":0, "X2827..5071":0, "X1755..5111":0}
 			},{
 				"context":{"sexe":"male","age":11, region:"br", ethnie:"all"},
-				"Intercept":-36.6258836611159, 
-				"factors":{"X2961..645":11.5217514273827, "X6803..724410":8337.1140410464, "SP.RUR.TOTL.ZG":-0.916593021217523, "GC.NLD.TOTL.GD.ZS":-0.0932946133036694, "X6803..719410":-9.79030966009668, "X221..5312":-0.000485087169767695, "X2597..5910":0.00230324857352038, "X2549..5141":3.24897853331008e-05, "X1375..5922":-1.68852939258363e-05, "X2556..5910":8.46048020290979e-05, "X407..5419":3.33979464654383e-05, "X2659..5153":0.171594159080541, "X426..5510":2.84202191828236e-06, "X1717..5312":1.37928501881495e-06, "X2659..5300":-0.171603943714509},
-				"lastValues":{"X2961..645":0, "X6803..724410":0, "SP.RUR.TOTL.ZG":0, "GC.NLD.TOTL.GD.ZS":0, "X6803..719410":0, "X221..5312":0, "X2597..5910":0, "X2549..5141":0, "X1375..5922":0, "X2556..5910":0, "X407..5419":0, "X2659..5153":0, "X426..5510":0, "X1717..5312":0, "X2659..5300":0}
+				"intercept":-36.6258836611159, 
+				"factorsCoef":{"X2961..645":11.5217514273827, "X6803..724410":8337.1140410464, "SP.RUR.TOTL.ZG":-0.916593021217523, "GC.NLD.TOTL.GD.ZS":-0.0932946133036694, "X6803..719410":-9.79030966009668, "X221..5312":-0.000485087169767695, "X2597..5910":0.00230324857352038, "X2549..5141":3.24897853331008e-05, "X1375..5922":-1.68852939258363e-05, "X2556..5910":8.46048020290979e-05, "X407..5419":3.33979464654383e-05, "X2659..5153":0.171594159080541, "X426..5510":2.84202191828236e-06, "X1717..5312":1.37928501881495e-06, "X2659..5300":-0.171603943714509},
+				"lastImputedValues":{"X2961..645":0, "X6803..724410":0, "SP.RUR.TOTL.ZG":0, "GC.NLD.TOTL.GD.ZS":0, "X6803..719410":0, "X221..5312":0, "X2597..5910":0, "X2549..5141":0, "X1375..5922":0, "X2556..5910":0, "X407..5419":0, "X2659..5153":0, "X426..5510":0, "X1717..5312":0, "X2659..5300":0}
 			},{
 				"context":{"sexe":"male","age":17, region:"br", ethnie:"all"},
-				"Intercept":131.740660037701,
-				"factors":{"X960..72290":-4886.13968634094,"X2515..674":-89.0709110086175,"SP.POP.7579.MA.5Y":-2.36634069005173,"X2613..664":-0.336683842936539,"X2922..664":0.610158134719119,"X2537..5610":-0.00026469045006892,"X2562..5910":0.0176180471681411,"X2582..5910":0.000828625618244055,"X2671..5300":-0.000206944589760498,"X1801..5419":0.000133725982210252,"X2520..5071":0.000208098775798847,"X2815..5910":3.50080127683297e-06,"X2542..5071":1.81340064471598e-06,"X2848..5071":-9.07657722711329e-06},
-				"lastValues":{"X960..72290":0,"X2515..674":0,"SP.POP.7579.MA.5Y":0,"X2613..664":0,"X2922..664":0,"X2537..5610":0,"X2562..5910":0,"X2582..5910":0,"X2671..5300":0,"X1801..5419":0,"X2520..5071":0,"X2815..5910":0,"X2542..5071":0,"X2848..5071":0}
+				"intercept":131.740660037701,
+				"factorsCoef":{"X960..72290":-4886.13968634094,"X2515..674":-89.0709110086175,"SP.POP.7579.MA.5Y":-2.36634069005173,"X2613..664":-0.336683842936539,"X2922..664":0.610158134719119,"X2537..5610":-0.00026469045006892,"X2562..5910":0.0176180471681411,"X2582..5910":0.000828625618244055,"X2671..5300":-0.000206944589760498,"X1801..5419":0.000133725982210252,"X2520..5071":0.000208098775798847,"X2815..5910":3.50080127683297e-06,"X2542..5071":1.81340064471598e-06,"X2848..5071":-9.07657722711329e-06},
+				"lastImputedValues":{"X960..72290":0,"X2515..674":0,"SP.POP.7579.MA.5Y":0,"X2613..664":0,"X2922..664":0,"X2537..5610":0,"X2562..5910":0,"X2582..5910":0,"X2671..5300":0,"X1801..5419":0,"X2520..5071":0,"X2815..5910":0,"X2542..5071":0,"X2848..5071":0}
 			}]
 		}
 		
@@ -156,27 +156,9 @@ export class ZonesService {
 							//console.log("LeafZone " + zones[i] + ".");						
 							if(zoneRule != undefined){
 								let factorForContext = zoneRule.factorsForContext[j];
-								let factors = factorForContext.factors;
-								let lastValues = factorForContext.lastValues;
-								this.setZoneValues(zones[i], j, lastValues);
-								/*
-								//console.log("factors= ",factors);
-								if(factors != undefined){
-									//let factorKeys = Object.keys(factors);
-									let nbFactors = factors.length;
-									console.log("zse factors.lenght= ", nbFactors);
-									
-									let values:number[] = new Array(nbFactors);
-									let  k = 0;
-									for (; k < nbFactors ; k++) { 
-										//let  factorConsts = this.zonesRules.find(x => x.id === zoneId).factorsConsts.find(x => x.id === factorKeys[k])
-										//values[k] = factorConsts.mean;
-										values[k] = factorConsts.mean;
-									}
-									console.log("zse init setZoneValues for " + zones[i] + ": ",values);
-									this.setZoneValues(zones[i]+"_"+j, values);
-								}
-								*/
+								let factorsCoef = factorForContext.factorsCoef;
+								let lastImputedValues = Object.values(factorForContext.lastImputedValues);
+								this.setZoneValues(zones[i], j, lastImputedValues);
 							}
 						}
 					}
@@ -187,14 +169,14 @@ export class ZonesService {
 /*	
 	getContextNames(zoneId:String){
 		//var nbFactors = Object.keys().length;
-		let factors = this.getContexts(zoneId)
-		if(factors != undefined)		return Object.keys(factors);
+		let contexts = this.getContexts(zoneId)
+		if(contexts != undefined)		return Object.keys(contexts);
 		return undefined;
 	}
 	getContextValues(zoneId:String){
 		//var nbFactors = Object.keys().length;
-		let factors = this.getContexts(zoneId)
-		if(factors != undefined)		return Object.values(factors);
+		let contexts = this.getContexts(zoneId)
+		if(contexts != undefined)		return Object.values(contexts);
 		return undefined;
 	}
 	
@@ -219,17 +201,17 @@ export class ZonesService {
 	/*
 	getFactorsNames(zoneId:String){
 		//var nbFactors = Object.keys().length;
-		let factors = this.getFactors(zoneId)
-		if(factors != undefined)		return Object.values(factors);
+		let factorsCoef = this.getFactors(zoneId)
+		if(factorsCoef != undefined)		return Object.keys(factorsCoef);
 		return undefined;
 	}
 	*/
 	getFactorsValues(zoneId:String){
 		////var nbFactors = Object.keys().length;
 		//let ctxtNum = this.selectedContextNums.get(zoneId);
-		//let factors = this.getFactors(zoneId,ctxtNum);
-		let factors = this.getFactors(zoneId);
-		if(factors != undefined)		return Object.values(factors);
+		//let factorsCoef = this.getFactors(zoneId,ctxtNum);
+		let factorsCoef = this.getFactors(zoneId);
+		if(factorsCoef != undefined)		return Object.values(factorsCoef);
 		return undefined;
 	}
 
@@ -237,7 +219,7 @@ export class ZonesService {
 		let res = undefined;
 		let ctxtNum = this.selectedContextNums.get(zoneId);
 		let factorsForContext = this.getFactorsForContext(zoneId,ctxtNum);
-		if(factorsForContext != undefined) res = factorsForContext.factors;
+		if(factorsForContext != undefined) res = factorsForContext.factorsCoef;
 		return res;	
 	}
 	
@@ -281,12 +263,13 @@ export class ZonesService {
 		return this.zonesValues.get(zone+"_"+ctxtNum);
 	}
 	
-	setZoneValues(zone:String, ctxtNum, values:number[]){
-		console.log("Setting zones values: zone=" + zone + " ctxtNum=" + ctxtNum + " values=", values);
+	setZoneValues(zone:String, ctxtNum, imputedValues:number[]){
+		console.log("Setting zones imputedValues: zone=" + zone + " ctxtNum=" + ctxtNum + " imputedValues=", imputedValues);
 		if(this.isColorable(zone)){
-			this.zonesValues.set(zone+"_"+ctxtNum, values);		
-			console.log("zse setZoneValues("+zone+")=",values);
-			this.zonesColors.set(zone, this.colorFromValues(zone,values));
+			this.zonesValues.set(zone+"_"+ctxtNum, imputedValues);		
+			console.log("zse setZoneValues("+zone+"_"+ctxtNum+")=",imputedValues);
+			//colorFromValues
+			this.zonesColors.set(zone, this.colorFromValues(zone,imputedValues));
 			if(zone=="FR") {
 				console.log("zse New Color for " + zone + ": " + this.zonesColors.get(zone));
 				console.log("zse Setting zonesColorsReady " + zone + " to false");
@@ -306,44 +289,79 @@ export class ZonesService {
 		this.setZoneValues(zone, ctxtNum, values);
 	}
 	
-	colorFromValues(zone:String,values:number[]):String{
-		let polyRes = this.polynom(zone,values);
+	colorFromValues(zone:String,imputedValues:number[]):String{
+		let incidence =  0;
+	    if(imputedValues != undefined)
+			incidence = this.multipleLinearRegressionBasedIncidence(zone,imputedValues);
 		//let htmlColor:String = heatMapColorforValue(/100000)
 		
-		let htmlColor:String = "hsl(240, 100%, "+Math.round(polyRes * 1000)+"%)";
+		let htmlColor:String = "hsl(240, 100%, " + Math.round(incidence * 10) + "%)";
+		if(zone=="FR") console.log("new htmlColor: " + htmlColor);
 		return htmlColor;
 	}
 	
-	/*	https://stackoverflow.com/questions/12875486/what-is-the-algorithm-to-create-colors-for-a-heatmap
+	/*
+		https://stackoverflow.com/questions/12875486/what-is-the-algorithm-to-create-colors-for-a-heatmap
 		5 colors based heatmap, modified by adding color intensity linearly with value:
 		0    : blue   (hsl(240, 100%, 0%))
 		0.25 : cyan   (hsl(180, 100%, 25%))
 		0.5  : green  (hsl(120, 100%, 50%))
 		0.75 : yellow (hsl(60, 100%, 75%))
-		1    : red    (hsl(0, 100%, 100%))		
+		1    : red    (hsl(0, 100%, 100%))
 	*/
 	//value shoud vary from 0 to 1:
 	heatMapColorforValue(value){
 	  var h = (1.0 - value) * 240
 	  return "hsl(" + h + ", 100%, "+Math.round(value * 10)+"%)";
 	}
+	//https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3049417/	
+	multipleLinearRegressionBasedIncidence(zone:String,imputedValues:number[]){
+		if(imputedValues == undefined){
+			console.log("zse Warning INCIDENCE not calculated because imputedValues == undefined",imputedValues);
+			return 0;
+		}
+		let ctxtNum = this.selectedContextNums.get(zone);
+		let factorsForContext = this.getFactorsForContext(zone,ctxtNum);
+		let interceptValue = factorsForContext.intercept;
+		let factorsCoefValues = Object.values(factorsForContext.factorsCoef);	
+		if(factorsCoefValues === undefined)console.error("zse CAN'T CALCULATE INCIDENCE because factorsCoefValues === undefined",factorsCoefValues);
+		if(imputedValues.length != factorsCoefValues.length){
+			console.log("zse CAN'T CALCULATE INCIDENCE because");
+			console.log("zse imputedValues.length "+imputedValues.length+"!="+factorsCoefValues.length+" factorsCoefValues.length");			
+			console.log("zse imputedValues=",imputedValues);
+			console.log("zse factorsCoefValues=",factorsCoefValues);			
+			return 0;
+		}
+		let incidence:number = interceptValue;
+		//if(values != undefined) {
+		console.log("zse imputedValues:",imputedValues);
+		console.log("zse factorsCoefValues:",factorsCoefValues);
+		let len = factorsCoefValues.length;
+		for (let i = 0; i < len; i++) { 			
+			console.log("zse adding " + factorsCoefValues[i] + " * " + imputedValues[i]);
+			incidence += factorsCoefValues[i] * imputedValues[i];
+			console.log("zse incidence"+i+":",incidence);
+		}		
+		console.log("zse incidence: " + incidence);
+		return incidence;
 		
-	polynom(zone:String,values:number[]){
-		
-		var factors = this.getFactorsValues(zone);
+	}
+	
+	polynom(zone:String,values:number[]){		
+		var factorsCoef = this.getFactorsValues(zone);
 		let polyRes:number = 0.0;
 		if(values != undefined) {
-				console.log("zse values:",values);
-				console.log("zse factors:",factors);
-				let i = values.length - 1;
-				for (; i > 0; i--) { 
-				    console.log("zse "+values[i]+" *  Math.pow(" +factors[i] +"," + (i+1) + ")" ,polyRes);
-					let polyResI = values[i] * Math.pow(factors[i],i+1);
-					console.log("zse polyResI"+i+":",polyResI);
-					console.log("zse polyRes["+i+"]:" + polyRes + "  + " + polyResI + " =");
-					polyRes += polyResI;
-					console.log(polyRes);
-				}
+			console.log("zse values:",values);
+			console.log("zse factorsCoef:",factorsCoef);
+			let i = values.length - 1;
+			for (; i > 0; i--) { 
+			    console.log("zse "+values[i]+" * Math.pow(" +factorsCoef[i] +"," + (i+1) + ")" ,polyRes);
+				let polyResI = values[i] * Math.pow(factorsCoef[i],i+1);
+				console.log("zse polyResI"+i+":",polyResI);
+				console.log("zse polyRes["+i+"]:" + polyRes + "  + " + polyResI + " =");
+				polyRes += polyResI;
+				console.log(polyRes);
+			}
 		}
 		console.log("zse polyRes:",polyRes);
 		return polyRes;
