@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
-//import { app.impress} from "./impress/module";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule, MatInputModule , MatAutocompleteModule, MatListModule, MatSidenavModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule,MatSlideToggleModule,MatSliderModule,MatSelectModule } from '@angular/material';
@@ -14,9 +13,6 @@ import { MapComponent } from './map/map.component';
 import { ZonesService,ZoneSlidersService,InputSettingsService } from "./shared/index";
 import { ZoneSlidersComponent,TickSliderComponent,ToggleSliderComponent,UnknownDynamicComponent } from './zone-sliders/zone-sliders.component';
 import { ZoneSlidersDirective } from './zone-sliders.directive';
-//import { ZoneSlidersService }   from './shared/zone-sliders.service';
-import { BooleanComponent } from './zone-sliders/boolean/boolean.component';
-//import { ImpressComponent, ImpressService } from './impress.component';
 import { ImpressModule } from './impress/impress.module';
 import { ImpressService } from "./shared/impress.service";
 
@@ -34,8 +30,7 @@ import { ImpressService } from "./shared/impress.service";
     ZoneSlidersComponent,
     TickSliderComponent,
     ToggleSliderComponent,
-    UnknownDynamicComponent,
-    BooleanComponent
+    UnknownDynamicComponent
   ],
   imports: [
     BrowserModule
