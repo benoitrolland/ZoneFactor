@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ComponentFactoryResolver, OnDestroy } from '@angular/core'; 
 //OnInit , 
-import { ZoneSlider }           from '../zone-slider.interface';  
+import { ZoneSlider }           from '../zone-slider.interface';   
 import { ZoneSliderItem }       from '../zone-slider-item';
 import { ZoneSlidersDirective } from '../zone-sliders.directive';
 import { ZonesService } from '../shared/index';
 //import { ZoneSlidersService } from '../shared/zone-sliders.service';
 import { ChangeDetectorRef, ViewContainerRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { MatSliderModule, MatSlider, MatSlideToggle, MatSliderChange, MatSlideToggleChange } from '@angular/material';
 
 @Component({
     selector: 'tick-slider',
@@ -14,22 +15,26 @@ import { ChangeDetectorRef, ViewContainerRef, OnChanges, SimpleChanges, SimpleCh
 //    template: '<mat-grid-tile colspan="1" rowspan="1">&nbsp;10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100</mat-grid-tile>'
 //    template: '<div>&nbsp;{{data?.text}}&nbsp;</div>'
 //    template: '10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100<h4 style="align:right">a</h4>'
+// add popup: (card with title: https://github.com/angular/material2/issues/2691
     template: '	<mat-grid-list cols="6" rowHeight="15px" gutterSize="1" >\
 					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="1"></font></mat-grid-tile>\
 					<mat-grid-tile style="justify-content: initial;align-items: initial;" colspan="6" rowspan="1" class="grid-left"><font size="0.5">{{data?.text}}</font></mat-grid-tile>\
 					<mat-grid-tile colspan="6" rowspan="1"  class="grid-right">&nbsp;{{data?.min}}\
-						<mat-slider tickInterval="1" min="{{data?.min}}" max="{{data?.max}}" step="5" value="{{data?.default}}" (change)="onChange($event, data.value)"></mat-slider>{{data?.max}}  : {{data.value}}\
+						<mat-slider tickInterval="1" min="{{data?.min}}" max="{{data?.max}}" step="5" value="[{data?.default}]" (change)="onChange($event, data.value)"></mat-slider>{{data?.max}}\
 					</mat-grid-tile>\
-					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="2">{{data?.unit}}</font></mat-grid-tile>\
+					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="2">{{data.value}}  ({{data?.unit}})</font></mat-grid-tile>\
 				</mat-grid-list>'
 })//style="border-bottom: 2px dashed grey;" md-row-height="fit" 
 export class TickSliderComponent implements ZoneSlider {
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
-
+  @ViewChild(MatSlider) public matSlide: MatSlider;
+  
   onChange($event){
 	console.log("onChange $event=",$event);
-    this.data.value=$event.value;
+	if($event != undefined)
+		this.data.value=$event.value;
+		this.matSlide.value=$event.value;
 	this.change.emit($event);
   }
 }
@@ -42,10 +47,12 @@ export class ToggleSliderComponent implements ZoneSlider {
 //inpout used for initialisation rather than for update
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
-
+  @ViewChild(MatSlideToggle) public matSlide: MatSlideToggle;
+  
   onChange($event){
 	console.log("onChange $event=",$event);
     this.data.value=$event.checked;
+	this.matSlide.checked=$event.checked;
 	this.change.emit($event);
   }
 }
@@ -57,6 +64,8 @@ export class ToggleSliderComponent implements ZoneSlider {
 export class UnknownDynamicComponent implements ZoneSlider {
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
+  public matSlide: MatSlideToggle;
+  onChange($event){}
 }
 
 @Component({
@@ -186,8 +195,24 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 
 
      let componentRef = viewContainerRef.createComponent(componentFactory);
-     (<ZoneSlider>componentRef.instance).data = zoneSliderItem.data;	
-	 (<ZoneSlider>componentRef.instance).change.subscribe(msg => this.onChildChange(msg,index));
+	 let zoneSlider:ZoneSlider = (<ZoneSlider>componentRef.instance);
+     zoneSlider.data = zoneSliderItem.data;	
+	 zoneSlider.change.subscribe(msg => this.onChildChange(msg,index));
+	 let changEvent:MatSliderChange|MatSlideToggleChange = undefined;
+	 if(zoneSlider.matSlide instanceof MatSlider){
+		//changEvent = new MatSliderChange({source:zoneSlider.matSlide, value:zoneSlider.data.default});
+		let matSliderChange = new MatSliderChange();
+		matSliderChange.source = zoneSlider.matSlide;
+		matSliderChange.value = zoneSlider.data.default;
+		changEvent = matSliderChange;
+	 }else if(zoneSlider.matSlide instanceof MatSlideToggle){
+		//let matSlideToggleChange = new MatSlideToggleChange({source:zoneSlider.matSlide, checked:zoneSlider.data.checked});
+		let matSlideToggleChange = new MatSlideToggleChange();
+		matSlideToggleChange.source = zoneSlider.matSlide;
+		matSlideToggleChange.source = zoneSlider.data.checked;
+		changEvent = matSlideToggleChange;
+	 }
+	 zoneSlider.onChange(changEvent);
    }
   
 /* 

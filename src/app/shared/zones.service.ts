@@ -51,21 +51,21 @@ export class ZonesService {
 		//e:\brl\proj\2017\epidemium\map\*.csv  unit, name
 		//e:\brl\proj\2017\epidemium\benscham\*mean.csv mean
 			"factorsConsts":[
-				{"id":"X1034..7211", "min":0, "max":100000, "lastValue":0, mean:0, category:"Environment", subCategory:"Pigs", name:"% of Total Livestock", unit:"%" },
-				{"id":"X2961..5142", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Balance", subCategory:"Aquatic Products, Other", name:"Food", unit:"1000 tonnes" },
+				{"id":"X1034..7211", "min":0, "max":100, "lastValue":0, mean:0, category:"Environment", subCategory:"Pigs", name:"% of Total Livestock", unit:"%" },
+				{"id":"X2961..5142", "min":0, "max":100, "lastValue":0, mean:0, category:"Food Balance", subCategory:"Aquatic Products, Other", name:"Food", unit:"1000 tonnes" },
 				{"id":"X2515..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
 				{"id":"X2531..5520", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Potatoes and products", name:"Feed", unit:"tonnes" },
 				{"id":"X2827..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar, Raw Equivalent", name:"Stock Variation", unit:"tonnes" },
 				{"id":"X1755..5111", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"All Animals", name:"Stocks", unit:"Head" },
 				{"id":"X2961..645", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Aquatic Products, Other", name:"Food supply quantity (kg/capita/yr)", unit:"kg" },
 				{"id":"X6803..724410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2eq) from CH4 (Energy)", unit:"Gigagrams" }, 
-				{"id":"SP.RUR.TOTL.ZG", "min":0, "max":100000, "lastValue":0, mean:0, category:"Environnement", subCategory:"Environnement", name:"Rural population growth", unit:"annual %" }, 
-				{"id":"GC.NLD.TOTL.GD.ZS", "min":0, "max":100000, "lastValue":0, mean:0, category:"Public Sector", subCategory:"Public_sector", name:"Net lending", unit:"% of GDP" }, 
+				{"id":"SP.RUR.TOTL.ZG", "min":0, "max":100, "lastValue":0, mean:0, category:"Environnement", subCategory:"Environnement", name:"Rural population growth", unit:"annual %" }, 
+				{"id":"GC.NLD.TOTL.GD.ZS", "min":0, "max":100, "lastValue":0, mean:0, category:"Public Sector", subCategory:"Public_sector", name:"Net lending", unit:"% of GDP" }, 
 				{"id":"X6803..719410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2) (Energy)", unit:"Gigagrams" }, 
 				{"id":"X221..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Almonds, with shell", name:"Area harvested", unit:"ha" }, 
 				{"id":"X2597..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sesameseed Cake", name:"Export Quantity", unit:"tonnes" }, 
 				{"id":"X2549..5141", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Pulses, Other and products", name:"Food supply quantity (tonnes)", unit:"tonnes" }, 
-				{"id":"X1375..5922", "min":0, "max":100000, "lastValue":0, mean:0, category:"Inputs", subCategory:"Phosphate fertilizers", name:"Export Value", unit:"1000 US$" }, 
+				{"id":"X1375..5922", "min":0, "max":10000, "lastValue":0, mean:0, category:"Inputs", subCategory:"Phosphate fertilizers", name:"Export Value", unit:"1000 US$" }, 
 				{"id":"X2556..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Groundnuts (Shelled Eq)", name:"Export Quantity", unit:"tonnes" }, 
 				{"id":"X407..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Leeks, other alliaceous vegetables", name:"Yield", unit:"hg/ha" }, 
 				{"id":"X2659..5153", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Other uses", unit:"tonnes" }, 
@@ -74,7 +74,7 @@ export class ZonesService {
 				{"id":"X2659..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Domestic supply quantity", unit:"tonnes" },
 				{"id":"X960..72290", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Cattle, dairy", name:"Implied emission factor for N2O (Manure on pasture)", unit:"kg N2O-N/kg N" },
 				{"id":"X2515..674", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Protein supply quantity (g/capita/day)", unit:"g/capita/day" },
-				{"id":"SP.POP.7579.MA.5Y", "min":0, "max":100000, "lastValue":0, mean:0, category:"Health", subCategory:"Health", name:"Population ages 75-79, male", unit:"% of male population" },
+				{"id":"SP.POP.7579.MA.5Y", "min":0, "max":100, "lastValue":0, mean:0, category:"Health", subCategory:"Health", name:"Population ages 75-79, male", unit:"% of male population" },
 				{"id":"X2613..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Grapefruit and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
 				{"id":"X2922..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Stimulants", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
 				{"id":"X2537..5610", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar beet", name:"Import Quantity", unit:"tonnes" },
@@ -342,7 +342,7 @@ export class ZonesService {
 		let factorsForContext = this.getFactorsForContext(zone,ctxtNum);
 		let interceptValue = factorsForContext.intercept;
 		let factorsCoefValues = Object.values(factorsForContext.factorsCoef);	
-		if(factorsCoefValues === undefined)console.error("zse CAN'T CALCULATE INCIDENCE because factorsCoefValues === undefined",factorsCoefValues);
+		if(factorsCoefValues === undefined) console.error("zse CAN'T CALCULATE INCIDENCE because factorsCoefValues === undefined",factorsCoefValues);
 		if(imputedValues.length != factorsCoefValues.length){
 			console.log("zse CAN'T CALCULATE INCIDENCE because");
 			console.log("zse imputedValues.length "+imputedValues.length+"!="+factorsCoefValues.length+" factorsCoefValues.length");			
