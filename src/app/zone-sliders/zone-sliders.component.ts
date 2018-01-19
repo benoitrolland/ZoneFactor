@@ -42,7 +42,7 @@ export class TickSliderComponent implements ZoneSlider {
 
 @Component({
     selector: 'toggle-slider',
-    template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1"><mat-grid-tile colspan="4" rowspan="1" ><mat-slide-toggle [checked]="data?.value" (change)="onChange($event, data.value)" >F4</mat-slide-toggle></mat-grid-tile><mat-grid-tile  colspan="2" rowspan="1" >&nbsp;&nbsp;=Fd:{{checked}}-{{data.value}}=</mat-grid-tile></mat-grid-list>'
+    template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1"><mat-grid-tile colspan="4" rowspan="1" ><mat-slide-toggle [checked]="data?.default" (change)="onChange($event, data.value)" >F4</mat-slide-toggle></mat-grid-tile><mat-grid-tile  colspan="2" rowspan="1" >&nbsp;&nbsp;=Fd:{{checked}}-{{data.value}}=</mat-grid-tile></mat-grid-list>'
 })
 export class ToggleSliderComponent implements ZoneSlider {
 //inpout used for initialisation rather than for update
@@ -202,17 +202,15 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
      zoneSlider.data = zoneSliderItem.data;	
 	 zoneSlider.change.subscribe(msg => this.onChildChange(msg,index));
 	 let changEvent:MatSliderChange|MatSlideToggleChange = undefined;
-	 if(zoneSlider.matSlide instanceof MatSlider){
-		//changEvent = new MatSliderChange({source:zoneSlider.matSlide, value:zoneSlider.data.default});
+	 if(zoneSlider.matSlide instanceof MatSlider){ 
 		let matSliderChange = new MatSliderChange();
 		matSliderChange.source = zoneSlider.matSlide;
 		matSliderChange.value = zoneSlider.data.default;
 		changEvent = matSliderChange;
-	 }else if(zoneSlider.matSlide instanceof MatSlideToggle){
-		//let matSlideToggleChange = new MatSlideToggleChange({source:zoneSlider.matSlide, checked:zoneSlider.data.checked});
+	 }else if(zoneSlider.matSlide instanceof MatSlideToggle){	
 		let matSlideToggleChange = new MatSlideToggleChange();
 		matSlideToggleChange.source = zoneSlider.matSlide;
-		matSlideToggleChange.checked = zoneSlider.data.checked;
+		matSlideToggleChange.checked = zoneSlider.data.default;
 		changEvent = matSlideToggleChange;
 	 }
 	 zoneSlider.onChange(changEvent);
