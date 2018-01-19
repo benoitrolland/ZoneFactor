@@ -212,7 +212,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 		//let matSlideToggleChange = new MatSlideToggleChange({source:zoneSlider.matSlide, checked:zoneSlider.data.checked});
 		let matSlideToggleChange = new MatSlideToggleChange();
 		matSlideToggleChange.source = zoneSlider.matSlide;
-		matSlideToggleChange.source = zoneSlider.data.checked;
+		matSlideToggleChange.checked = zoneSlider.data.checked;
 		changEvent = matSlideToggleChange;
 	 }
 	 zoneSlider.onChange(changEvent);
