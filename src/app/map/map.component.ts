@@ -19,6 +19,7 @@ export class MapComponent implements OnInit {
 	currentImpressStep : HTMLElement;	
 	currentImpressStep_id : String = "World";
 	currentZoneName : any = "*";
+	//currentIncidence : number = 10;
 	//how-to-detect-when-an-input-value-changes-in-angular
 	//https://stackoverflow.com/questions/38571812/how-to-detect-when-an-input-value-changes-in-angular
 	@Input() sidenav;	
@@ -45,6 +46,11 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
   
+  }
+  
+  getCurrentIncidence(zoneId:String){
+    console.log("======= getCurrentIncidence ====== " + zoneId);
+	return this.zonesService.getZoneIncidence(zoneId);
   }
 
 }

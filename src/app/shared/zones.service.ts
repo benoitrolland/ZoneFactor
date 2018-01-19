@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
 @Injectable()
 export class ZonesService {
 
+	zonesIncidences: Map<String, number> = new Map<String, number>();
 	zonesColors: Map<String, String> = new Map<String, String>();
 	zonesColorsReady: Map<String, Boolean> = new Map<String, Boolean>();
 	
@@ -91,7 +92,7 @@ export class ZonesService {
 				"context":{"sexe":"female","age":11, region:"br", ethnie:"all"},
 				"intercept":3.677697114, 
 				"factorsCoef":{"X1034..7211":1.127590663, "X2961..5142":0.522560226, "X2515..664":-0.776697244, "X2531..5520":-3.23E-06, "X2827..5071":-1.80E-06, "X1755..5111":-3.43E-09},
-				"lastImputedValues":{"X1034..7211":0, "X2961..5142":0, "X2515..664":0, "X2531..5520":0, "X2827..5071":0, "X1755..5111":0}
+				"lastImputedValues":{"X1034..7211":0, "X2961..5142":10, "X2515..664":20000, "X2531..5520":30000, "X2827..5071":40000, "X1755..5111":100000}
 			},{
 				"context":{"sexe":"male","age":11, region:"br", ethnie:"all"},
 				"intercept":-36.6258836611159, 
@@ -192,6 +193,11 @@ export class ZonesService {
 		return undefined;
 	}
 */	
+	getFactorConsts(zoneId:String,factorId:String){
+		let zoneRule = this.zonesRules.find(x => x.id === zoneId);
+		if(zoneRule == undefined || zoneRule.factorsConsts == undefined) return undefined;
+		return zoneRule.factorsConsts.find(x => x.id === factorId);		
+	}
 	getContext(zoneId:String,contextIndex){
 		let res = undefined;
 		let factorsForContext = this.getFactorsForContext(zoneId,contextIndex);
@@ -238,6 +244,11 @@ export class ZonesService {
 		return res;
 	}
 	
+	getFactorsForSelectedContext(zoneId:String){
+		let contextIndex = this.selectedContextNums.get(zoneId);
+		return this.getFactorsForContext(zoneId,contextIndex);
+	}
+	
 	getZoneColor(zoneId:String):String {
 	
 		if(zoneId == "FR"){
@@ -252,10 +263,16 @@ export class ZonesService {
 		let htmlColor:String = this.colorFromValues(zoneId,values);
 		//let htmlColor:String = "hsl(240, 100%, "+Math.round(polyRes * 1000)+"%)";
 		this.zonesColors.set(zoneId,htmlColor);
+		let incidence:number =this.multipleLinearRegressionBasedIncidence(zoneId,values);
+		this.zonesIncidences.set(zoneId,incidence);
 		this.zonesColorsReady.set(zoneId,true);
 		console.log("zse htmlColor:",this.zonesColors.get(zoneId));
 		return htmlColor; //this.zonesColors.get(zone);
 		
+	}
+	//Warning linked to ZoneColor
+	getZoneIncidence(zoneId:String):number {
+		return this.zonesIncidences.get(zoneId);
 	}
 	
 	getZoneValues(zone:String):number[] {
@@ -270,6 +287,7 @@ export class ZonesService {
 			console.log("zse setZoneValues("+zone+"_"+ctxtNum+")=",imputedValues);
 			//colorFromValues
 			this.zonesColors.set(zone, this.colorFromValues(zone,imputedValues));
+			this.zonesIncidences.set(zone,this.multipleLinearRegressionBasedIncidence(zone,imputedValues));
 			if(zone=="FR") {
 				console.log("zse New Color for " + zone + ": " + this.zonesColors.get(zone));
 				console.log("zse Setting zonesColorsReady " + zone + " to false");

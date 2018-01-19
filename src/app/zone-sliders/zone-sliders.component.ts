@@ -13,9 +13,16 @@ import { ChangeDetectorRef, ViewContainerRef, OnChanges, SimpleChanges, SimpleCh
 //   thumbLabel	
 //    template: '<mat-grid-tile colspan="1" rowspan="1">&nbsp;10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100</mat-grid-tile>'
 //    template: '<div>&nbsp;{{data?.text}}&nbsp;</div>'
-//      template: '10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100<h4 style="align:right">a</h4>'
-    template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1" ><mat-grid-tile colspan="4" rowspan="1"  class="grid-right">&nbsp;{{data?.min}}<mat-slider thumbLabel tickInterval="1" min="{{data?.min}}" max="{{data?.max}}" step="5" value="{{data?.value}}" (change)="onChange($event, data.value)">F2</mat-slider>{{data?.max}}</mat-grid-tile><mat-grid-tile colspan="2" rowspan="1" class="grid-left">&nbsp;={{data?.text}}:{{data.value}}=</mat-grid-tile></mat-grid-list>'
-})
+//    template: '10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100<h4 style="align:right">a</h4>'
+    template: '	<mat-grid-list cols="6" rowHeight="15px" gutterSize="1" >\
+					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="1"></font></mat-grid-tile>\
+					<mat-grid-tile style="justify-content: initial;align-items: initial;" colspan="6" rowspan="1" class="grid-left"><font size="0.5">{{data?.text}}</font></mat-grid-tile>\
+					<mat-grid-tile colspan="6" rowspan="1"  class="grid-right">&nbsp;{{data?.min}}\
+						<mat-slider tickInterval="1" min="{{data?.min}}" max="{{data?.max}}" step="5" value="{{data?.default}}" (change)="onChange($event, data.value)"></mat-slider>{{data?.max}}  : {{data.value}}\
+					</mat-grid-tile>\
+					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="2">{{data?.unit}}</font></mat-grid-tile>\
+				</mat-grid-list>'
+})//style="border-bottom: 2px dashed grey;" md-row-height="fit" 
 export class TickSliderComponent implements ZoneSlider {
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
