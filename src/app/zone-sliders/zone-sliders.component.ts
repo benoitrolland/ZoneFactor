@@ -32,9 +32,10 @@ export class TickSliderComponent implements ZoneSlider {
   
   onChange($event){
 	console.log("onChange $event=",$event);
-	if($event != undefined)
+	if($event != undefined){
 		this.data.value=$event.value;
 		this.matSlide.value=$event.value;
+	}
 	this.change.emit($event);
   }
 }
@@ -51,8 +52,10 @@ export class ToggleSliderComponent implements ZoneSlider {
   
   onChange($event){
 	console.log("onChange $event=",$event);
-    this.data.value=$event.checked;
-	this.matSlide.checked=$event.checked;
+    if($event != undefined){
+		this.data.value=$event.checked;
+		this.matSlide.checked=$event.checked;
+	}
 	this.change.emit($event);
   }
 }

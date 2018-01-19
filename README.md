@@ -5,10 +5,13 @@ All the material for the GUI
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.8.
 
 ## Compatibility
-Better use Chrome. 
-For sharp country edges, use Microsoft Edge. But you will not see the whole world map. 
+Better use Microsoft Edge. 
+You will have sharp country edges... You will not see the whole world map, this will teach first time users to use the country list menu. 
+With Chrome, updating incidence and country color several times will make the map disapear if zoom factor is over 33%. 
+And Contries edges will be aliased, for "performance optimisation" reasons .
 Don't use Firefox for now, Events are not fired correctly yet 
 ;-)
+Best debbuging experience using Chrome.
 
 ## Development server
 
