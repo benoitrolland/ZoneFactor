@@ -31,11 +31,11 @@ export class TickSliderComponent implements ZoneSlider {
   @ViewChild(MatSlider) public matSlide: MatSlider;
   
   onChange($event){
-	console.log("onChange $event=",$event);
+	console.log("onChange $event=",$event);	
 	if($event != undefined){
 		this.data.value=$event.value;
 		this.matSlide.value=$event.value;
-	}
+	}	
 	this.change.emit($event);
   }
 }
@@ -195,25 +195,18 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
      let zoneSliderItem = this.sliders[this.currentSliderIndex];
 
      let componentFactory = this.componentFactoryResolver.resolveComponentFactory(zoneSliderItem.component);
-
-
+	 
      let componentRef = viewContainerRef.createComponent(componentFactory);
 	 let zoneSlider:ZoneSlider = (<ZoneSlider>componentRef.instance);
      zoneSlider.data = zoneSliderItem.data;	
 	 zoneSlider.change.subscribe(msg => this.onChildChange(msg,index));
-	 let changEvent:MatSliderChange|MatSlideToggleChange = undefined;
 	 if(zoneSlider.matSlide instanceof MatSlider){ 
-		let matSliderChange = new MatSliderChange();
-		matSliderChange.source = zoneSlider.matSlide;
-		matSliderChange.value = zoneSlider.data.default;
-		changEvent = matSliderChange;
-	 }else if(zoneSlider.matSlide instanceof MatSlideToggle){	
-		let matSlideToggleChange = new MatSlideToggleChange();
-		matSlideToggleChange.source = zoneSlider.matSlide;
-		matSlideToggleChange.checked = zoneSlider.data.default;
-		changEvent = matSlideToggleChange;
+		zoneSlider.data.value=zoneSlider.data.default;
+		zoneSlider.matSlide.value=zoneSlider.data.default;
+	 }else if(zoneSlider.matSlide instanceof MatSlideToggle){	 
+		zoneSlider.data.value=zoneSlider.data.default;
+		zoneSlider.matSlide.checked=zoneSlider.data.default;
 	 }
-	 zoneSlider.onChange(changEvent);
    }
   
 /* 
