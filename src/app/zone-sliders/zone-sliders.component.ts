@@ -6,7 +6,7 @@ import { ZoneSlidersDirective } from '../zone-sliders.directive';
 import { ZonesService } from '../shared/index';
 //import { ZoneSlidersService } from '../shared/zone-sliders.service';
 import { ChangeDetectorRef, ViewContainerRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
-import { MatSliderModule, MatSlider, MatSlideToggle, MatSliderChange, MatSlideToggleChange } from '@angular/material';
+import { MatSlider, MatSlideToggle, MatSliderChange, MatSlideToggleChange } from '@angular/material';
 
 @Component({
     selector: 'tick-slider',
@@ -28,13 +28,13 @@ import { MatSliderModule, MatSlider, MatSlideToggle, MatSliderChange, MatSlideTo
 export class TickSliderComponent implements ZoneSlider {
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
-  @ViewChild(MatSlider) public matSlide: MatSlider;
+  @ViewChild(MatSlider) public valueSelector: MatSlider;
   
   onChange($event){
 	console.log("onChange $event=",$event);	
 	if($event != undefined){
 		this.data.value=$event.value;
-		this.matSlide.value=$event.value;
+		this.valueSelector.value=$event.value;
 	}	
 	this.change.emit($event);
   }
@@ -48,13 +48,13 @@ export class ToggleSliderComponent implements ZoneSlider {
 //inpout used for initialisation rather than for update
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
-  @ViewChild(MatSlideToggle) public matSlide: MatSlideToggle;
+  @ViewChild(MatSlideToggle) public valueSelector: MatSlideToggle;
   
   onChange($event){
 	console.log("onChange $event=",$event);
     if($event != undefined){
 		this.data.value=$event.checked;
-		this.matSlide.checked=$event.checked;
+		this.valueSelector.checked=$event.checked;
 	}
 	this.change.emit($event);
   }
@@ -67,7 +67,7 @@ export class ToggleSliderComponent implements ZoneSlider {
 export class UnknownDynamicComponent implements ZoneSlider {
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
-  public matSlide: MatSlideToggle;
+  public valueSelector: MatSlideToggle;
   onChange($event){}
 }
 
@@ -83,7 +83,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   currentSliderIndex: number = -1;
   @ViewChild(ZoneSlidersDirective) sliderHost: ZoneSlidersDirective; //<ng-template slider-host></ng-template>
   //@ViewChild('container', { read: ViewContainerRef }) //<div><div #container></div></div>
-  subscription: any;
+  //subscription: any;
   interval: any;
   zoneId: String;
   slidersValues:number[] = [];
@@ -200,12 +200,12 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 	 let zoneSlider:ZoneSlider = (<ZoneSlider>componentRef.instance);
      zoneSlider.data = zoneSliderItem.data;	
 	 zoneSlider.change.subscribe(msg => this.onChildChange(msg,index));
-	 if(zoneSlider.matSlide instanceof MatSlider){ 
+	 if(zoneSlider.valueSelector instanceof MatSlider){ 
 		zoneSlider.data.value=zoneSlider.data.default;
-		zoneSlider.matSlide.value=zoneSlider.data.default;
-	 }else if(zoneSlider.matSlide instanceof MatSlideToggle){	 
+		zoneSlider.valueSelector.value=zoneSlider.data.default;
+	 }else if(zoneSlider.valueSelector instanceof MatSlideToggle){	 
 		zoneSlider.data.value=zoneSlider.data.default;
-		zoneSlider.matSlide.checked=zoneSlider.data.default;
+		zoneSlider.valueSelector.checked=zoneSlider.data.default;
 	 }
    }
   

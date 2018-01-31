@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'hammerjs/hammer';
 import { FormControl }      from '@angular/forms';
+import { ContextFormComponent } from './context-form/context-form.component';
 import { ZoneSlidersComponent } from './zone-sliders/zone-sliders.component';
 import { ZoneSlidersService } from './shared/zone-sliders.service';
 import { ZoneSliderItem }     from './zone-slider-item';
@@ -38,6 +39,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   private name: string;
   //zoneSliders: ZoneSliderItem[];
   zones: String[];
+  @ViewChild(ContextFormComponent) contextFormComponent : ContextFormComponent;  
   @ViewChild(ZoneSlidersComponent) zoneSlidersComponent : ZoneSlidersComponent;
   //currentImpressStep : HTMLElement;
   
@@ -141,6 +143,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	onStepUpdate(event:any){
 		console.log( "App onStepUpdate: " , event.target.id );
 		this.currentImpressStep_id = event.target.id;
+		this.contextFormComponent.setSliders(this.zoneSlidersService.getContextSlidersForZoneAndContext(event.target.id), event.target.id); 
+		//OK 
 		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZoneAndContext(event.target.id), event.target.id); 
 		//sidenav.open();
 		//this._changeDetectionRef.detectChanges();
@@ -152,6 +156,10 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   
 	public goto(index:any) {
 		this.impressComponent.imp.goto(index); 
+	}
+	getContextFormSliderLength(){
+		if (this.contextFormComponent.sliders === undefined) return 0;
+		return this.contextFormComponent.sliders.length;
 	}
 	
 	public getzoneSlidersLength() {

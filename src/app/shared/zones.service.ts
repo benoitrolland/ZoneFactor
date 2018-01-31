@@ -25,7 +25,7 @@ export class ZonesService {
 */
 	zonesRules:any = [
 		{
-			"id":"GB",
+			"id":"ES",
 			"factorsConsts":[
 				{"id":"Pétrole" , unit:"barrels", "min":0 , "max":100000 ,"lastValue":70000},
 				{"id":"Shampoing" , unit:"litters", "min":0 , "max":100000, "lastValue":30000},
@@ -45,6 +45,64 @@ export class ZonesService {
 				"intercept":0.3,
 				"factorsCoef":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.15, "CO2":-0.01},
 				"lastImputedValues":{"Pétrole":0.2, "Viande":0.3, "Rouge à lèvres":0.6, "CO2":0.7}
+			}]
+		},
+		{"id":"GB",
+		//e:\brl\proj\2017\epidemium\map\*.csv  unit, name
+		//e:\brl\proj\2017\epidemium\benscham\*mean.csv mean
+			"factorsConsts":[
+				{"id":"X1034..7211", "min":0, "max":100, "lastValue":0, mean:0, category:"Environment", subCategory:"Pigs", name:"% of Total Livestock", unit:"%" },
+				{"id":"X2961..5142", "min":0, "max":100, "lastValue":0, mean:0, category:"Food Balance", subCategory:"Aquatic Products, Other", name:"Food", unit:"1000 tonnes" },
+				{"id":"X2515..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2531..5520", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Potatoes and products", name:"Feed", unit:"tonnes" },
+				{"id":"X2827..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar, Raw Equivalent", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X1755..5111", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"All Animals", name:"Stocks", unit:"Head" },
+				{"id":"X2961..645", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Aquatic Products, Other", name:"Food supply quantity (kg/capita/yr)", unit:"kg" },
+				{"id":"X6803..724410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2eq) from CH4 (Energy)", unit:"Gigagrams" }, 
+				{"id":"SP.RUR.TOTL.ZG", "min":0, "max":100, "lastValue":0, mean:0, category:"Environnement", subCategory:"Environnement", name:"Rural population growth", unit:"annual %" }, 
+				{"id":"GC.NLD.TOTL.GD.ZS", "min":0, "max":100, "lastValue":0, mean:0, category:"Public Sector", subCategory:"Public_sector", name:"Net lending", unit:"% of GDP" }, 
+				{"id":"X6803..719410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2) (Energy)", unit:"Gigagrams" }, 
+				{"id":"X221..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Almonds, with shell", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2597..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sesameseed Cake", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X2549..5141", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Pulses, Other and products", name:"Food supply quantity (tonnes)", unit:"tonnes" }, 
+				{"id":"X1375..5922", "min":0, "max":10000, "lastValue":0, mean:0, category:"Inputs", subCategory:"Phosphate fertilizers", name:"Export Value", unit:"1000 US$" }, 
+				{"id":"X2556..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Groundnuts (Shelled Eq)", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X407..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Leeks, other alliaceous vegetables", name:"Yield", unit:"hg/ha" }, 
+				{"id":"X2659..5153", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Other uses", unit:"tonnes" }, 
+				{"id":"X426..5510", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Carrots and turnips", name:"Production", unit:"tonnes" }, 
+				{"id":"X1717..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Cereals,Total", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2659..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X960..72290", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Cattle, dairy", name:"Implied emission factor for N2O (Manure on pasture)", unit:"kg N2O-N/kg N" },
+				{"id":"X2515..674", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Protein supply quantity (g/capita/day)", unit:"g/capita/day" },
+				{"id":"SP.POP.7579.MA.5Y", "min":0, "max":100, "lastValue":0, mean:0, category:"Health", subCategory:"Health", name:"Population ages 75-79, male", unit:"% of male population" },
+				{"id":"X2613..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Grapefruit and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2922..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Stimulants", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2537..5610", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar beet", name:"Import Quantity", unit:"tonnes" },
+				{"id":"X2562..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Palm kernels", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2582..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Maize Germ Oil", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2671..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Tobacco", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X1801..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Fruit excl Melons,Total", name:"Yield", unit:"hg/ha" },
+				{"id":"X2520..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Cereals, Other", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2815..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Roots & Tuber Dry Equiv", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2542..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar (Raw Equivalent)", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2848..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Milk - Excluding Butter", name:"Stock Variation", unit:"tonnes" }
+			],
+			//from e:\brl\proj\2017\epidemium\benscham\*.csv
+			"factorsForContext":[{
+				"context":{"sexe":"female","age":11, region:"br", ethnie:"all"},
+				"intercept":3.677697114, 
+				"factorsCoef":{"X1034..7211":1.127590663, "X2961..5142":0.522560226, "X2515..664":-0.776697244, "X2531..5520":-3.23E-06},
+				"lastImputedValues":{"X1034..7211":0, "X2961..5142":10, "X2515..664":20000, "X2531..5520":30000}
+			},{
+				"context":{"sexe":"male","age":11, region:"br", ethnie:"all"},
+				"intercept":-36.6258836611159, 
+				"factorsCoef":{"X2961..645":11.5217514273827, "X6803..724410":8337.1140410464, "SP.RUR.TOTL.ZG":-0.916593021217523, "GC.NLD.TOTL.GD.ZS":-0.0932946133036694, "X6803..719410":-9.79030966009668, "X221..5312":-0.000485087169767695, "X2597..5910":0.00230324857352038, "X2549..5141":3.24897853331008e-05, "X1375..5922":-1.68852939258363e-05, "X2556..5910":8.46048020290979e-05, "X407..5419":3.33979464654383e-05, "X2659..5153":0.171594159080541, "X426..5510":2.84202191828236e-06, "X1717..5312":1.37928501881495e-06, "X2659..5300":-0.171603943714509},
+				"lastImputedValues":{"X2961..645":0, "X6803..724410":0, "SP.RUR.TOTL.ZG":0, "GC.NLD.TOTL.GD.ZS":0, "X6803..719410":0, "X221..5312":0, "X2597..5910":0, "X2549..5141":0, "X1375..5922":0, "X2556..5910":0, "X407..5419":0, "X2659..5153":0, "X426..5510":0, "X1717..5312":0, "X2659..5300":0}
+			},{
+				"context":{"sexe":"male","age":17, region:"br", ethnie:"all"},
+				"intercept":131.740660037701,
+				"factorsCoef":{"X960..72290":-4886.13968634094,"X2515..674":-89.0709110086175,"SP.POP.7579.MA.5Y":-2.36634069005173,"X2613..664":-0.336683842936539,"X2922..664":0.610158134719119,"X2537..5610":-0.00026469045006892,"X2562..5910":0.0176180471681411,"X2582..5910":0.000828625618244055,"X2671..5300":-0.000206944589760498,"X1801..5419":0.000133725982210252,"X2520..5071":0.000208098775798847,"X2815..5910":3.50080127683297e-06,"X2542..5071":1.81340064471598e-06,"X2848..5071":-9.07657722711329e-06},
+				"lastImputedValues":{"X960..72290":0,"X2515..674":0,"SP.POP.7579.MA.5Y":0,"X2613..664":0,"X2922..664":0,"X2537..5610":0,"X2562..5910":0,"X2582..5910":0,"X2671..5300":0,"X1801..5419":0,"X2520..5071":0,"X2815..5910":0,"X2542..5071":0,"X2848..5071":0}
 			}]
 		},
 		{"id":"FR",
@@ -104,8 +162,181 @@ export class ZonesService {
 				"factorsCoef":{"X960..72290":-4886.13968634094,"X2515..674":-89.0709110086175,"SP.POP.7579.MA.5Y":-2.36634069005173,"X2613..664":-0.336683842936539,"X2922..664":0.610158134719119,"X2537..5610":-0.00026469045006892,"X2562..5910":0.0176180471681411,"X2582..5910":0.000828625618244055,"X2671..5300":-0.000206944589760498,"X1801..5419":0.000133725982210252,"X2520..5071":0.000208098775798847,"X2815..5910":3.50080127683297e-06,"X2542..5071":1.81340064471598e-06,"X2848..5071":-9.07657722711329e-06},
 				"lastImputedValues":{"X960..72290":0,"X2515..674":0,"SP.POP.7579.MA.5Y":0,"X2613..664":0,"X2922..664":0,"X2537..5610":0,"X2562..5910":0,"X2582..5910":0,"X2671..5300":0,"X1801..5419":0,"X2520..5071":0,"X2815..5910":0,"X2542..5071":0,"X2848..5071":0}
 			}]
+		},		
+		{"id":"JP",
+		//e:\brl\proj\2017\epidemium\map\*.csv  unit, name
+		//e:\brl\proj\2017\epidemium\benscham\*mean.csv mean
+			"factorsConsts":[
+				{"id":"X1034..7211", "min":0, "max":100, "lastValue":0, mean:0, category:"Environment", subCategory:"Pigs", name:"% of Total Livestock", unit:"%" },
+				{"id":"X2961..5142", "min":0, "max":100, "lastValue":0, mean:0, category:"Food Balance", subCategory:"Aquatic Products, Other", name:"Food", unit:"1000 tonnes" },
+				{"id":"X2515..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2531..5520", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Potatoes and products", name:"Feed", unit:"tonnes" },
+				{"id":"X2827..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar, Raw Equivalent", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X1755..5111", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"All Animals", name:"Stocks", unit:"Head" },
+				{"id":"X2961..645", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Aquatic Products, Other", name:"Food supply quantity (kg/capita/yr)", unit:"kg" },
+				{"id":"X6803..724410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2eq) from CH4 (Energy)", unit:"Gigagrams" }, 
+				{"id":"SP.RUR.TOTL.ZG", "min":0, "max":100, "lastValue":0, mean:0, category:"Environnement", subCategory:"Environnement", name:"Rural population growth", unit:"annual %" }, 
+				{"id":"GC.NLD.TOTL.GD.ZS", "min":0, "max":100, "lastValue":0, mean:0, category:"Public Sector", subCategory:"Public_sector", name:"Net lending", unit:"% of GDP" }, 
+				{"id":"X6803..719410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2) (Energy)", unit:"Gigagrams" }, 
+				{"id":"X221..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Almonds, with shell", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2597..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sesameseed Cake", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X2549..5141", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Pulses, Other and products", name:"Food supply quantity (tonnes)", unit:"tonnes" }, 
+				{"id":"X1375..5922", "min":0, "max":10000, "lastValue":0, mean:0, category:"Inputs", subCategory:"Phosphate fertilizers", name:"Export Value", unit:"1000 US$" }, 
+				{"id":"X2556..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Groundnuts (Shelled Eq)", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X407..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Leeks, other alliaceous vegetables", name:"Yield", unit:"hg/ha" }, 
+				{"id":"X2659..5153", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Other uses", unit:"tonnes" }, 
+				{"id":"X426..5510", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Carrots and turnips", name:"Production", unit:"tonnes" }, 
+				{"id":"X1717..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Cereals,Total", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2659..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X960..72290", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Cattle, dairy", name:"Implied emission factor for N2O (Manure on pasture)", unit:"kg N2O-N/kg N" },
+				{"id":"X2515..674", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Protein supply quantity (g/capita/day)", unit:"g/capita/day" },
+				{"id":"SP.POP.7579.MA.5Y", "min":0, "max":100, "lastValue":0, mean:0, category:"Health", subCategory:"Health", name:"Population ages 75-79, male", unit:"% of male population" },
+				{"id":"X2613..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Grapefruit and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2922..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Stimulants", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2537..5610", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar beet", name:"Import Quantity", unit:"tonnes" },
+				{"id":"X2562..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Palm kernels", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2582..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Maize Germ Oil", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2671..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Tobacco", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X1801..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Fruit excl Melons,Total", name:"Yield", unit:"hg/ha" },
+				{"id":"X2520..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Cereals, Other", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2815..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Roots & Tuber Dry Equiv", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2542..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar (Raw Equivalent)", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2848..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Milk - Excluding Butter", name:"Stock Variation", unit:"tonnes" }
+			],
+			//from e:\brl\proj\2017\epidemium\benscham\*.csv
+			"factorsForContext":[{
+				"context":{"sexe":"female","age":11, region:"br", ethnie:"all"},
+				"intercept":3.677697114, 
+				"factorsCoef":{"X2515..664":-0.776697244, "X2531..5520":-3.23E-06, "X2827..5071":-1.80E-06, "X1755..5111":-3.43E-09},
+				"lastImputedValues":{"X2515..664":20000, "X2531..5520":30000, "X2827..5071":40000, "X1755..5111":100000}
+			},{
+				"context":{"sexe":"male","age":11, region:"br", ethnie:"all"},
+				"intercept":-36.6258836611159, 
+				"factorsCoef":{"X2961..645":11.5217514273827, "X6803..724410":8337.1140410464, "SP.RUR.TOTL.ZG":-0.916593021217523, "GC.NLD.TOTL.GD.ZS":-0.0932946133036694, "X6803..719410":-9.79030966009668, "X221..5312":-0.000485087169767695, "X2597..5910":0.00230324857352038, "X2549..5141":3.24897853331008e-05, "X1375..5922":-1.68852939258363e-05, "X2556..5910":8.46048020290979e-05, "X407..5419":3.33979464654383e-05, "X2659..5153":0.171594159080541, "X426..5510":2.84202191828236e-06, "X1717..5312":1.37928501881495e-06, "X2659..5300":-0.171603943714509},
+				"lastImputedValues":{"X2961..645":0, "X6803..724410":0, "SP.RUR.TOTL.ZG":0, "GC.NLD.TOTL.GD.ZS":0, "X6803..719410":0, "X221..5312":0, "X2597..5910":0, "X2549..5141":0, "X1375..5922":0, "X2556..5910":0, "X407..5419":0, "X2659..5153":0, "X426..5510":0, "X1717..5312":0, "X2659..5300":0}
+			},{
+				"context":{"sexe":"male","age":17, region:"br", ethnie:"all"},
+				"intercept":131.740660037701,
+				"factorsCoef":{"X960..72290":-4886.13968634094,"X2515..674":-89.0709110086175,"SP.POP.7579.MA.5Y":-2.36634069005173,"X2613..664":-0.336683842936539,"X2922..664":0.610158134719119,"X2537..5610":-0.00026469045006892,"X2562..5910":0.0176180471681411,"X2582..5910":0.000828625618244055,"X2671..5300":-0.000206944589760498,"X1801..5419":0.000133725982210252,"X2520..5071":0.000208098775798847,"X2815..5910":3.50080127683297e-06,"X2542..5071":1.81340064471598e-06,"X2848..5071":-9.07657722711329e-06},
+				"lastImputedValues":{"X960..72290":0,"X2515..674":0,"SP.POP.7579.MA.5Y":0,"X2613..664":0,"X2922..664":0,"X2537..5610":0,"X2562..5910":0,"X2582..5910":0,"X2671..5300":0,"X1801..5419":0,"X2520..5071":0,"X2815..5910":0,"X2542..5071":0,"X2848..5071":0}
+			}]
+		},
+		{"id":"US",
+		//e:\brl\proj\2017\epidemium\map\*.csv  unit, name
+		//e:\brl\proj\2017\epidemium\benscham\*mean.csv mean
+			"factorsConsts":[
+				{"id":"X1034..7211", "min":0, "max":100, "lastValue":0, mean:0, category:"Environment", subCategory:"Pigs", name:"% of Total Livestock", unit:"%" },
+				{"id":"X2961..5142", "min":0, "max":100, "lastValue":0, mean:0, category:"Food Balance", subCategory:"Aquatic Products, Other", name:"Food", unit:"1000 tonnes" },
+				{"id":"X2515..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2531..5520", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Potatoes and products", name:"Feed", unit:"tonnes" },
+				{"id":"X2827..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar, Raw Equivalent", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X1755..5111", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"All Animals", name:"Stocks", unit:"Head" },
+				{"id":"X2961..645", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Aquatic Products, Other", name:"Food supply quantity (kg/capita/yr)", unit:"kg" },
+				{"id":"X6803..724410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2eq) from CH4 (Energy)", unit:"Gigagrams" }, 
+				{"id":"SP.RUR.TOTL.ZG", "min":0, "max":100, "lastValue":0, mean:0, category:"Environnement", subCategory:"Environnement", name:"Rural population growth", unit:"annual %" }, 
+				{"id":"GC.NLD.TOTL.GD.ZS", "min":0, "max":100, "lastValue":0, mean:0, category:"Public Sector", subCategory:"Public_sector", name:"Net lending", unit:"% of GDP" }, 
+				{"id":"X6803..719410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2) (Energy)", unit:"Gigagrams" }, 
+				{"id":"X221..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Almonds, with shell", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2597..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sesameseed Cake", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X2549..5141", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Pulses, Other and products", name:"Food supply quantity (tonnes)", unit:"tonnes" }, 
+				{"id":"X1375..5922", "min":0, "max":10000, "lastValue":0, mean:0, category:"Inputs", subCategory:"Phosphate fertilizers", name:"Export Value", unit:"1000 US$" }, 
+				{"id":"X2556..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Groundnuts (Shelled Eq)", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X407..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Leeks, other alliaceous vegetables", name:"Yield", unit:"hg/ha" }, 
+				{"id":"X2659..5153", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Other uses", unit:"tonnes" }, 
+				{"id":"X426..5510", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Carrots and turnips", name:"Production", unit:"tonnes" }, 
+				{"id":"X1717..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Cereals,Total", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2659..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X960..72290", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Cattle, dairy", name:"Implied emission factor for N2O (Manure on pasture)", unit:"kg N2O-N/kg N" },
+				{"id":"X2515..674", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Protein supply quantity (g/capita/day)", unit:"g/capita/day" },
+				{"id":"SP.POP.7579.MA.5Y", "min":0, "max":100, "lastValue":0, mean:0, category:"Health", subCategory:"Health", name:"Population ages 75-79, male", unit:"% of male population" },
+				{"id":"X2613..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Grapefruit and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2922..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Stimulants", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2537..5610", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar beet", name:"Import Quantity", unit:"tonnes" },
+				{"id":"X2562..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Palm kernels", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2582..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Maize Germ Oil", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2671..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Tobacco", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X1801..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Fruit excl Melons,Total", name:"Yield", unit:"hg/ha" },
+				{"id":"X2520..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Cereals, Other", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2815..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Roots & Tuber Dry Equiv", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2542..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar (Raw Equivalent)", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2848..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Milk - Excluding Butter", name:"Stock Variation", unit:"tonnes" }
+			],
+			//from e:\brl\proj\2017\epidemium\benscham\*.csv
+			"factorsForContext":[{
+				"context":{"sexe":"female","age":11, region:"br", ethnie:"all"},
+				"intercept":3.677697114, 
+				"factorsCoef":{"X1034..7211":1.127590663, "X2961..5142":0.522560226, "X2531..5520":-3.23E-06, "X2827..5071":-1.80E-06, "X1755..5111":-3.43E-09},
+				"lastImputedValues":{"X1034..7211":0, "X2961..5142":10, "X2531..5520":30000, "X2827..5071":40000, "X1755..5111":100000}
+			},{
+				"context":{"sexe":"male","age":11, region:"br", ethnie:"all"},
+				"intercept":-36.6258836611159, 
+				"factorsCoef":{"X2961..645":11.5217514273827, "X6803..724410":8337.1140410464, "SP.RUR.TOTL.ZG":-0.916593021217523, "GC.NLD.TOTL.GD.ZS":-0.0932946133036694, "X6803..719410":-9.79030966009668, "X221..5312":-0.000485087169767695, "X2597..5910":0.00230324857352038, "X2549..5141":3.24897853331008e-05, "X1375..5922":-1.68852939258363e-05, "X2556..5910":8.46048020290979e-05, "X407..5419":3.33979464654383e-05, "X2659..5153":0.171594159080541, "X426..5510":2.84202191828236e-06, "X1717..5312":1.37928501881495e-06, "X2659..5300":-0.171603943714509},
+				"lastImputedValues":{"X2961..645":0, "X6803..724410":0, "SP.RUR.TOTL.ZG":0, "GC.NLD.TOTL.GD.ZS":0, "X6803..719410":0, "X221..5312":0, "X2597..5910":0, "X2549..5141":0, "X1375..5922":0, "X2556..5910":0, "X407..5419":0, "X2659..5153":0, "X426..5510":0, "X1717..5312":0, "X2659..5300":0}
+			},{
+				"context":{"sexe":"male","age":17, region:"br", ethnie:"all"},
+				"intercept":131.740660037701,
+				"factorsCoef":{"X960..72290":-4886.13968634094,"X2515..674":-89.0709110086175,"SP.POP.7579.MA.5Y":-2.36634069005173,"X2613..664":-0.336683842936539,"X2922..664":0.610158134719119,"X2537..5610":-0.00026469045006892,"X2562..5910":0.0176180471681411,"X2582..5910":0.000828625618244055,"X2671..5300":-0.000206944589760498,"X1801..5419":0.000133725982210252,"X2520..5071":0.000208098775798847,"X2815..5910":3.50080127683297e-06,"X2542..5071":1.81340064471598e-06,"X2848..5071":-9.07657722711329e-06},
+				"lastImputedValues":{"X960..72290":0,"X2515..674":0,"SP.POP.7579.MA.5Y":0,"X2613..664":0,"X2922..664":0,"X2537..5610":0,"X2562..5910":0,"X2582..5910":0,"X2671..5300":0,"X1801..5419":0,"X2520..5071":0,"X2815..5910":0,"X2542..5071":0,"X2848..5071":0}
+			}]
+		},
+		{"id":"JP",
+		//e:\brl\proj\2017\epidemium\map\*.csv  unit, name
+		//e:\brl\proj\2017\epidemium\benscham\*mean.csv mean
+			"factorsConsts":[
+				{"id":"X1034..7211", "min":0, "max":100, "lastValue":0, mean:0, category:"Environment", subCategory:"Pigs", name:"% of Total Livestock", unit:"%" },
+				{"id":"X2961..5142", "min":0, "max":100, "lastValue":0, mean:0, category:"Food Balance", subCategory:"Aquatic Products, Other", name:"Food", unit:"1000 tonnes" },
+				{"id":"X2515..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2531..5520", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Potatoes and products", name:"Feed", unit:"tonnes" },
+				{"id":"X2827..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar, Raw Equivalent", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X1755..5111", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"All Animals", name:"Stocks", unit:"Head" },
+				{"id":"X2961..645", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Aquatic Products, Other", name:"Food supply quantity (kg/capita/yr)", unit:"kg" },
+				{"id":"X6803..724410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2eq) from CH4 (Energy)", unit:"Gigagrams" }, 
+				{"id":"SP.RUR.TOTL.ZG", "min":0, "max":100, "lastValue":0, mean:0, category:"Environnement", subCategory:"Environnement", name:"Rural population growth", unit:"annual %" }, 
+				{"id":"GC.NLD.TOTL.GD.ZS", "min":0, "max":100, "lastValue":0, mean:0, category:"Public Sector", subCategory:"Public_sector", name:"Net lending", unit:"% of GDP" }, 
+				{"id":"X6803..719410", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Gas-diesel oils used in fisheries", name:"Emissions (CO2) (Energy)", unit:"Gigagrams" }, 
+				{"id":"X221..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Almonds, with shell", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2597..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sesameseed Cake", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X2549..5141", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Pulses, Other and products", name:"Food supply quantity (tonnes)", unit:"tonnes" }, 
+				{"id":"X1375..5922", "min":0, "max":10000, "lastValue":0, mean:0, category:"Inputs", subCategory:"Phosphate fertilizers", name:"Export Value", unit:"1000 US$" }, 
+				{"id":"X2556..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Groundnuts (Shelled Eq)", name:"Export Quantity", unit:"tonnes" }, 
+				{"id":"X407..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Leeks, other alliaceous vegetables", name:"Yield", unit:"hg/ha" }, 
+				{"id":"X2659..5153", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Other uses", unit:"tonnes" }, 
+				{"id":"X426..5510", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Carrots and turnips", name:"Production", unit:"tonnes" }, 
+				{"id":"X1717..5312", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Cereals,Total", name:"Area harvested", unit:"ha" }, 
+				{"id":"X2659..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Alcohol, Non-Food", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X960..72290", "min":0, "max":100000, "lastValue":0, mean:0, category:"Emissions", subCategory:"Cattle, dairy", name:"Implied emission factor for N2O (Manure on pasture)", unit:"kg N2O-N/kg N" },
+				{"id":"X2515..674", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Rye and products", name:"Protein supply quantity (g/capita/day)", unit:"g/capita/day" },
+				{"id":"SP.POP.7579.MA.5Y", "min":0, "max":100, "lastValue":0, mean:0, category:"Health", subCategory:"Health", name:"Population ages 75-79, male", unit:"% of male population" },
+				{"id":"X2613..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Grapefruit and products", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2922..664", "min":0, "max":100000, "lastValue":0, mean:0, category:"Food Supply", subCategory:"Stimulants", name:"Food supply (kcal/capita/day)", unit:"kcal/capita/day" },
+				{"id":"X2537..5610", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar beet", name:"Import Quantity", unit:"tonnes" },
+				{"id":"X2562..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Palm kernels", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2582..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Maize Germ Oil", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2671..5300", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Tobacco", name:"Domestic supply quantity", unit:"tonnes" },
+				{"id":"X1801..5419", "min":0, "max":100000, "lastValue":0, mean:0, category:"Production", subCategory:"Fruit excl Melons,Total", name:"Yield", unit:"hg/ha" },
+				{"id":"X2520..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Cereals, Other", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2815..5910", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Roots & Tuber Dry Equiv", name:"Export Quantity", unit:"tonnes" },
+				{"id":"X2542..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Sugar (Raw Equivalent)", name:"Stock Variation", unit:"tonnes" },
+				{"id":"X2848..5071", "min":0, "max":100000, "lastValue":0, mean:0, category:"Commodity", subCategory:"Milk - Excluding Butter", name:"Stock Variation", unit:"tonnes" }
+			],
+			//from e:\brl\proj\2017\epidemium\benscham\*.csv
+			"factorsForContext":[{
+				"context":{"sexe":"female","age":11, region:"br", ethnie:"all"},
+				"intercept":3.677697114, 
+				"factorsCoef":{"X1034..7211":1.127590663, "X2961..5142":0.522560226, "X2515..664":-0.776697244, "X2531..5520":-3.23E-06, "X2827..5071":-1.80E-06, "X1755..5111":-3.43E-09},
+				"lastImputedValues":{"X1034..7211":0, "X2961..5142":10, "X2515..664":20000, "X2531..5520":30000, "X2827..5071":40000, "X1755..5111":100000}
+			},{
+				"context":{"sexe":"male","age":11, region:"br", ethnie:"all"},
+				"intercept":-36.6258836611159, 
+				"factorsCoef":{"X2961..645":11.5217514273827, "X6803..724410":8337.1140410464, "SP.RUR.TOTL.ZG":-0.916593021217523, "GC.NLD.TOTL.GD.ZS":-0.0932946133036694, "X6803..719410":-9.79030966009668, "X221..5312":-0.000485087169767695, "X2597..5910":0.00230324857352038, "X2549..5141":3.24897853331008e-05, "X1375..5922":-1.68852939258363e-05, "X2556..5910":8.46048020290979e-05, "X407..5419":3.33979464654383e-05, "X2659..5153":0.171594159080541, "X426..5510":2.84202191828236e-06, "X1717..5312":1.37928501881495e-06, "X2659..5300":-0.171603943714509},
+				"lastImputedValues":{"X2961..645":0, "X6803..724410":0, "SP.RUR.TOTL.ZG":0, "GC.NLD.TOTL.GD.ZS":0, "X6803..719410":0, "X221..5312":0, "X2597..5910":0, "X2549..5141":0, "X1375..5922":0, "X2556..5910":0, "X407..5419":0, "X2659..5153":0, "X426..5510":0, "X1717..5312":0, "X2659..5300":0}
+			},{
+				"context":{"sexe":"male","age":17, region:"br", ethnie:"all"},
+				"intercept":131.740660037701,
+				"factorsCoef":{"X960..72290":-4886.13968634094,"X2515..674":-89.0709110086175,"SP.POP.7579.MA.5Y":-2.36634069005173,"X2613..664":-0.336683842936539,"X2922..664":0.610158134719119,"X2537..5610":-0.00026469045006892,"X2562..5910":0.0176180471681411,"X2582..5910":0.000828625618244055,"X2671..5300":-0.000206944589760498,"X1801..5419":0.000133725982210252,"X2520..5071":0.000208098775798847,"X2815..5910":3.50080127683297e-06,"X2542..5071":1.81340064471598e-06,"X2848..5071":-9.07657722711329e-06},
+				"lastImputedValues":{"X960..72290":0,"X2515..674":0,"SP.POP.7579.MA.5Y":0,"X2613..664":0,"X2922..664":0,"X2537..5610":0,"X2562..5910":0,"X2582..5910":0,"X2671..5300":0,"X1801..5419":0,"X2520..5071":0,"X2815..5910":0,"X2542..5071":0,"X2848..5071":0}
+			}]
 		}
-		
 	];
 	//]`);
 
@@ -174,10 +405,11 @@ export class ZonesService {
 		if(contexts != undefined)		return Object.keys(contexts);
 		return undefined;
 	}
-	getContextValues(zoneId:String){
+	
+	getContextValues(zoneId:String,index:number){
 		//var nbFactors = Object.keys().length;
 		let contexts = this.getContexts(zoneId)
-		if(contexts != undefined)		return Object.values(contexts);
+		if(contexts != undefined)		return Object.values(contexts[index]);
 		return undefined;
 	}
 	
@@ -198,12 +430,14 @@ export class ZonesService {
 		if(zoneRule == undefined || zoneRule.factorsConsts == undefined) return undefined;
 		return zoneRule.factorsConsts.find(x => x.id === factorId);		
 	}
+	
 	getContext(zoneId:String,contextIndex){
 		let res = undefined;
 		let factorsForContext = this.getFactorsForContext(zoneId,contextIndex);
 		if(factorsForContext != undefined) res = factorsForContext.context;
 		return res;	
 	}
+	
 	/*
 	getFactorsNames(zoneId:String){
 		//var nbFactors = Object.keys().length;
@@ -212,6 +446,7 @@ export class ZonesService {
 		return undefined;
 	}
 	*/
+	
 	getFactorsValues(zoneId:String){
 		////var nbFactors = Object.keys().length;
 		//let ctxtNum = this.selectedContextNums.get(zoneId);
@@ -220,7 +455,11 @@ export class ZonesService {
 		if(factorsCoef != undefined)		return Object.values(factorsCoef);
 		return undefined;
 	}
-
+	
+	getSelectedContextNums(zoneId:String){
+		return this.selectedContextNums.get(zoneId);
+	}
+	
 	getFactors(zoneId:String){
 		let res = undefined;
 		let ctxtNum = this.selectedContextNums.get(zoneId);
@@ -228,6 +467,62 @@ export class ZonesService {
 		if(factorsForContext != undefined) res = factorsForContext.factorsCoef;
 		return res;	
 	}
+	
+	getContextName(zoneId:String,index:number){
+	    let ret:string = undefined;
+		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
+		if(zoneRules != undefined) {
+			ret = Object.keys(zoneRules.factorsForContext[0].context)[index];			
+		}
+		return ret;
+	}
+	
+	//getContextValues(zoneId:String,contextNameOrIndex:string|number):String[]{
+	getContextValues(zoneId:String,contextName:string):Set<string>{
+		//let values:String[] = undefined;
+		let values:Set<string> = new Set<string>();
+		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
+/*		
+		let contextName:string = undefined;
+		if(typeof contextNameOrIndex === "string") {
+			contextName = contextNameOrIndex;
+		}else {
+			let labels = Object.keys(zoneRules);
+			console.log("labels:",labels);
+			contextName = labels[contextNameOrIndex];
+			console.log("labels["+contextNameOrIndex+"]:",contextName);
+		}
+*/		
+		if(zoneRules != undefined) {
+				//console.log("zse factors for zoneId="+zoneId+" and contextIndex " + contextIndex + " from ",zoneRules);
+				//console.log("zse zoneRules[zoneId="+zoneId+"].factorsForContext[" + contextIndex + "]  ",zoneRules.factorsForContext[contextIndex]);
+				//let len = Object.keys(zoneRules.factorsForContext[0]).length;
+				let len = zoneRules.factorsForContext.length;
+				//values = new Array(len);
+				let i = 0;
+				for(i = 0; i<zoneRules.factorsForContext.length;i++){
+					let context = zoneRules.factorsForContext[i].context;
+					console.log("zse context:",context);
+					console.log("context["+contextName+"]:",context[contextName]);
+					//values[i] = context[contextName];
+					values.add(context[contextName]);
+				}
+				console.log("zse zoneRules[zoneId="+zoneId+"].factorsForContext.["+contextName+"].context values:", values);				
+			//if(zoneRules === undefined) console.log("factors=",zoneRules);
+			
+		}
+		return values;
+	}
+	
+	getFactorsForContexts(zoneId:String){
+		let res = undefined;
+		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
+		if(zoneRules != undefined) {				res = zoneRules.factorsForContext;
+		}
+		return res;
+	}
+	
+	//see getContext
 	
 	getFactorsForContext(zoneId:String,contextIndex){
 		console.log("zse getFactors(zoneId="+zoneId+")");
@@ -242,6 +537,11 @@ export class ZonesService {
 			
 		}
 		return res;
+	}
+	
+	getContextForSelectedZone(zoneId:String){
+		let contextIndex = this.selectedContextNums.get(zoneId);
+		return this.getContext(zoneId,contextIndex);
 	}
 	
 	getFactorsForSelectedContext(zoneId:String){
@@ -341,7 +641,7 @@ export class ZonesService {
 		let ctxtNum = this.selectedContextNums.get(zone);
 		let factorsForContext = this.getFactorsForContext(zone,ctxtNum);
 		let interceptValue = factorsForContext.intercept;
-		let factorsCoefValues = Object.values(factorsForContext.factorsCoef);	
+		let factorsCoefValues = Object.values(factorsForContext.factorsCoef);//take first !?	
 		if(factorsCoefValues === undefined) console.error("zse CAN'T CALCULATE INCIDENCE because factorsCoefValues === undefined",factorsCoefValues);
 		if(imputedValues.length != factorsCoefValues.length){
 			console.log("zse CAN'T CALCULATE INCIDENCE because");

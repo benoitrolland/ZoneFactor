@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ContextSelectorComponent } from '../context-form/context-form.component';
 import {TickSliderComponent,ToggleSliderComponent,UnknownDynamicComponent} from '../zone-sliders/zone-sliders.component';
 import { ZoneSliderItem } from '../zone-slider-item';
 import { ZonesService } from './index';
@@ -25,7 +26,42 @@ export class ZoneSlidersService {
     ];
   } 
 */
-  
+	getContextSlidersForZoneAndContext(zone:any){
+		if(!this.zonesService.isColorable(zone))return [];
+		console.log( "- getContextSlidersForZoneAndContext (" + zone + /*","+contextIndex+ */")" );
+		let factorsForContext = this.zonesService.getFactorsForContexts(zone);//getContextForSelectedZone(zone);
+		if(factorsForContext != undefined){
+			let nbContexts = factorsForContext.length;
+		    console.log( "- getContextSlidersForZoneAndContext factorsForContext ", factorsForContext );
+		    console.log( "- getContextSlidersForZoneAndContext factorsForContext.context ", factorsForContext.context );
+			let contextNames = Object.keys(factorsForContext[0].context); //this.zonesService.getFactors(zone); //,contextIndex);
+			//let lastImputedValues = Object.values(factorsForContext.lastImputedValues);
+			//console.log( "- lastImputedValues found ", lastImputedValues );
+			if(contextNames != undefined){
+				let zoneSliderItems = new Array(nbContexts);
+				let j=0;
+			    for(j=0;j<Object.entries(contextNames).length;j++){
+					let contextName = contextNames[j];
+					
+					//console.log( "- getContextSlidersForZoneAndContext found " + nbContexts + " contextNames:", contextNames );
+					//ko let zoneSliderItems:ZoneSliderItem[] = new Array(nbContexts);
+					
+					//getSelectedContextNums
+					let zoneSliderValues = this.zonesService.getContextValues(zone,contextName);
+					/*for (let i = 0; i < nbContexts; i++) {
+						let factorId = contextNames[i];
+						//let factorConsts = this.zonesService.getFactorConsts(zone,factorId);						
+					}*/
+					console.log( "- new ZoneSliderItem(ContextSelectorComponent,{text:contextName=" + contextName + " default:zoneSliderValues[0]=" + zoneSliderValues[0] +" values:zoneSliderValues=" , zoneSliderValues );
+					zoneSliderItems[j] = new ZoneSliderItem(ContextSelectorComponent,{contextName:contextName,values:zoneSliderValues,default:zoneSliderValues[0]}); //,default:lastImputedValues[i]});
+				}
+				console.log( "- getContextSlidersForZoneAndContext returning " + zoneSliderItems.length + " zoneSliderItems", zoneSliderItems );
+				return zoneSliderItems;
+			}
+		}
+		return [];
+	}
+	
     getFactorSlidersForZoneAndContext(zone:any){ //,contextIndex) {	
 		if(!this.zonesService.isColorable(zone))return [];
 		console.log( "- getFactorSlidersForZoneAndContext (" + zone + /*","+contextIndex+ */")" );

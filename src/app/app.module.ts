@@ -10,18 +10,22 @@ import { MatGridListModule, MatInputModule , MatAutocompleteModule, MatListModul
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+import { ContextSelectorComponent } from './context-form/context-form.component';
 import { ZonesService,ZoneSlidersService,InputSettingsService } from "./shared/index";
 import { ZoneSlidersComponent,TickSliderComponent,ToggleSliderComponent,UnknownDynamicComponent } from './zone-sliders/zone-sliders.component';
 import { ZoneSlidersDirective } from './zone-sliders.directive';
 import { ImpressModule } from './impress/impress.module';
 import { ImpressService } from "./shared/impress.service";
+import { ContextFormComponent } from './context-form/context-form.component';
+import { ContextSelectorsDirective } from './context-form/context-selectors.directive';
 
 
 @NgModule({
   entryComponents:[ 
     TickSliderComponent,
     ToggleSliderComponent,
-    UnknownDynamicComponent
+    UnknownDynamicComponent,
+	ContextSelectorComponent
   ],
   declarations: [
     AppComponent,
@@ -30,7 +34,10 @@ import { ImpressService } from "./shared/impress.service";
     ZoneSlidersComponent,
     TickSliderComponent,
     ToggleSliderComponent,
-    UnknownDynamicComponent
+    UnknownDynamicComponent,
+	ContextSelectorComponent,
+    ContextFormComponent,
+    ContextSelectorsDirective
   ],
   imports: [
     BrowserModule
