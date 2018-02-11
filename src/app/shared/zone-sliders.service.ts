@@ -52,8 +52,9 @@ export class ZoneSlidersService {
 						let factorId = contextNames[i];
 						//let factorConsts = this.zonesService.getFactorConsts(zone,factorId);						
 					}*/
-					console.log( "- new ZoneSliderItem(ContextSelectorComponent,{text:contextName=" + contextName + " default:zoneSliderValues[0]=" + zoneSliderValues[0] +" values:zoneSliderValues=" , zoneSliderValues );
-					zoneSliderItems[j] = new ZoneSliderItem(ContextSelectorComponent,{contextName:contextName,values:zoneSliderValues,default:zoneSliderValues[0]}); //,default:lastImputedValues[i]});
+					let defaultValue = zoneSliderValues.values().next().value;
+					console.log( "- new ZoneSliderItem(ContextSelectorComponent,{text:contextName=" + contextName + " default:defaultValue=" + defaultValue + " values:zoneSliderValues=" , zoneSliderValues );
+					zoneSliderItems[j] = new ZoneSliderItem(ContextSelectorComponent,{contextName:contextName,default:defaultValue,values:zoneSliderValues}); //,default:lastImputedValues[i]});
 				}
 				console.log( "- getContextSlidersForZoneAndContext returning " + zoneSliderItems.length + " zoneSliderItems", zoneSliderItems );
 				return zoneSliderItems;

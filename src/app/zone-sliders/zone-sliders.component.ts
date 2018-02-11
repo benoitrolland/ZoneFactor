@@ -15,12 +15,13 @@ import { MatSlider, MatSlideToggle, MatSliderChange, MatSlideToggleChange } from
 //    template: '<mat-grid-tile colspan="1" rowspan="1">&nbsp;10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100</mat-grid-tile>'
 //    template: '<div>&nbsp;{{data?.text}}&nbsp;</div>'
 //    template: '10<mat-slider tickInterval="5" min="10" max="100" step="5" value="75">{{data?.text}}</mat-slider>100<h4 style="align:right">a</h4>'
+// <mat-slider value="[{data?.default}]" 
 // add popup: (card with title: https://github.com/angular/material2/issues/2691
     template: '	<mat-grid-list cols="6" rowHeight="15px" gutterSize="1" >\
 					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="1"></font></mat-grid-tile>\
 					<mat-grid-tile style="justify-content: initial;align-items: initial;" colspan="6" rowspan="1" class="grid-left"><font size="0.5">{{data?.text}}</font></mat-grid-tile>\
 					<mat-grid-tile colspan="6" rowspan="1"  class="grid-right">&nbsp;{{data?.min}}\
-						<mat-slider tickInterval="1" min="{{data?.min}}" max="{{data?.max}}" step="5" value="[{data?.default}]" (change)="onChange($event, data.value)"></mat-slider>{{data?.max}}\
+						<mat-slider tickInterval="1" min="{{data?.min}}" max="{{data?.max}}" step="5" (change)="onChange($event, data.value)"></mat-slider>{{data?.max}}\
 					</mat-grid-tile>\
 					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="2">{{data.value}}  ({{data?.unit}})</font></mat-grid-tile>\
 				</mat-grid-list>'
@@ -86,7 +87,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   //subscription: any;
   interval: any;
   zoneId: String;
-  slidersValues:number[] = [];
+  //slidersValues:number[] = [];
   //data:any; 
 
   constructor(private zonesService: ZonesService, private componentFactoryResolver: ComponentFactoryResolver, private _changeDetectionRef : ChangeDetectorRef
@@ -144,11 +145,11 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
 	
 	//if(typeof event.value  === "string")
 	console.log("zs: start setZoneValue");
-	this.zonesService.setZoneValue(this.zoneId, index, val);
+	this.zonesService.setZoneValue( this.zoneId, index, val );
 	console.log("zs: end setZoneValue");
 	if(this.zoneId=="FR") {
-		console.log("zs: FR zonesColorsReady: "+this.zonesService.zonesColorsReady.get(this.zoneId));
-		console.log("zs: FR color="+this.zonesService.getZoneColor("FR"));
+		console.log("zs: FR zonesColorsReady: " + this.zonesService.zonesColorsReady.get(this.zoneId));
+		console.log("zs: FR color="             + this.zonesService.getZoneColor("FR"));
     }
 	
   }
@@ -173,16 +174,14 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
      let viewContainerRef = this.sliderHost.viewContainerRef;     
 	 viewContainerRef.clear();
 	 let len = this.sliders.length;
-	 this.slidersValues = Array(len) ;
+	 //this.slidersValues = Array(len) ;
 	 if(this.cycling >= 0)  {viewContainerRef.clear();len = 1;}
 	 
 	 var i = 0;
 	 for (; i < len; i++) { 
       this.loadNextComponent(viewContainerRef,i);
-	 // this.slidersValues[i] = 0.5;
 	 }
-	 //this.zonesService.setZoneValues(this.zoneId, this.slidersValues);
-	 this.slidersValues = this.zonesService.getZoneValues(this.zoneId);
+	 //this.slidersValues = this.zonesService.getZoneValues(this.zoneId);
 	 
 	 //this.onLoadedComponent();
    }

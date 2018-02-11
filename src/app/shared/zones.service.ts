@@ -13,6 +13,7 @@ export class ZonesService {
 	zonesColorsReady: Map<String, Boolean> = new Map<String, Boolean>();
 	
 	zonesValues: Map<String, number[]> = new Map<String, number[]>();
+	//contextValues: Map<String, number[]> = new Map<String, string[]>();
 	//retient le numero de contexte sélectionné pour chaque zone;
 	selectedContextNums: Map<String, number> = new Map<String, number>();
     //some:any = JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
@@ -398,6 +399,37 @@ export class ZonesService {
 			}
 		);
     }
+	
+	getContextIndex(zoneId:String,values:string[]){
+		//return 0; //TODO
+		let res = -1;
+		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
+		if(zoneRules != undefined) {
+		    //let contextKeys = Object.keys(zoneRules.factorsForContext[0].context);
+			let nbContext = zoneRules.factorsForContext.length;
+			let i = 0;
+			for(i=0;i<nbContext;i++){
+			    //contextKeys.forEach(k => zoneRules.factorsForContext[i].context);
+				if(Object.values(zoneRules.factorsForContext[i].context) == values) res = i;
+			}
+		}
+		return res;
+	}
+	
+	setSelectedContext(zone,num){
+		this.selectedContextNums.set(zone,num);
+	}
+	
+	getContext(zoneId:String,contextIndex){
+		let res = undefined;
+		let factorsForContext = this.getFactorsForContext(zoneId,contextIndex);
+		if(factorsForContext != undefined) res = factorsForContext.context;
+		return res;	
+	}
+	
+	getSelectedContextNums(zoneId:String){
+		return this.selectedContextNums.get(zoneId);
+	}
 /*	
 	getContextNames(zoneId:String){
 		//var nbFactors = Object.keys().length;
@@ -431,12 +463,6 @@ export class ZonesService {
 		return zoneRule.factorsConsts.find(x => x.id === factorId);		
 	}
 	
-	getContext(zoneId:String,contextIndex){
-		let res = undefined;
-		let factorsForContext = this.getFactorsForContext(zoneId,contextIndex);
-		if(factorsForContext != undefined) res = factorsForContext.context;
-		return res;	
-	}
 	
 	/*
 	getFactorsNames(zoneId:String){
@@ -454,10 +480,6 @@ export class ZonesService {
 		let factorsCoef = this.getFactors(zoneId);
 		if(factorsCoef != undefined)		return Object.values(factorsCoef);
 		return undefined;
-	}
-	
-	getSelectedContextNums(zoneId:String){
-		return this.selectedContextNums.get(zoneId);
 	}
 	
 	getFactors(zoneId:String){

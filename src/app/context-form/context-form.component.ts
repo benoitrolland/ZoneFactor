@@ -22,22 +22,24 @@ import { MatSelect, MatSelectChange } from '@angular/material';
 					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="2">{{data.value}}  ({{data?.unit}})</font></mat-grid-tile>\
 				</mat-grid-list>'
 zonesService.getContextName( 
-<!--[disabled]="contextValue.disabled"--> 
-*/				
+<!--[disabled]="contextValue.disabled"
+						  <mat-select [(ngModel)]="currentSelected_id"  #zoneControl="ngModel"  (change)="latestChangeEvent = $event; goto($event.value);" >\
+--> 
+#zoneControl="ngModel"*/				
 	template: ' <mat-grid-list cols="6" rowHeight="15px" gutterSize="1" >\
 					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="1"></font></mat-grid-tile>\
-					<mat-grid-tile style="justify-content: initial;align-items: initial;" colspan="6" rowspan="1" class="grid-left"><font size="0.5">{{data?.contextName}}:{{data?.contextValues}}</font></mat-grid-tile>\
+					<mat-grid-tile style="justify-content: initial;align-items: initial;" colspan="6" rowspan="1" class="grid-left"><font size="1">{{data?.contextName}}</font></mat-grid-tile>\
 					<mat-grid-tile colspan="6" rowspan="1"  class="grid-right">&nbsp;{{data?.min}}\
-						<mat-form-field  width="100%" cols="6" rowHeight="15px" gutterSize="1" style="text-align: center;  align: center;" shouldPlaceholderFloat="false">\
-						  <mat-select [(ngModel)]="currentSelected_id"  #zoneControl="ngModel"  (change)="latestChangeEvent = $event; goto($event.value);" >\
+						<mat-form-field  width="100%" cols="6" rowHeight="20px" gutterSize="1" style="text-align: center;  align: center;" shouldPlaceholderFloat="false">\
+						  <mat-select [(ngModel)]="data.default" (change)="onChange($event, data.value)" >\
 							<mat-placeholder>{{data.name}}</mat-placeholder>\
-							<mat-option *ngFor="let contextValue of data.values" [value]="contextValue" style="align:center; text-align: center;">{{ contextValue }}</mat-option>\
+							<mat-option *ngFor="let contextValue of data.values" [value]="contextValue" style="align:center; text-align: center;"><font size="1">{{ contextValue }}</font></mat-option>\
 						  </mat-select>\
 						  <mat-hint>hint</mat-hint>\
 						  <mat-error>You must make a selection</mat-error>\
 						</mat-form-field>\
 					</mat-grid-tile><!--\
-					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="2">{{currentSelected_id}}:({{data?.unit}})</font></mat-grid-tile> -->\
+					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="2">{{data?.value}}:({{data?.unit}})</font></mat-grid-tile> -->\
 				</mat-grid-list>'
 
 })
@@ -46,7 +48,7 @@ export class ContextSelectorComponent implements OnInit, ZoneSlider {
 	@Output('change') change:EventEmitter<any> = new EventEmitter<any>();
 	@ViewChild(MatSelect) public valueSelector: MatSelect;
 	
-	currentSelected_id : String ; //= this.data.default;
+	//currentSelected_id : String ; //= this.data.default;
 	//selectedId; //: String[];
 	//values; //: String[];
 	//searchControl: FormControl;
@@ -104,7 +106,7 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
 	}
 	
 	setSliders(sliders: ZoneSliderItem[], id:String) { 
-		console.log( "zonesliderComp setSliders: " , sliders );
+		console.log( "contextFormComp setSliders: " , sliders );
 		this.zoneId = id;
 		this.sliders = sliders;
 		this.loadComponent();
@@ -125,29 +127,8 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
   onChildChange(event, index:number){
 	console.log('onChildChange(event,' + index + '): event: ', event);
 	var val = 0;
-	if(event.checked != undefined) val = (event.checked == true)?1:0;
-	if(event.value != undefined) {
-	  /*
-		val unite = event.value % 10;
-		val dizaine = event.value / 10 % 10;
-		val centaine = event.value / 100 % 10;
-		val centaine = event.value / 100 % 10;
-		val = (event.checked == "true")?1:0;
-	  */
-	  console.log('onChildChange: _min: ' + event.source._min + ' _max: ' + event.source._max);
-	  //10 --- 20 --------- 110 -> 0.1
-	  val = (event.value - event.source._min) / (event.source._max - event.source._min);
-	}
-	
-	//if(typeof event.value  === "string")
-	console.log("zs: start setZoneValue");
-	this.zonesService.setZoneValue(this.zoneId, index, val);
-	console.log("zs: end setZoneValue");
-	if(this.zoneId=="FR") {
-		console.log("zs: FR zonesColorsReady: "+this.zonesService.zonesColorsReady.get(this.zoneId));
-		console.log("zs: FR color="+this.zonesService.getZoneColor("FR"));
-    }
-	
+	//TODO 
+	//setSelectedContext(zoneId,num);
   }
   
 /* UNUSED when Angular (re)sets data-bound @Input properties 
@@ -176,7 +157,6 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
 	 var i = 0;
 	 for (; i < len; i++) { 
       this.loadNextComponent(viewContainerRef,i);
-	 // this.slidersValues[i] = 0.5;
 	 }
 	 //this.zonesService.setZoneValues(this.zoneId, this.slidersValues);
 	 this.slidersValues = this.zonesService.getZoneValues(this.zoneId);
@@ -196,7 +176,7 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
      let componentRef = viewContainerRef.createComponent(componentFactory);
 	 let zoneSlider:ZoneSlider = (<ZoneSlider>componentRef.instance);
      zoneSlider.data = zoneSliderItem.data;	
-	 zoneSlider.change.subscribe(msg => this.onChildChange(msg,this.currentSliderIndex));
+	 zoneSlider.change.subscribe(msg => this.onChildChange(msg,index));
 	 if(zoneSlider.valueSelector instanceof MatSelect){ 
 		//zoneSlider.data.default=zoneSlider.data.default;
 		//zoneSlider.data.contextValues=zoneSlider.data.values;
@@ -204,7 +184,7 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
 		console.log("getContextValues("+this.zoneId+","+this.currentSliderIndex+"):");
 		zoneSlider.data.values = this.zonesService.getContextValues(this.zoneId,contextName); //this.currentSliderIndex);//this.currentSliderIndex);//zoneSlider.data.index);
 		console.log("zoneSlider.data.values:",zoneSlider.data.values);
-		zoneSlider.data.default=zoneSlider.data.values[0];
+		//zoneSlider.data.default=zoneSlider.data.values[0];
 		zoneSlider.data.name = contextName;
 	 }
 	 /*
