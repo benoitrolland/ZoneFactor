@@ -25,15 +25,18 @@ zonesService.getContextName(
 <!--[disabled]="contextValue.disabled"
 						  <mat-select [(ngModel)]="currentSelected_id"  #zoneControl="ngModel"  (change)="latestChangeEvent = $event; goto($event.value);" >\
 --> 
-#zoneControl="ngModel"*/				
-	template: ' <mat-grid-list cols="6" rowHeight="15px" gutterSize="1" >\
+#zoneControl="ngModel"
+
 					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="1"></font></mat-grid-tile>\
-					<mat-grid-tile style="justify-content: initial;align-items: initial;" colspan="6" rowspan="1" class="grid-left"><font size="1">{{data?.contextName}}</font></mat-grid-tile>\
+*/				
+	template: ' <br/>\
+				<mat-grid-list cols="6" rowHeight="15px" gutterSize="1" >\
+					<mat-grid-tile  colspan="6" rowspan="1" class="grid-left"><font size="4">{{data?.contextName}}</font></mat-grid-tile>\
 					<mat-grid-tile colspan="6" rowspan="1"  class="grid-right">&nbsp;{{data?.min}}\
 						<mat-form-field  width="100%" cols="6" rowHeight="20px" gutterSize="1" style="text-align: center;  align: center;" shouldPlaceholderFloat="false">\
-						  <mat-select [(ngModel)]="data.default" (change)="onChange($event, data.value)" >\
-							<mat-placeholder>{{data.name}}</mat-placeholder>\
-							<mat-option *ngFor="let contextValue of data.values" [value]="contextValue" style="align:center; text-align: center;"><font size="1">{{ contextValue }}</font></mat-option>\
+						  <mat-select style="padding-top: 10px;" [(ngModel)]="data.default" (change)="onChange($event, data.value)" >\
+							<mat-placeholder style="color:white">{{data.name}}</mat-placeholder>\
+							<mat-option *ngFor="let contextValue of data.values" [value]="contextValue" style="align:center; text-align: center;"><font size="4">{{ contextValue }}</font></mat-option>\
 						  </mat-select>\
 						  <mat-hint>hint</mat-hint>\
 						  <mat-error>You must make a selection</mat-error>\
@@ -70,7 +73,7 @@ export class ContextSelectorComponent implements OnInit, ZoneSlider {
 	}
 	
 	onChange($event){
-		console.log("onChange $event=",$event);	
+		console.log("cf onChange $event=",$event);	
 		if($event != undefined){
 			this.data.value=$event.value;
 			this.valueSelector.value=$event.value;
@@ -92,6 +95,8 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
 
 	public sliders: ZoneSliderItem[];
 	@Input() cycling: number = -1; 
+	@Output('contextChange') contextChange:EventEmitter<any> = new EventEmitter<any>();
+	//this.contextChange.emit($event);
 	currentSliderIndex: number = -1;
 	@ViewChild(ContextSelectorsDirective) ctxSelectorsHost: ContextSelectorsDirective;
 	interval: any;
@@ -125,10 +130,11 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
   
   //needed on selector: (change)="onChildChange($event)
   onChildChange(event, index:number){
-	console.log('onChildChange(event,' + index + '): event: ', event);
+	console.log('cf: onChildChange(event,' + index + '): event: ', event);
 	var val = 0;
 	//TODO 
 	//setSelectedContext(zoneId,num);
+	this.contextChange.emit(event);
   }
   
 /* UNUSED when Angular (re)sets data-bound @Input properties 

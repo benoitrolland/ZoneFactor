@@ -622,6 +622,7 @@ export class ZonesService {
 	setZoneValue(zone:String, valueIndex, val){
 		console.log("Setting zones value: zone=" + zone + " valueIndex=" + valueIndex + " val=", val);
 		let ctxtNum = this.selectedContextNums.get(zone);
+		//retrieve stored list then update it.
 		let values:number[] = this.zonesValues.get(zone+"_"+ctxtNum);
 		console.log("values for: zone=" + zone+"_"+ctxtNum + " are=", values);
 		values[valueIndex]=val;
