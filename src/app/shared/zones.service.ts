@@ -428,7 +428,8 @@ export class ZonesService {
 		//let contextName = getContextName(zoneId,contextElementIndex);
 		let values = this.getContextKindsValues(zoneId,contextIndex);
 		values[contextElementIndex] = val;//update
-		contextIndex = this.getContextIndex(zoneId,values);		
+		contextIndex = this.getContextIndex(zoneId,values);
+		if(contextIndex === undefined) console.error("zse  === undefined No context for "+zoneId+" matching ",values);
 		this.selectedContextNums.set(zoneId,contextIndex);
 	}
 

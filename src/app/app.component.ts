@@ -94,6 +94,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   
     console.log( "AppComponent ngOnInit" );
 	this.zonesService.getAllZones().subscribe((zones: any[]) => this.zones = zones);
+	this.contextFormComponent.contextChange.subscribe(msg => this.onContextUpdate(msg));
 /*
 	this.zonesService.getAllLeafZones().subscribe((zones: any[]) => {
 				var i = zones.length;
@@ -149,7 +150,11 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 		//sidenav.open();
 		//this._changeDetectionRef.detectChanges();
 	}
-  
+	//ngOnInit: this.contextFormComponent.contextChange.subscribe(msg => this.onContextUpdate(msg));
+	onContextUpdate(event:any){
+		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZoneAndContext(this.currentImpressStep_id), this.currentImpressStep_id);
+	}
+
 	changeName(newName:string) {
 		this.name=newName;
 	}
