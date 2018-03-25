@@ -65,6 +65,7 @@ export class ZoneSlidersService {
 	
     getFactorSlidersForZoneAndContext(zone:any){ //,contextIndex) {	
 		if(!this.zonesService.isColorable(zone))return [];
+		console.log( "- getFactorSlidersForZoneAndContext (" + zone + /*","+contextIndex+ */")" );
 		//let contextIndex = this.zonesService.selectedContextNums.get(zone);
 		//console.log( "- getFactorSlidersForZoneAndContext (" + zone + ","+contextIndex+")" );
 		let factorsForContext = this.zonesService.getFactorsForSelectedContext(zone);
