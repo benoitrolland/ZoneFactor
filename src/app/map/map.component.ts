@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
   
   }
-  
+  //called by html
   getCurrentIncidence(zoneId:String){
     console.log("======= getCurrentIncidence ====== " + zoneId);
 	return this.zonesService.getZoneIncidence(zoneId);

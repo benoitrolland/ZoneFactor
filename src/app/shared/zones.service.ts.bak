@@ -151,7 +151,7 @@ export class ZonesService {
 				"context":{"sexe":"female","age":11, region:"br", ethnie:"all"},
 				"intercept":3.677697114, 
 				"factorsCoef":{"X1034..7211":1.127590663, "X2961..5142":0.522560226, "X2515..664":-0.776697244, "X2531..5520":-3.23E-06, "X2827..5071":-1.80E-06, "X1755..5111":-3.43E-09},
-				"lastImputedValues":{"X1034..7211":0, "X2961..5142":10, "X2515..664":0.625, "X2531..5520":30000, "X2827..5071":40000, "X1755..5111":100000}
+				"lastImputedValues":{"X1034..7211":0, "X2961..5142":10, "X2515..664":20000, "X2531..5520":30000, "X2827..5071":40000, "X1755..5111":100000}
 			},{
 				"context":{"sexe":"male","age":11, region:"br", ethnie:"all"},
 				"intercept":-36.6258836611159, 
@@ -392,7 +392,6 @@ export class ZonesService {
 								let factorsCoef = factorForContext.factorsCoef;
 								let lastImputedValues = Object.values(factorForContext.lastImputedValues);
 								this.setZoneValues(zones[i], j, lastImputedValues);
-								if(zones[i] == "FR") console.log("initialisation: FR:" + j + " = ", lastImputedValues);
 							}
 						}
 					}
@@ -400,8 +399,9 @@ export class ZonesService {
 			}
 		);
     }
-	/** */
+	
 	getContextIndex(zoneId:String,values:string[]){
+		//return 0; //TODO
 		let res = -1;
 		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
 		if(zoneRules != undefined) {
@@ -413,7 +413,6 @@ export class ZonesService {
 				if(Object.values(zoneRules.factorsForContext[i].context) == values) res = i;
 			}
 		}
-		if(res == -1) console.error("couldn't get ContextIndex");
 		return res;
 	}
 	
@@ -426,7 +425,7 @@ export class ZonesService {
 		let contextIndex = this.selectedContextNums.get(zoneId);
 		//TODO 
 		//let contextName = getContextName(zoneId,contextElementIndex);
-		let values = this.getContextKindsValues(zoneId,contextIndex);
+		let values = getContextValues(zoneId,contextIndex);
 		values[contextElementIndex] = val;//update
 		contextIndex = this.getContextIndex(zoneId,values);		
 		this.selectedContextNums.set(zoneId,contextIndex);
@@ -450,13 +449,13 @@ export class ZonesService {
 		return undefined;
 	}
 */	
-    getContextKindsValues(zoneId:String,index:number){
+	getContextValues(zoneId:String,index:number){
 		//var nbFactors = Object.keys().length;
 		let contexts = this.getContexts(zoneId)
 		if(contexts != undefined)		return Object.values(contexts[index]);
 		return undefined;
 	}
-	
+/*	
 	getContexts(zoneId:String){
 		console.log("zse getContextElements(zoneId="+zoneId+")");
 		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
@@ -468,7 +467,7 @@ export class ZonesService {
 		}
 		return undefined;
 	}
-	
+*/	
 	getFactorConsts(zoneId:String,factorId:String){
 		let zoneRule = this.zonesRules.find(x => x.id === zoneId);
 		if(zoneRule == undefined || zoneRule.factorsConsts == undefined) return undefined;
@@ -559,7 +558,7 @@ export class ZonesService {
 	//see getContext
 	
 	getFactorsForContext(zoneId:String,contextIndex){
-		console.log("zse getFactors(zoneId="+zoneId+"contextIndex="+contextIndex+")");
+		console.log("zse getFactors(zoneId="+zoneId+")");
 		let res = undefined;
 		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
 		if(zoneRules != undefined) {
@@ -584,9 +583,7 @@ export class ZonesService {
 	}
 	
 	getZoneColor(zoneId:String):String {
-	    let zonInit = zoneId;
-		let ctxtNum = this.selectedContextNums.get(zoneId);
-		zoneId = zoneId+"_"+ctxtNum;
+	
 		if(zoneId == "FR"){
 			console.log("zse getZoneColor(FR) zonesColorsReady:" + this.zonesColorsReady.get(zoneId) + " color= " + this.zonesColors.get(zoneId));
 		}
@@ -595,11 +592,11 @@ export class ZonesService {
 	
 		let polyRes:number = 0.0;
 
-		let values:number[] = this.zonesValues.get(zoneId);
-		let htmlColor:String = this.colorFromValues(zonInit,ctxtNum,values);
+		let values:number[] = this.getZoneValues(zoneId);
+		let htmlColor:String = this.colorFromValues(zoneId,values);
 		//let htmlColor:String = "hsl(240, 100%, "+Math.round(polyRes * 1000)+"%)";
 		this.zonesColors.set(zoneId,htmlColor);
-		let incidence:number =this.multipleLinearRegressionBasedIncidence(zonInit,ctxtNum,values);
+		let incidence:number =this.multipleLinearRegressionBasedIncidence(zoneId,values);
 		this.zonesIncidences.set(zoneId,incidence);
 		this.zonesColorsReady.set(zoneId,true);
 		console.log("zse htmlColor:",this.zonesColors.get(zoneId));
@@ -608,8 +605,7 @@ export class ZonesService {
 	}
 	//Warning linked to ZoneColor
 	getZoneIncidence(zoneId:String):number {
-		let ctxtNum = this.selectedContextNums.get(zoneId);
-		return this.zonesIncidences.get(zoneId+"_"+ctxtNum);
+		return this.zonesIncidences.get(zoneId);
 	}
 	
 	getZoneValues(zone:String):number[] {
@@ -618,41 +614,37 @@ export class ZonesService {
 	}
 	
 	setZoneValues(zone:String, ctxtNum, imputedValues:number[]){
-	    let zoninit = zone;
-		zone = zone + "_" + ctxtNum;
 		console.log("Setting zones imputedValues: zone=" + zone + " ctxtNum=" + ctxtNum + " imputedValues=", imputedValues);
-		if(this.isColorable(zoninit)){
-			this.zonesValues.set(zone, imputedValues);		
-			console.log("zse setZoneValues("+zone+")=",imputedValues);
+		if(this.isColorable(zone)){
+			this.zonesValues.set(zone+"_"+ctxtNum, imputedValues);		
+			console.log("zse setZoneValues("+zone+"_"+ctxtNum+")=",imputedValues);
 			//colorFromValues
-			this.zonesColors.set(zone, this.colorFromValues(zoninit,ctxtNum,imputedValues));
-			this.zonesIncidences.set(zone,this.multipleLinearRegressionBasedIncidence(zoninit,ctxtNum,imputedValues));
-			if(zoninit=="FR") {
+			this.zonesColors.set(zone, this.colorFromValues(zone,imputedValues));
+			this.zonesIncidences.set(zone,this.multipleLinearRegressionBasedIncidence(zone,imputedValues));
+			if(zone=="FR") {
 				console.log("zse New Color for " + zone + ": " + this.zonesColors.get(zone));
 				console.log("zse Setting zonesColorsReady " + zone + " to false");
 			}
 			this.zonesColorsReady.set(zone,false);
-			if(zoninit=="FR") console.log("zse zonesColorsReady " + zone + " is ", this.zonesColorsReady.get(zone));
+			if(zone=="FR") console.log("zse zonesColorsReady " + zone + " is ", this.zonesColorsReady.get(zone));
 		}
 	}
 	
 	setZoneValue(zone:String, valueIndex, val){
 		console.log("Setting zones value: zone=" + zone + " valueIndex=" + valueIndex + " val=", val);
 		let ctxtNum = this.selectedContextNums.get(zone);
-		let zoninit = zone;
-		zone = zone+"_"+ctxtNum;
 		//retrieve stored list then update it.
-		let values:number[] = this.zonesValues.get(zone);
-		console.log("values for: zone=" + zone+" are=", values);
+		let values:number[] = this.zonesValues.get(zone+"_"+ctxtNum);
+		console.log("values for: zone=" + zone+"_"+ctxtNum + " are=", values);
 		values[valueIndex]=val;
 		console.log("zse setZoneValue: updating "+ val +" at ctxtNum " + ctxtNum,values[valueIndex]);
-		this.setZoneValues(zoninit, ctxtNum, values);
+		this.setZoneValues(zone, ctxtNum, values);
 	}
-	//let ctxtNum = this.selectedContextNums.get(zone);
-	colorFromValues(zone:String,ctxtNum:number,imputedValues:number[]):String{
+	
+	colorFromValues(zone:String,imputedValues:number[]):String{
 		let incidence =  0;
 	    if(imputedValues != undefined)
-			incidence = this.multipleLinearRegressionBasedIncidence(zone,ctxtNum,imputedValues);
+			incidence = this.multipleLinearRegressionBasedIncidence(zone,imputedValues);
 		//let htmlColor:String = heatMapColorforValue(/100000)
 		
 		let htmlColor:String = "hsl(240, 100%, " + Math.round(incidence * 10) + "%)";
@@ -675,12 +667,12 @@ export class ZonesService {
 	  return "hsl(" + h + ", 100%, "+Math.round(value * 10)+"%)";
 	}
 	//https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3049417/	
-	multipleLinearRegressionBasedIncidence(zone:String,ctxtNum:number,imputedValues:number[]){
+	multipleLinearRegressionBasedIncidence(zone:String,imputedValues:number[]){
 		if(imputedValues == undefined){
 			console.log("zse Warning INCIDENCE not calculated because imputedValues == undefined",imputedValues);
 			return 0;
 		}
-		//let ctxtNum = this.selectedContextNums.get(zone);
+		let ctxtNum = this.selectedContextNums.get(zone);
 		let factorsForContext = this.getFactorsForContext(zone,ctxtNum);
 		let interceptValue = factorsForContext.intercept;
 		let factorsCoefValues = Object.values(factorsForContext.factorsCoef);//take first !?	

@@ -62,7 +62,7 @@ export class ImpressComponent implements OnInit {
 	console.log("getStyle zonid " + zoneId + " test=" , test);
 	if( test.fill != undefined) return test.fill;
 	return "red";
-    */	
+  */	
   }
   
   ngOnInit() {
