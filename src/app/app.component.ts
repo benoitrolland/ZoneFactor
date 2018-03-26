@@ -152,6 +152,8 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	}
 	//ngOnInit: this.contextFormComponent.contextChange.subscribe(msg => this.onContextUpdate(msg));
 	onContextUpdate(event:any){
+		console.log( "onContextUpdate: " , event );
+	    this.zonesService.setCurrentContextGivenValue( this.currentImpressStep_id, event.index, event.value );
 		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZoneAndContext(this.currentImpressStep_id), this.currentImpressStep_id);
 	}
 

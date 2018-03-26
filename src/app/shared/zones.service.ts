@@ -410,10 +410,14 @@ export class ZonesService {
 			let i = 0;
 			for(i=0;i<nbContext;i++){
 			    //contextKeys.forEach(k => zoneRules.factorsForContext[i].context);
-				if(Object.values(zoneRules.factorsForContext[i].context) == values) res = i;
+				//console.log("values="+(<Array<any>>values)+" Object.values(zoneRules.factorsForContext["+i+"].context).toString()", Object.values(zoneRules.factorsForContext[i].context).toString() );
+				//console.log("JSON.stringify(zoneRules.factorsForContext[i].context) =" + JSON.stringify(zoneRules.factorsForContext[i].context) );
+				//console.log("JSON.stringify(Object.values(zoneRules.factorsForContext[i].context)) =" + JSON.stringify(Object.values(zoneRules.factorsForContext[i].context)) );
+				if(Object.values(zoneRules.factorsForContext[i].context).toString() == values.toString()) res = i;
+				//Object.values(contexts[index].context) JSON.parse(JSON.stringify(json));
 			}
 		}
-		if(res == -1) console.error("couldn't get ContextIndex");
+		if(res == -1) console.error("Couldn't get ContextIndex for zoneId="+zoneId+", values="+ values + " out of ", zoneRules);
 		return res;
 	}
 	
@@ -426,12 +430,21 @@ export class ZonesService {
 		let contextIndex = this.selectedContextNums.get(zoneId);
 		//TODO 
 		//let contextName = getContextName(zoneId,contextElementIndex);
+		console.log("setCurrentContextGivenValue zoneId="+zoneId+" contextIndex="+contextIndex+" contextElementIndex="+contextElementIndex+" val="+val);
 		let values = this.getContextKindsValues(zoneId,contextIndex);
-		values[contextElementIndex] = val;//update
+		values[contextElementIndex] = val; //update
 		contextIndex = this.getContextIndex(zoneId,values);
 		if(contextIndex === undefined) console.error("zse  === undefined No context for "+zoneId+" matching ",values);
 		this.selectedContextNums.set(zoneId,contextIndex);
 	}
+	/*
+	updateSelectedContext( zoneId ){
+		//let values = this.getContextKindsValues(zoneId,contextIndex);
+		let contextIndex = this.getContextIndex(zoneId,values);
+		if(contextIndex === undefined) console.error("zse  === undefined No context for "+zoneId+" matching ",values);
+		this.selectedContextNums.set(zoneId,contextIndex);
+	}
+	*/
 
 	getContext(zoneId:String,contextIndex){
 		let res = undefined;
@@ -454,7 +467,8 @@ export class ZonesService {
     getContextKindsValues(zoneId:String,index:number){
 		//var nbFactors = Object.keys().length;
 		let contexts = this.getContexts(zoneId)
-		if(contexts != undefined)		return Object.values(contexts[index]);
+		if(contexts[index].context != undefined) return Object.values(contexts[index].context);
+		else console.error("no context definition found for " + zoneId + " at index="+index, contexts);
 		return undefined;
 	}
 	
@@ -462,11 +476,11 @@ export class ZonesService {
 		console.log("zse getContextElements(zoneId="+zoneId+")");
 		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
 		if(zoneRules != undefined) {
-			console.log("zse zoneRules for zoneId="+zoneId+" ",zoneRules);
-			console.log("zse contect for zoneRules =",zoneRules.factorsForContext.context);
-			return zoneRules.factorsForContext.context;
+			console.log("zse zoneRules for zoneId=" + zoneId + " ",zoneRules);
+			console.log("zse contect for zoneRules =", zoneRules.factorsForContext);//.context);
+			return zoneRules.factorsForContext;//.context;
 			//return zoneRules.context;			
-		}
+		}else  console.error("no context definition found for " + zoneId);
 		return undefined;
 	}
 	
@@ -581,6 +595,7 @@ export class ZonesService {
 	
 	getFactorsForSelectedContext(zoneId:String){
 		let contextIndex = this.selectedContextNums.get(zoneId);
+		if(contextIndex == -1)console.log("selectedContextNums.get("+zoneId+")",this.selectedContextNums)
 		return this.getFactorsForContext(zoneId,contextIndex);
 	}
 	

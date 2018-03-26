@@ -72,7 +72,8 @@ export class ZoneSlidersService {
 		if(factorsForContext != undefined){
 			let factorIds = Object.keys(factorsForContext.factorsCoef); //this.zonesService.getFactors(zone); //,contextIndex);
 			let lastImputedValues = Object.values(factorsForContext.lastImputedValues);
-			console.log( "- lastImputedValues found ", lastImputedValues );
+			let contextIndex = this.zonesService.selectedContextNums.get(zone);
+			console.log( "- lastImputedValues found ("+zone+","+contextIndex+")", lastImputedValues );
 			if(factorIds != undefined){
 				let nbFactors = Object.entries(factorIds).length;
 				console.log( "- getFactorSlidersForZoneAndContext found " + nbFactors + " factorIds:", factorIds );

@@ -98,6 +98,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   }
   
   setSliders(sliders: ZoneSliderItem[], id:String) { 
+    //this.setSliders([],"none");
     console.log( "zonesliderComp setSliders: " , sliders );
 	this.zoneId = id;
   	this.sliders = sliders;
