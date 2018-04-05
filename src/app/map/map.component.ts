@@ -25,9 +25,10 @@ export class MapComponent implements OnInit {
 	@Input() sidenav;	
 	//to be used in parent html: <app-map (stepUpdate)="doSomething($event)"></app-map>
 	@Output('stepUpdate') stepChange: EventEmitter<any> = new EventEmitter<any>(); //https://toddmotto.com/component-events-event-emitter-output-angular-2
-
-  constructor(private impressService: ImpressService,private zonesService: ZonesService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
+	zonesService: ZonesService;
+  constructor(private impressService: ImpressService, zonesService: ZonesService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
 	//https://github.com/angular/material2/blob/master/src/demo-app/icon/icon-demo.ts
+	this.zonesService = zonesService;
 	iconRegistry
         .addSvgIcon('color-scale',
             sanitizer.bypassSecurityTrustResourceUrl('/assets/img/color_scale.svg'))
@@ -38,7 +39,7 @@ export class MapComponent implements OnInit {
 				this.currentImpressStep = event.target; // And he have data here too!
 				console.log( "Map Entered the Step Element '" + this.currentImpressStep.id + "'" );
 				this.currentImpressStep_id = this.currentImpressStep.id
-				this.currentZoneName = zonesService.getZoneName(this.currentImpressStep_id); //.subscribe((zone: any) => this.currentZoneName = zone);               
+				this.currentZoneName = this.zonesService.getZoneName(this.currentImpressStep_id); //.subscribe((zone: any) => this.currentZoneName = zone);               
 				this.stepChange.emit(event);
             }
         );
