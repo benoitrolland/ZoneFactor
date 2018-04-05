@@ -86,7 +86,7 @@ export class ContextSelectorComponent implements OnInit, ZoneSlider {
 @Component({
   selector: 'app-context-form',
   template: '<div class="ctxSelectors" (change)="onChildChange($event)">\
-				<ng-template ctxSelectors-host ></ng-template>\
+				<ng-template CtxSelectors-host ></ng-template>\
 			</div>',
   styleUrls: ['./context-form.component.css']
 })
@@ -134,6 +134,7 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
 	var val = 0;
 	//TODO 
 	//setSelectedContext(zoneId,num);
+	//this.contextChange.emit(sliders.map( zsitem => {if(zsitem.data.default != undefined) return zsitem.data.value?zsitem.data.value:zsitem.data.default} ) );
 	this.contextChange.emit({value:event.value,index});
   }
   

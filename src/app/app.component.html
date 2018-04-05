@@ -241,11 +241,11 @@
   <!-- [color]="drinksTheme" [required]="drinksRequired" [disabled]="drinksDisabled"-->
   
     <mat-form-field  style="width: 100%; text-align: center;  align: center;" shouldPlaceholderFloat="false">
-      <mat-select [(ngModel)]="currentImpressStep_id"  #zoneControl="ngModel"  (change)="latestChangeEvent = $event; goto($event.value);" >
+      <mat-select [(ngModel)]="currentImpressStep_id"  #zoneControl="ngModel"  (change)="goto($event.value);" >
 		<mat-placeholder>search:</mat-placeholder>		
         <mat-option *ngFor="let zone of zones" [value]="zone" [disabled]="zone.disabled" style="align:center; text-align: center;">
           {{ zonesService.getZoneName(zone) }}
-        </mat-option>		
+        </mat-option>
 		<!-- non selectable groups ... 
 		<mat-optgroup *ngFor="let continent of zonesService.getChildZones('World')" [label]="continent" 
                   [disabled]="continent.disabled">

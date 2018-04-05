@@ -5,5 +5,5 @@ export class ZoneSliderItem {
 
   constructor(public component: Type<ZoneSlider>, public data: any) {
   }
-  
-} 
+
+}

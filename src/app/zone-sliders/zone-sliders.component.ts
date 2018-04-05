@@ -41,19 +41,25 @@ export class TickSliderComponent implements ZoneSlider {
   }
 }
 
+/*
 @Component({
     selector: 'toggle-slider',
     template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1"><mat-grid-tile colspan="4" rowspan="1" ><mat-slide-toggle [checked]="data?.default" (change)="onChange($event, data.value)" >F4</mat-slide-toggle></mat-grid-tile><mat-grid-tile  colspan="2" rowspan="1" >&nbsp;&nbsp;=Fd:{{checked}}-{{data.value}}=</mat-grid-tile></mat-grid-list>'
+})*/
+@Component({
+    selector: 'toggle-slider',
+    template: '<mat-grid-list cols="6" rowHeight="25px" gutterSize="1"><mat-grid-tile colspan="4" rowspan="1" ><mat-slide-toggle [(ngModel)]="data.value" (change)="onChange($event, data.value)" >F4</mat-slide-toggle></mat-grid-tile><mat-grid-tile  colspan="2" rowspan="1" >&nbsp;&nbsp;=Fd:{{data.value}}=</mat-grid-tile></mat-grid-list>'
 })
 export class ToggleSliderComponent implements ZoneSlider {
 //inpout used for initialisation rather than for update
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
   @ViewChild(MatSlideToggle) public valueSelector: MatSlideToggle;
-  
+  //checked: boolean;
   onChange($event){
 	console.log("onChange $event=",$event);
     if($event != undefined){
+	    //this.checked=$event.checked;
 		this.data.value=$event.checked;
 		this.valueSelector.checked=$event.checked;
 	}
