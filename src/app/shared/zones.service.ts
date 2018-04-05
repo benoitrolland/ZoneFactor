@@ -425,18 +425,26 @@ export class ZonesService {
 		this.selectedContextNums.set(zone,num);
 	}
 	
+	setCurrentContextGivenValues(zoneId, values:any[]){
+		let contextIndex = this.getContextIndex(zoneId,values);
+		this.selectedContextNums.set(zoneId,contextIndex);
+	}
 	
+	/*
 	setCurrentContextGivenValue( zoneId, contextElementIndex, val ){
 		let contextIndex = this.selectedContextNums.get(zoneId);
 		//TODO 
 		//let contextName = getContextName(zoneId,contextElementIndex);
 		console.log("setCurrentContextGivenValue zoneId="+zoneId+" contextIndex="+contextIndex+" contextElementIndex="+contextElementIndex+" val="+val);
-		let values = this.getContextKindsValues(zoneId,contextIndex);
-		values[contextElementIndex] = val; //update
-		contextIndex = this.getContextIndex(zoneId,values);
-		if(contextIndex === undefined) console.error("zse  === undefined No context for "+zoneId+" matching ",values);
+		if(contextIndex!=-1 || contextIndex === undefined){
+			let values = this.getContextKindsValues(zoneId,contextIndex);
+			values[contextElementIndex] = val; //update
+			contextIndex = this.getContextIndex(zoneId,values);
+			if(contextIndex === undefined) console.error("zse  === undefined No context for "+zoneId+" matching ",values);
+		}
 		this.selectedContextNums.set(zoneId,contextIndex);
-	}
+	}*/
+	
 	/*
 	updateSelectedContext( zoneId ){
 		//let values = this.getContextKindsValues(zoneId,contextIndex);
@@ -531,7 +539,7 @@ export class ZonesService {
 		//let values:String[] = undefined;
 		let values:Set<string> = new Set<string>();
 		let zoneRules = this.zonesRules.find(x => x.id === zoneId);
-/*		
+/*
 		let contextName:string = undefined;
 		if(typeof contextNameOrIndex === "string") {
 			contextName = contextNameOrIndex;
@@ -541,7 +549,7 @@ export class ZonesService {
 			contextName = labels[contextNameOrIndex];
 			console.log("labels["+contextNameOrIndex+"]:",contextName);
 		}
-*/		
+*/
 		if(zoneRules != undefined) {
 				//console.log("zse factors for zoneId="+zoneId+" and contextIndex " + contextIndex + " from ",zoneRules);
 				//console.log("zse zoneRules[zoneId="+zoneId+"].factorsForContext[" + contextIndex + "]  ",zoneRules.factorsForContext[contextIndex]);

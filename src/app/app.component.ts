@@ -153,8 +153,16 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	//ngOnInit: this.contextFormComponent.contextChange.subscribe(msg => this.onContextUpdate(msg));
 	onContextUpdate(event:any){
 		console.log( "onContextUpdate: " , event );
-	    this.zonesService.setCurrentContextGivenValue( this.currentImpressStep_id, event.index, event.value );
+		//                                                                             ZoneSliderItem
+		//console.log( "contextFormComponent: " , this.contextFormComponent.sliders.map( zsitem => {if(zsitem.data.value === undefined) zsitem.data.default;  else  zsitem.data.value } ) );
+		console.log( "contextFormComponent: " , this.contextFormComponent.sliders);
+		console.log( "contextFormComponent: " , this.contextFormComponent.sliders.map( zsitem => {if(zsitem.data.default != undefined) return zsitem.data.value?zsitem.data.value:zsitem.data.default} ) );
+		
+	    //this.zonesService.setCurrentContextGivenValue( this.currentImpressStep_id, event.index, event.value );
+		this.zonesService.setCurrentContextGivenValues( this.currentImpressStep_id, this.contextFormComponent.sliders.map( zsitem => {if(zsitem.data.default != undefined) return zsitem.data.value?zsitem.data.value:zsitem.data.default} ) );
+		
 		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZoneAndContext(this.currentImpressStep_id), this.currentImpressStep_id);
+		this._changeDetectionRef.detectChanges();
 	}
 
 	changeName(newName:string) {
