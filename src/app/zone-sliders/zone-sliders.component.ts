@@ -25,15 +25,16 @@ import { MatSlider, MatSlideToggle, MatSliderChange, MatSlideToggleChange } from
 					</mat-grid-tile>\
 					<mat-grid-tile  colspan="6" rowspan="1"  class="grid-right"><font size="2">{{data.value}}  ({{data?.unit}})</font></mat-grid-tile>\
 				</mat-grid-list>'
-})//style="border-bottom: 2px dashed grey;" md-row-height="fit" 
+})  //style="border-bottom: 2px dashed grey;" md-row-height="fit"
 export class TickSliderComponent implements ZoneSlider {
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
   @ViewChild(MatSlider) public valueSelector: MatSlider;
   
-  onChange($event){
+  //onChange($event){
+  onChange($event, value){
 	console.log("onChange $event=",$event);	
-	if($event != undefined){
+	if($event != undefined && $event.value != undefined){
 		this.data.value=$event.value;
 		this.valueSelector.value=$event.value;
 	}	
@@ -56,7 +57,7 @@ export class ToggleSliderComponent implements ZoneSlider {
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
   @ViewChild(MatSlideToggle) public valueSelector: MatSlideToggle;
   //checked: boolean;
-  onChange($event){
+  onChange($event, value){
 	console.log("onChange $event=",$event);
     if($event != undefined){
 	    //this.checked=$event.checked;
@@ -75,7 +76,7 @@ export class UnknownDynamicComponent implements ZoneSlider {
   @Input() data: any; 
   @Output('change') change:EventEmitter<any> = new EventEmitter<any>();
   public valueSelector: MatSlideToggle;
-  onChange($event){}
+  onChange($event, value){}
 }
 
 @Component({
@@ -102,6 +103,8 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
     //working ok =-1console.log("this.currentSliderIndex=" + this.currentSliderIndex);
 	
   }
+  //to respect interface ?
+  //onChange($event, value){}
   
   setSliders(sliders: ZoneSliderItem[], id:String) { 
     //this.setSliders([],"none");
@@ -133,6 +136,7 @@ export class ZoneSlidersComponent implements AfterViewInit, OnDestroy {
   }
   
   //needed on selector: (change)="onChildChange($event)
+  onChange(event){}
   onChildChange(event, sliderIndex:number){
 	console.log('onChildChange(event,' + sliderIndex + '): event: ', event);
 	var val = 0;

@@ -72,7 +72,7 @@ export class ContextSelectorComponent implements OnInit, ZoneSlider {
 		//KO? this.contextValues = this.zonesService.getContextValues(this.data.text,this.data.name);
 	}
 	
-	onChange($event){
+	onChange($event, value){
 		console.log("cf onChange $event=",$event);	
 		if($event != undefined){
 			this.data.value=$event.value;
@@ -85,7 +85,7 @@ export class ContextSelectorComponent implements OnInit, ZoneSlider {
 
 @Component({
   selector: 'app-context-form',
-  template: '<div class="ctxSelectors" (change)="onChildChange($event)">\
+  template: '<div class="ctxSelectors" (change)="onChange($event)">\
 				<ng-template CtxSelectors-host ></ng-template>\
 			</div>',
   styleUrls: ['./context-form.component.css']
@@ -127,8 +127,8 @@ export class ContextFormComponent  implements AfterViewInit, OnDestroy  {
   ngOnDestroy() {
     clearInterval(this.interval);
   }
-  
-  //needed on selector: (change)="onChildChange($event)
+  //needed on selector: (change)="onChange($event)
+  onChange(event){}
   onChildChange(event, index:number){
 	console.log('cf: onChildChange(event,' + index + '): event: ', event);
 	var val = 0;

@@ -6,5 +6,5 @@ export interface ZoneSlider {
   data: any;
   change: EventEmitter<any>;
   // component: Type<any>;
-  onChange($event: MatSliderChange | MatSlideToggleChange | MatSelectChange);
+  onChange($event: MatSliderChange | MatSlideToggleChange | MatSelectChange,value:any);
 }

@@ -26,7 +26,7 @@ export class MapComponent implements OnInit {
 	//to be used in parent html: <app-map (stepUpdate)="doSomething($event)"></app-map>
 	@Output('stepUpdate') stepChange: EventEmitter<any> = new EventEmitter<any>(); //https://toddmotto.com/component-events-event-emitter-output-angular-2
 	zonesService: ZonesService;
-  constructor(private impressService: ImpressService, zonesService: ZonesService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
+    constructor(private impressService: ImpressService, zonesService: ZonesService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
 	//https://github.com/angular/material2/blob/master/src/demo-app/icon/icon-demo.ts
 	this.zonesService = zonesService;
 	iconRegistry
