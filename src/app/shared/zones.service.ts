@@ -860,7 +860,7 @@ export class ZonesService {
                 }
             });*/
     }
-	getParentZone(id: string): String {
+	getParentZone(id: string): string {
 	/*
 		return this._http.get(this._backendURL.childZones.nameOf(':id', id), this._options())
             .map((res: Response) => {

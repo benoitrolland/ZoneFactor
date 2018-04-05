@@ -17,7 +17,7 @@ export class MapComponent implements OnInit {
 	//public data = {};
 	@ViewChild(ImpressComponent) impressComponent : ImpressComponent;
 	currentImpressStep : HTMLElement;	
-	currentImpressStep_id : String = "World";
+	currentImpressStep_id : string = "World";
 	currentZoneName : any = "*";
 	//currentIncidence : number = 10;
 	//how-to-detect-when-an-input-value-changes-in-angular
