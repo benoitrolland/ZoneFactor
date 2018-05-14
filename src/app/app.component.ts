@@ -144,7 +144,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	onStepUpdate(event:any){
 		console.log( "App onStepUpdate: " , event.target.id );
 		this.currentImpressStep_id = event.target.id;
-		this.contextFormComponent.setSliders(this.zoneSlidersService.getContextSlidersForZoneAndContext(event.target.id), event.target.id); 
+		this.contextFormComponent.setSliders(this.zoneSlidersService.getContextSlidersForZone(event.target.id), event.target.id); 
 		//OK 
 		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZoneAndContext(event.target.id), event.target.id); 
 		//sidenav.open();
@@ -163,6 +163,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 		
 		this.zoneSlidersComponent.setSliders(this.zoneSlidersService.getFactorSlidersForZoneAndContext(this.currentImpressStep_id), this.currentImpressStep_id);
 		this._changeDetectionRef.detectChanges();
+		//zoneSlidersComponent.
 	}
 
 	changeName(newName:string) {

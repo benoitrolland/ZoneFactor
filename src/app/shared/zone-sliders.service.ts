@@ -26,37 +26,39 @@ export class ZoneSlidersService {
     ];
   } 
 */
-	getContextSlidersForZoneAndContext(zone:any){
+	getContextSlidersForZone(zone:any){
 		if(!this.zonesService.isColorable(zone))return [];
-		console.log( "- getContextSlidersForZoneAndContext (" + zone + /*","+contextIndex+ */")" );
+		console.log( "- getContextSlidersForZone (" + zone + /*","+contextIndex+ */")" );
 		let factorsForContext = this.zonesService.getFactorsForContexts(zone);//getContextForSelectedZone(zone);
 		if(factorsForContext != undefined){
 			let nbContexts = factorsForContext.length;
-		    console.log( "- getContextSlidersForZoneAndContext factorsForContext ", factorsForContext );
-		    console.log( "- getContextSlidersForZoneAndContext factorsForContext.context ", factorsForContext.context );
+		    console.log( "- getContextSlidersForZone factorsForContext ", factorsForContext );
+		    console.log( "- getContextSlidersForZone factorsForContext.context ", factorsForContext.context );
 			let contextNames = Object.keys(factorsForContext[0].context); //this.zonesService.getFactors(zone); //,contextIndex);
 			//let lastImputedValues = Object.values(factorsForContext.lastImputedValues);
 			//console.log( "- lastImputedValues found ", lastImputedValues );
 			if(contextNames != undefined){
-				let zoneSliderItems = new Array(nbContexts);
+				let zoneSliderItems:ZoneSliderItem[] = new Array<ZoneSliderItem>(nbContexts);
 				let j=0;
 			    for(j=0;j<Object.entries(contextNames).length;j++){
 					let contextName = contextNames[j];
 					
-					//console.log( "- getContextSlidersForZoneAndContext found " + nbContexts + " contextNames:", contextNames );
+					//console.log( "- getContextSlidersForZone found " + nbContexts + " contextNames:", contextNames );
 					//ko let zoneSliderItems:ZoneSliderItem[] = new Array(nbContexts);
 					
-					//getSelectedContextNums
+					//get list of possible values for given context element
 					let zoneSliderValues = this.zonesService.getContextValues(zone,contextName);
 					/*for (let i = 0; i < nbContexts; i++) {
 						let factorId = contextNames[i];
 						//let factorConsts = this.zonesService.getFactorConsts(zone,factorId);						
 					}*/
+					//La valeur par defaut est la première de la liste, 
+					//sauf si une autre valeur a été enregistrée pour le contexte courant: zonesService
 					let defaultValue = zoneSliderValues.values().next().value;
 					console.log( "- new ZoneSliderItem(ContextSelectorComponent,{text:contextName=" + contextName + " default:defaultValue=" + defaultValue + " values:zoneSliderValues=" , zoneSliderValues );
 					zoneSliderItems[j] = new ZoneSliderItem(ContextSelectorComponent,{contextName:contextName,default:defaultValue,values:zoneSliderValues}); //,default:lastImputedValues[i]});
 				}
-				console.log( "- getContextSlidersForZoneAndContext returning " + zoneSliderItems.length + " zoneSliderItems", zoneSliderItems );
+				console.log( "- getContextSlidersForZone returning " + zoneSliderItems.length + " zoneSliderItems", zoneSliderItems );
 				return zoneSliderItems;
 			}
 		}
@@ -78,7 +80,7 @@ export class ZoneSlidersService {
 				let nbFactors = Object.entries(factorIds).length;
 				console.log( "- getFactorSlidersForZoneAndContext found " + nbFactors + " factorIds:", factorIds );
 				//ko let zoneSliderItems:ZoneSliderItem[] = new Array(nbFactors);
-				let zoneSliderItems = new Array(nbFactors);
+				let zoneSliderItems:ZoneSliderItem[] = new Array<ZoneSliderItem>(nbFactors);
 				for (let i = 0; i < nbFactors; i++) {
 					let factorId = factorIds[i];
 					let factorConsts = this.zonesService.getFactorConsts(zone,factorId);
