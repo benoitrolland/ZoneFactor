@@ -1,7 +1,10 @@
 Sliders should be reset to last value rather than default when last value is stored.
+reuse app.component.ts::onContextUpdate(event:any): this.zonesService.setCurrentContextGivenValues( this.currentImpressStep_id, this.contextFormComponent.sliders.map( zsitem => {if(zsitem.data.default != undefined) return zsitem.data.value?zsitem.data.value:zsitem.data.default} ) );
+into: zonesSlidersService::getContextSlidersForZoneAndContext(zone:any)
+
 Vertical scrollbar on left pane should follow general application style.
 should country name stay inside coutry and grow only on mouse over.
-should a special country colors be set when no data available, or not for current context.
+should country colors be greyed or white when no data are available
 should all siblings country colors be updated based on current context selection
 should one be only able to compare incidence between zones of same level (sibling zones)
 should map be simplified to the current selected zone such as to set a single color to the area
