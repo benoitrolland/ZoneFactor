@@ -1,3 +1,5 @@
-<div class="app-zone-sliders" (change)="onChange($event)">
+<div class="app-zone-sliders" >
+<!-- (change)="onChange($event)" remplacé par une initilisation utilisant 
+  zoneSlider.change.subscribe(msg => this.onChildChange(msg,index)) -->
   <ng-template slider-host ></ng-template>
 </div>
