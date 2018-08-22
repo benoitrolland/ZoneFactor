@@ -24,7 +24,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'ng build'
+                sh 'ng build --prod --build-optimizer --source-map'
             }
         }
 
@@ -35,8 +35,10 @@ pipeline {
             }
 
             steps {
-                sh 'echo "Copy the dist folder somewhere"'
+                sh 'rm -rf /tmp/jenkins/builds/zonefactor'
+				sh 'cp ./dist/* /tmp/jenkins/builds/zonefactor/'
             }
+			
         }
     }
 }
