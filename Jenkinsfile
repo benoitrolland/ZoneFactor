@@ -16,7 +16,7 @@ pipeline {
 //                    sh("git tag -a some_tag -m 'Jenkins'")					
 //                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@<REPO> --tags')
 //                }
-                sh 'npm install -g @angular/cli'
+//                sh 'npm install -g @angular/cli'
 //                sh 'npm install'
 				sh 'npm ci'
             }
