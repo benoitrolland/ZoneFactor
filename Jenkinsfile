@@ -24,7 +24,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'ng build --prod --build-optimizer --source-map'
+#                sh 'ng build --prod --build-optimizer --source-map'
+                sh 'ng build --prod'
             }
         }
 
