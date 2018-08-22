@@ -37,7 +37,7 @@ pipeline {
 
             steps {
                 sh 'rm -rf /tmp/jenkins/builds/zonefactor'
-				sh 'cp ./dist/* /tmp/host/jenkins/builds/zonefactor/'
+				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/zonefactor/'
             }
 			
         }
