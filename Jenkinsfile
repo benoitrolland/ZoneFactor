@@ -24,8 +24,8 @@ pipeline {
 
         stage('Build') {
             steps {
-#                sh 'ng build --prod --build-optimizer --source-map'
-                sh 'ng build --prod'
+#                sh 'ng build --prod --env=prod --build-optimizer --source-map'
+                sh 'ng build --prod --env=prod'
             }
         }
 
@@ -38,6 +38,7 @@ pipeline {
             steps {
                 sh 'rm -rf /tmp/jenkins/builds/zonefactor'
 				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/zonefactor/'
+				sh 'terraform -v'
             }
 			
         }
