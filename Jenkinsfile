@@ -25,7 +25,7 @@ pipeline {
         stage('Build') {
             steps {
 //                sh 'ng build --prod --env=prod --build-optimizer --source-map'
-                sh 'ng build --prod --env=prod'
+                sh 'ng build --prod --base-href /zonefactor/ --env=prod'
             }
         }
 
