@@ -31,7 +31,7 @@ stage('githubPush'){steps{script{
 //                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@<REPO> --tags')
 //                }
 //                sh 'npm install -g @angular/cli'
-                sh 'npm install'
+                sh 'rm -rf node_modules && rm -rf package-lock.json && npm install'
 //				sh 'npm ci'
             }
 		}
@@ -60,7 +60,7 @@ stage('githubPush'){steps{script{
 				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/zonefactor/'
 // https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 // npm i -g angular-cli-ghpages
-   sh 'angular-cli-ghpages --repo=https://github.com/benoitrolland/ZoneFactor.git --silent=false'
+   sh 'angular-cli-ghpages --repo=https://github.com/benoitrolland/ZoneFactor.git --no-silent'
 // publication sur les pages github			
 // https://www.npmjs.com/package/angular-cli-ghpages 	
 //				sh 'npx ngh'
