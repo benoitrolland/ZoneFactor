@@ -20,10 +20,11 @@ stage('githubPush'){steps{script{
 }}}
         stage('Install') {
 //checkout
-        script{
-            if (params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/) { 
-               	
-                steps {
+        
+            when {
+                expression { params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
+            }		
+            steps {
 //			    withCredentials([usernamePassword(credentialsId: 'git-pass-credentials-ID', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
 //                    sh("git checkout master")
 //                    sh("git tag -a some_tag -m 'Jenkins'")					
@@ -32,14 +33,14 @@ stage('githubPush'){steps{script{
 //                sh 'npm install -g @angular/cli'
                 sh 'npm install'
 //				sh 'npm ci'
-                }
-			} else {
-			    steps {
-                    sh 'npm ci'
-			    }
-			}
-			}
-        }
+            }
+		}
+        stage('IC') {
+		    steps {
+                sh 'npm ci'
+		    }
+		}
+		
 		
         stage('Build') {
             steps {
