@@ -14,10 +14,9 @@ pipeline {
 
         stage('Install') {
 //checkout
-            when {
-                expression { params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
-            }		
-            steps {
+            if (params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/) { 
+               	
+                steps {
 //			    withCredentials([usernamePassword(credentialsId: 'git-pass-credentials-ID', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
 //                    sh("git checkout master")
 //                    sh("git tag -a some_tag -m 'Jenkins'")					
@@ -26,18 +25,12 @@ pipeline {
 //                sh 'npm install -g @angular/cli'
                 sh 'npm install'
 //				sh 'npm ci'
-            }
-        }
-
-		stage('CI Continuous Integration install') {
-		    when {
-			    NOT {
-                    expression { params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
-				}
-            }
-            steps {
-				sh 'npm ci'
-            }
+                }
+			} else {
+			    steps {
+                    sh 'npm ci'
+			    }
+			}
         }
 		
         stage('Build') {
