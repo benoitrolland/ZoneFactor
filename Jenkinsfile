@@ -8,14 +8,17 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '15'))
     }
 	
-    script{
-	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/foo/bar/'], pipelineTriggers([githubPush()])])
-    }
+//    script{
+//	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/foo/bar/'], pipelineTriggers([githubPush()])])
+//    }
 	//    properties([pipelineTriggers([githubPush()])])  //The ‘properties’ section has been renamed as of version 0.8. Use ‘options’ instead
 //	properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/foo/bar/'], pipelineTriggers([githubPush()])])
 	
     stages {
+stage('githubPush'){steps{script{
+	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/foo/bar/'], pipelineTriggers([githubPush()])])
 
+}}}
         stage('Install') {
 //checkout
             if (params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/) { 
