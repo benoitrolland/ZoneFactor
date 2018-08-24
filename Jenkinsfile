@@ -16,11 +16,11 @@ pipeline {
 	
     stages {
 stage('githubPush'){steps{script{
-	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/foo/bar/'], pipelineTriggers([githubPush()])])
-
+	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/benoitrolland/ZoneFactor/'], pipelineTriggers([githubPush()])])
 }}}
         stage('Install') {
 //checkout
+        node{
             if (params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/) { 
                	
                 steps {
@@ -37,6 +37,7 @@ stage('githubPush'){steps{script{
 			    steps {
                     sh 'npm ci'
 			    }
+			}
 			}
         }
 		
