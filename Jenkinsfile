@@ -7,8 +7,14 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '15'))
     }
-	
-    properties([pipelineTriggers([githubPush()])])
+	triggers {
+        upstream (
+            threshold: 'SUCCESS',
+            upstreamProjects: 'UpstreamJob\master'
+        )
+    }
+//    properties([pipelineTriggers([githubPush()])])  //The ‘properties’ section has been renamed as of version 0.8. Use ‘options’ instead
+//	properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/foo/bar/'], pipelineTriggers([githubPush()])])
 	
     stages {
 
