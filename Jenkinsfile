@@ -20,7 +20,7 @@ stage('githubPush'){steps{script{
 }}}
         stage('Install') {
 //checkout
-        node{
+        script{
             if (params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/) { 
                	
                 steps {
