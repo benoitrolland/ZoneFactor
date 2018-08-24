@@ -40,8 +40,10 @@ pipeline {
 				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/zonefactor/'
 // https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 // npm i -g angular-cli-ghpages
-// publication sur les pages github				
-				sh 'npx ngh'
+   sh 'angular-cli-ghpages'
+// publication sur les pages github			
+// https://www.npmjs.com/package/angular-cli-ghpages 	
+//				sh 'npx ngh'
 				sh 'terraform -v'
             }
 			
