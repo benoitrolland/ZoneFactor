@@ -13,7 +13,7 @@ pipeline {
         stage('Install') {
 //checkout
             when {
-                expression { return params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
+                expression { params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
             }		
             steps {
 //			    withCredentials([usernamePassword(credentialsId: 'git-pass-credentials-ID', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
@@ -28,10 +28,11 @@ pipeline {
         }
 
 		stage('CI Continuous Integration install') {
-//checkout
-            when {
-                expression { not {return  params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/} }
-            }		
+		    when {
+			    NOT {
+                    expression { params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
+				}
+            }
             steps {
 				sh 'npm ci'
             }
@@ -55,7 +56,7 @@ pipeline {
 				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/zonefactor/'
 // https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 // npm i -g angular-cli-ghpages
-   sh 'angular-cli-ghpages --repo=https://github.com/benoitrolland/ZoneFactor.git'
+   sh 'angular-cli-ghpages --repo=https://github.com/benoitrolland/ZoneFactor.git --silent=false'
 // publication sur les pages github			
 // https://www.npmjs.com/package/angular-cli-ghpages 	
 //				sh 'npx ngh'
