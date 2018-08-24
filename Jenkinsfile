@@ -30,7 +30,7 @@ pipeline {
 		stage('CI Continuous Integration install') {
 //checkout
             when {
-                expression { return NOT params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
+                expression { not {return  params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/} }
             }		
             steps {
 				sh 'npm ci'
