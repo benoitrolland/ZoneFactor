@@ -7,7 +7,9 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '15'))
     }
-
+	
+    properties([pipelineTriggers([githubPush()])])
+	
     stages {
 
         stage('Install') {
