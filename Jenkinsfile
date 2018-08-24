@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    parameters {
+        booleanParam(name: 'NPM_INSTALL', defaultValue: false, description: 'perform intitial npm install (on package.json update) ?')
+        //string(name: 'OPT_AMIID', defaultValue: '', description: "mode DEV: lance ansible sur cette ami sans la reconstruire") 
+    }
     options {
         buildDiscarder(logRotator(numToKeepStr: '15'))
     }
@@ -9,7 +12,9 @@ pipeline {
 
         stage('Install') {
 //checkout
-		
+            when {
+                expression { return params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
+            }		
             steps {
 //			    withCredentials([usernamePassword(credentialsId: 'git-pass-credentials-ID', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
 //                    sh("git checkout master")
@@ -17,11 +22,21 @@ pipeline {
 //                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@<REPO> --tags')
 //                }
 //                sh 'npm install -g @angular/cli'
-//                sh 'npm install'
-				sh 'npm ci'
+                sh 'npm install'
+//				sh 'npm ci'
             }
         }
 
+		stage('CI Continuous Integration install') {
+//checkout
+            when {
+                expression { return NOT params.NPM_INSTALL ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/ }
+            }		
+            steps {
+				sh 'npm ci'
+            }
+        }
+		
         stage('Build') {
             steps {
 //                sh 'ng build --prod --env=prod --build-optimizer --source-map'
