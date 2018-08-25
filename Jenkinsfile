@@ -103,7 +103,6 @@ parallel{
 					git commit -am "build version number $env.BUILD_ID"
 					git config --global user.name "benoitrolland"
 					git config --global --get user.name
-					git config --global --get user.email
 					git push
 				'''		
 //mkdir <repo>
