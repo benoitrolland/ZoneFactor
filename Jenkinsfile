@@ -101,6 +101,7 @@ parallel{
 					cp -r ../dist/* ./ZoneFactor/
 					git add --all
 					git commit -am "build version number $env.BUILD_ID"
+					git config --global user.name "benoitrolland"
 					git push
 				'''		
 //mkdir <repo>
