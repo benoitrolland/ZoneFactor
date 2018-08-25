@@ -16,9 +16,9 @@ pipeline {
 	
     stages {
 //https://stackoverflow.com/questions/30576881/jenkins-build-when-a-change-is-pushed-to-github-option-is-not-working	
-stage('githubPush'){steps{script{
-	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/benoitrolland/ZoneFactor/'], pipelineTriggers([githubPush()])])
-}}}
+        stage('githubPush'){steps{script{
+        	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/benoitrolland/ZoneFactor/'], pipelineTriggers([githubPush()])])
+        }}}
         stage('Install') {
 //checkout
         
@@ -49,7 +49,7 @@ stage('githubPush'){steps{script{
                 sh 'ng build --prod --base-href /zonefactor/ --env=prod'
             }
         }
-
+parallel{
         stage('Deploy') {
 
             when {
@@ -120,7 +120,8 @@ stage('githubPush'){steps{script{
 //git pull --depth=1 origin master		
 		
 			}
-		}		
+		}
+        }		
     }
 }
 
