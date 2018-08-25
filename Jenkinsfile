@@ -93,13 +93,11 @@ stage('githubPush'){steps{script{
 					mkdir -p ./benoitrolland.github.io/zonefactor
 					cd ./benoitrolland.github.io/zonefactor
 					git remote add gitPages https://github.com/benoitrolland/benoitrolland.github.io.git
-					git checkout -b gitPages
-					git fetch gitPages master
-					mkdir 
+					git checkout -b master
 					cp -r ../dist/* .
 					git add --all
 					git commit -am "build version number $env.BUILD_ID"
-					git push gitPages master
+					git push
 				'''				
 			}
 		}		
