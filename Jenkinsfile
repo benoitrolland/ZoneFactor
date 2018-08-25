@@ -96,9 +96,9 @@ parallel{
 					git clone --depth 1 --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
                     cd benoitrolland.github.io
 					git config core.sparseCheckout true
-					echo "zonefactor/*"> .git/info/sparse-checkout
+					echo "ZoneFactor/*" > .git/info/sparse-checkout
 					git checkout master
-					cp -r ../dist/* ./zonefactor/
+					cp -r ../dist/* ./ZoneFactor/
 					git add --all
 					git commit -am "build version number $env.BUILD_ID"
 					git push
