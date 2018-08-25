@@ -74,12 +74,12 @@ stage('githubPush'){steps{script{
 //				    sh 'git commit -m"build $env.BUILD_ID"'
 //                    sh 'echo "terraform -v :"'
 //				}
-sh 'terraform -v'
+                sh 'terraform -v'
 				sh 'pwd: '
 				sh 'pwd'
             }
 			
- 				       }
+ 		}
 		
 		stage ("Publish to Github pages") {
 			steps {
@@ -98,8 +98,7 @@ sh 'terraform -v'
 					git add --all
 					git commit -am "build version number $env.BUILD_ID"
 					git push origin master
-				'''
-				}
+				'''				
 			}
 		}		
     }
