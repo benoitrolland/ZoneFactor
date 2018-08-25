@@ -91,6 +91,7 @@ stage('githubPush'){steps{script{
 				//deleteDir()
 				//https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository/28039894#28039894
 				sh '''
+				    rm -rf ./benoitrolland.github.io || true
 					git clone --depth 1 --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
                     cd benoitrolland.github.io
 					git config core.sparseCheckout true
