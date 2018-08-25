@@ -83,6 +83,7 @@ parallel{
  		}
 		
 		stage ("Publish to Github pages") {
+		    //git branch: 'master', credentialsId: '84780564-bac0-437e-ad8a-43487fda13fd', url: 'git@github.com:benoitrolland/benoitrolland.github.io.git'
 			steps {
 				script {
 					STAGE_NAME = "Publish to Github pages"
@@ -91,6 +92,9 @@ parallel{
 				// Prepare the workspace
 				//deleteDir()
 				//https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository/28039894#28039894
+				//https://stackoverflow.com/questions/33570075/tag-a-repo-from-a-jenkins-workflow-script
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '84780564-bac0-437e-ad8a-43487fda13fd', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+
 				sh '''
 				    rm -rf ./benoitrolland.github.io || true
 					git clone --depth 1 --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
@@ -101,10 +105,10 @@ parallel{
 					cp -r ../dist/* ./ZoneFactor/
 					git add --all
 					git commit -am "build version number $env.BUILD_ID"
-					git config --global user.name "benoitrolland"
-					git config --global --get user.name
 					git push
-				'''		
+				'''	
+
+                }				
 //mkdir <repo>
 //cd <repo>
 //git init
