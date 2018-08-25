@@ -75,7 +75,7 @@ stage('githubPush'){steps{script{
 //                    sh 'echo "terraform -v :"'
 //				}
                 sh 'terraform -v'
-				sh 'exho "pwd: "'
+				sh 'echo "pwd: "'
 				sh 'pwd'
             }
 			
