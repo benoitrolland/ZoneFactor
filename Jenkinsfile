@@ -15,6 +15,7 @@ pipeline {
 //	properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/foo/bar/'], pipelineTriggers([githubPush()])])
 	
     stages {
+//https://stackoverflow.com/questions/30576881/jenkins-build-when-a-change-is-pushed-to-github-option-is-not-working	
 stage('githubPush'){steps{script{
 	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/benoitrolland/ZoneFactor/'], pipelineTriggers([githubPush()])])
 }}}
@@ -60,17 +61,47 @@ stage('githubPush'){steps{script{
 				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/zonefactor/'
 // https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 // npm i -g angular-cli-ghpages
-   sh 'angular-cli-ghpages --repo=https://GH_TOKEN@github.com/benoitrolland/ZoneFactor.git --no-silent'
-// publication sur les pages github			
+//   sh 'angular-cli-ghpages --repo=https://GH_TOKEN@github.com/benoitrolland/benoitrolland.github.io --no-silent'
+// publication sur les pages github			  https://github.com/username/username.github.io
 // https://www.npmjs.com/package/angular-cli-ghpages 	
 //				sh 'npx ngh'
-                sh 'echo "terraform -v :"'
-				sh 'terraform -v'
+
+//				sh 'cd dist'
+//				node {
+//				    sh 'git remote add origin ssh://git@github.com/benoitrolland/benoitrolland.github.io.git'
+//                    sh 'git checkout master'
+//                    sh 'git add --all'
+//				    sh 'git commit -m"build $env.BUILD_ID"'
+//                    sh 'echo "terraform -v :"'
+//				}
+sh 'terraform -v'
 				sh 'pwd: '
 				sh 'pwd'
             }
 			
-        }
+ 				       }
+		
+		stage ("Publish to Github pages") {
+			steps {
+				script {
+					STAGE_NAME = "Publish to Github pages"
+				}
+				
+				// Prepare the workspace
+				//deleteDir()
+				sh '''
+					mkdir benoitrolland.github.io
+					cd benoitrolland.github.io
+					git remote add origin https://github.com/benoitrolland/benoitrolland.github.io.git
+					git checkout -b master
+					cp -r ../dist/* .
+					git add --all
+					git commit -am "build version number $env.BUILD_ID"
+					git push origin master
+				'''
+				}
+			}
+		}		
     }
 }
 
