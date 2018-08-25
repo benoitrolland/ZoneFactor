@@ -75,7 +75,7 @@ stage('githubPush'){steps{script{
 //                    sh 'echo "terraform -v :"'
 //				}
                 sh 'terraform -v'
-				sh 'pwd: '
+				sh 'exho "pwd: "'
 				sh 'pwd'
             }
 			
@@ -90,14 +90,16 @@ stage('githubPush'){steps{script{
 				// Prepare the workspace
 				//deleteDir()
 				sh '''
-					mkdir benoitrolland.github.io
-					cd benoitrolland.github.io
-					git remote add origin https://github.com/benoitrolland/benoitrolland.github.io.git
-					git checkout -b master
+					mkdir -p ./benoitrolland.github.io/zonefactor
+					cd ./benoitrolland.github.io/zonefactor
+					git remote add gitPages https://github.com/benoitrolland/benoitrolland.github.io.git
+					git checkout -b gitPages
+					git fetch gitPages master
+					mkdir 
 					cp -r ../dist/* .
 					git add --all
 					git commit -am "build version number $env.BUILD_ID"
-					git push origin master
+					git push gitPages master
 				'''				
 			}
 		}		
