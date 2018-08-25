@@ -89,16 +89,35 @@ stage('githubPush'){steps{script{
 				
 				// Prepare the workspace
 				//deleteDir()
+				//https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository/28039894#28039894
 				sh '''
-					mkdir -p ./benoitrolland.github.io/zonefactor
-					cd ./benoitrolland.github.io/zonefactor
-					git remote add gitPages https://github.com/benoitrolland/benoitrolland.github.io.git
-					git checkout -b master
-					cp -r ../dist/* .
+					git clone --depth 1 --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
+                    cd benoitrolland.github.io
+					git config core.sparseCheckout true
+					echo "zonefactor/*"> .git/info/sparse-checkout
+					git checkout master
+					cp -r ../dist/* ./zonefactor/
 					git add --all
 					git commit -am "build version number $env.BUILD_ID"
 					git push
-				'''				
+				'''		
+//mkdir <repo>
+//cd <repo>
+//git init
+//git remote add -f origin <url>
+//git config core.sparseCheckout true
+//echo "zonefactor/" >> .git/info/sparse-checkout
+//git pull origin master
+				
+				
+				
+//git init <repo>
+//cd <repo>
+//git remote add origin <url>
+//git config core.sparsecheckout true
+//echo "finisht/*" >> .git/info/sparse-checkout
+//git pull --depth=1 origin master		
+		
 			}
 		}		
     }
