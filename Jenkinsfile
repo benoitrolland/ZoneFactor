@@ -95,18 +95,19 @@ parallel{
 				//https://stackoverflow.com/questions/33570075/tag-a-repo-from-a-jenkins-workflow-script
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '84780564-bac0-437e-ad8a-43487fda13fd', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
 
-				sh '''
-				    rm -rf ./benoitrolland.github.io || true
-					git clone --depth 1 --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
-                    cd benoitrolland.github.io
-					git config core.sparseCheckout true
-					echo "ZoneFactor/*" > .git/info/sparse-checkout
-					git checkout master
-					cp -r ../dist/* ./ZoneFactor/
-					git add --all
-					git commit -am "build version number $env.BUILD_ID"
-					git push
-				'''	
+    				sh '''
+    				    echo ""
+    					rm -rf ./benoitrolland.github.io || true
+    					git clone --depth 1 --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
+                        cd benoitrolland.github.io
+    					git config core.sparseCheckout true
+    					echo "ZoneFactor/*" > .git/info/sparse-checkout
+    					git checkout master
+    					cp -r ../dist/* ./ZoneFactor/
+    					git add --all
+    					git commit -am "build version number $env.BUILD_ID"
+    					git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/benoitrolland/benoitrolland.github.io.git
+    				'''	
 
                 }				
 //mkdir <repo>
