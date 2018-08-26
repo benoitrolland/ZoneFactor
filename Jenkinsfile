@@ -49,7 +49,7 @@ pipeline {
                 sh 'ng build --prod --base-href /zonefactor/ --env=prod'
             }
         }
-        stage('Deploy') {
+//        stage('Deploy') {
 
 //nop parallel{
         stage('Deploy on cladone.com') {
@@ -129,8 +129,7 @@ pipeline {
 		
 			}
 		}
-        }
-		//}	
+//        }}	
     }
 }
 
