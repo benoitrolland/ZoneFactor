@@ -107,7 +107,7 @@ pipeline {
     					git add --all
     				'''	
     				sh "git commit -m \"build version number ${env.BUILD_ID}\""
-    				sh "git push https://${env.GIT_USERNAME\:${env.GIT_PASSWORD}@github.com/benoitrolland/benoitrolland.github.io.git"
+    				sh "git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/benoitrolland/benoitrolland.github.io.git"
 
                 }				
 //mkdir <repo>
