@@ -105,9 +105,9 @@ pipeline {
     					git checkout master
     					cp -r /tmp/host/jenkins/builds/zonefactor/* ./ZoneFactor/
     					git add --all
-    					git commit -am "build version number env.BUILD_ID"
-    					git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/benoitrolland/benoitrolland.github.io.git
     				'''	
+    				sh "git commit -m \"build version number ${env.BUILD_ID}\""
+    				sh "git push https://${env.GIT_USERNAME:${env.GIT_PASSWORD}@github.com/benoitrolland/benoitrolland.github.io.git"
 
                 }				
 //mkdir <repo>
