@@ -8,4 +8,4 @@ should country colors be greyed or white when no data are available
 should all siblings country colors be updated based on current context selection
 should one be only able to compare incidence between zones of same level (sibling zones)
 should map be simplified to the current selected zone such as to set a single color to the area
-DONE should the project be buildable with the prod option (aot optimized  ahead of time)
+DONE should the project be buildable with the prod option (aot optimized  ahead of time).
