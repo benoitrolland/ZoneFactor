@@ -104,7 +104,9 @@ pipeline {
     					echo "ZoneFactor/*" > .git/info/sparse-checkout
     					git checkout master
     					cp -r /tmp/host/jenkins/builds/zonefactor/* ./ZoneFactor/
-    					git add --all
+						git status
+						git add -A
+    					#git add --all
 						git commit -m "build version number ${env.BUILD_ID}"
 						git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/benoitrolland/benoitrolland.github.io.git
     				'''	
