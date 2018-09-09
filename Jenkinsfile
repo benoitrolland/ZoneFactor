@@ -46,7 +46,7 @@ pipeline {
         stage('Build') {
             steps {
 //                sh 'ng build --prod --env=prod --build-optimizer --source-map'
-                sh 'ng build --prod --base-href /zonefactor/ --env=prod'
+                sh 'ng build --prod --base-href /ZoneFactor/ --env=prod'
             }
         }
 //        stage('Deploy') {
@@ -58,8 +58,8 @@ pipeline {
             }
 
             steps {
-                sh 'rm -rf /tmp/jenkins/builds/zonefactor'
-				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/zonefactor/'
+                sh 'rm -rf /tmp/jenkins/builds/ZoneFactor'
+				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/ZoneFactor/'
 // https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 // npm i -g angular-cli-ghpages
 //   sh 'angular-cli-ghpages --repo=https://GH_TOKEN@github.com/benoitrolland/benoitrolland.github.io --no-silent'
@@ -71,7 +71,7 @@ pipeline {
 //				node {
 //				    sh 'git remote add origin ssh://git@github.com/benoitrolland/benoitrolland.github.io.git'
 //                    sh 'git checkout master'
-//                    sh 'git add --all'
+//                    sh 'git add -A'
 //				    sh 'git commit -m"build $env.BUILD_ID"'
 //                    sh 'echo "terraform -v :"'
 //				}
@@ -98,12 +98,13 @@ pipeline {
     				sh '''
     				    echo ""
     					rm -rf ./benoitrolland.github.io || true
-    					git clone --depth 1 --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
+#    					git clone --depth 1 --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
+                        git clone --no-checkout --single-branch https://github.com/benoitrolland/benoitrolland.github.io.git
                         cd benoitrolland.github.io
     					git config core.sparseCheckout true
-    					echo "ZoneFactor/*" > .git/info/sparse-checkout
+    					#echo "ZoneFactor/*" > .git/info/sparse-checkout
     					git checkout master
-    					cp -r /tmp/host/jenkins/builds/zonefactor/* ./ZoneFactor/
+    					cp -R /tmp/host/jenkins/builds/ZoneFactor/* ./ZoneFactor/
 						git status
 						git add -A
     					#git add --all
@@ -119,7 +120,7 @@ pipeline {
 //git init
 //git remote add -f origin <url>
 //git config core.sparseCheckout true
-//echo "zonefactor/" >> .git/info/sparse-checkout
+//echo "ZoneFactor/" >> .git/info/sparse-checkout
 //git pull origin master
 				
 				
