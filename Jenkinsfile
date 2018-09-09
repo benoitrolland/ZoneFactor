@@ -104,13 +104,15 @@ pipeline {
     					git config core.sparseCheckout true
     					#echo "ZoneFactor/*" > .git/info/sparse-checkout
     					git checkout master
+						rm -rf ./ZoneFactor/
+						mkdir ./ZoneFactor/ || true
     					cp -R /tmp/host/jenkins/builds/ZoneFactor/* ./ZoneFactor/
 						git status
 						git add -A
     					#git add --all
 						git commit -m "build version number ${env.BUILD_ID}"
 						git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/benoitrolland/benoitrolland.github.io.git
-    				'''	
+    				'''
     				//sh "git commit -m \"build version number ${env.BUILD_ID}\""
     				//sh "git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/benoitrolland/benoitrolland.github.io.git"
 
