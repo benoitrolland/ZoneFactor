@@ -15,10 +15,12 @@ pipeline {
 //	properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/foo/bar/'], pipelineTriggers([githubPush()])])
 	
     stages {
-//https://stackoverflow.com/questions/30576881/jenkins-build-when-a-change-is-pushed-to-github-option-is-not-working	
+//https://stackoverflow.com/questions/30576881/jenkins-build-when-a-change-is-pushed-to-github-option-is-not-working
+
         stage('githubPush'){steps{script{
         	    properties([[$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/benoitrolland/ZoneFactor/'], pipelineTriggers([githubPush()])])
         }}}
+		
         stage('Install') {
 //checkout
         
@@ -58,7 +60,8 @@ pipeline {
             }
 
             steps {
-                sh 'rm -rf /tmp/jenkins/builds/ZoneFactor'
+                sh 'rm -rf /tmp/host/jenkins/builds/ZoneFactor/'
+				sh 'mkdir -p /tmp/host/jenkins/builds/ZoneFactor/'
 				sh 'cp -r ./dist/* /tmp/host/jenkins/builds/ZoneFactor/'
 // https://medium.com/@swarnakishore/deploying-angular-cli-project-to-github-pages-db49246598a1
 // npm i -g angular-cli-ghpages
