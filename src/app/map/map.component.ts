@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ViewEncapsulation} from '@angular/core';
-import { } from '@types/impress';
+import { } from 'impress';
 import { ImpressService } from '../shared/impress.service';
 import { ZonesService } from '../shared/zones.service';
 import { ImpressComponent } from '../impress/impress.component';

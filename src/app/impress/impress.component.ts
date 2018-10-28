@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { } from '@types/impress';
+import { } from 'impress';
 //import { } from 'impress.js';
 //import { AccessoComponent } from './steps/accesso/accesso.component';
 //import { ListComponent } from './steps/list/list.component';
