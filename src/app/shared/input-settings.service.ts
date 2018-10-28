@@ -35,7 +35,7 @@ export class InputSettingsService {
     }
 	
   register(user): Observable<any> {
-    return this._http.post('/api/user', JSON.stringify(user), this._options);
+    return this._http.post('/api/user', JSON.stringify(user), this._options());
   }
   getUsers(): Observable<any> {
     return this._http.get('/api/users').map(res => res.json());

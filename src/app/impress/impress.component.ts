@@ -95,6 +95,7 @@ export class ImpressComponent implements OnInit {
       this.myImpressService.stepEnter(event);
   }
   goto(index:any) {
+		console.log("goto: "+index);
      this.imp.goto(index); 
   }
 }

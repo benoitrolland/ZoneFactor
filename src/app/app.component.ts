@@ -171,6 +171,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	}
   
 	public goto(index:any) {
+		console.log("app goto: " + index);
 		this.impressComponent.imp.goto(index); 
 	}
 	getContextFormSliderLength(){

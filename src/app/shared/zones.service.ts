@@ -2,24 +2,24 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../environments/environment";
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 
 // @see angular2-200\src\app\shared\people-service\people.service.ts
 @Injectable()
 export class ZonesService {
 
-	zonesIncidences: Map<String, number> = new Map<String, number>();
-	zonesColors: Map<String, String> = new Map<String, String>();
-	zonesColorsReady: Map<String, Boolean> = new Map<String, Boolean>();
-	
-	zonesValues: Map<String, number[]> = new Map<String, number[]>();
-	//contextValues: Map<String, number[]> = new Map<String, string[]>();
-	//retient le numero de contexte sélectionné pour chaque zone;
-	selectedContextNums: Map<String, number> = new Map<String, number>();
-    //some:any = 
-	//JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
-	//see http://papaparse.com/
-	//zonesRules:any = JSON.parse(`[
+    zonesIncidences: Map<String, number> = new Map<String, number>();
+    zonesColors: Map<String, String> = new Map<String, String>();
+    zonesColorsReady: Map<String, Boolean> = new Map<String, Boolean>();
+
+    zonesValues: Map<String, number[]> = new Map<String, number[]>();
+    // contextValues: Map<String, number[]> = new Map<String, string[]>();
+    // retient le numero de contexte sélectionné pour chaque zone;
+   selectedContextNums: Map<String, number> = new Map<String, number>();
+    // some:any = 
+    // JSON.parse('[{"id":"EN","fill":"blue","classb":"FR someclass"},{"id":"FR","fill":"hsl(240, 100%, 35%)","classb":"FR someclass"},{"id":"ES","fill":"hsl(240, 100%, 60%)","classb":"FR someclass"},{"id":"IT","fill":"hsl(240, 100%, 90%)","classb":"FR someclass"}]');
+    // see http://papaparse.com/
+    // zonesRules:any = JSON.parse(`[
 /*  
     this.http.get('https://jsonplaceholder.typicode.com/photos')
       .map(response => response.json())
@@ -11684,7 +11684,7 @@ export class ZonesService {
 							if(zoneRule != undefined){
 								let factorForContext = zoneRule.factorsForContext[j];
 								let factorsCoef = factorForContext.factorsCoef;
-								let lastImputedValues = Object.values(factorForContext.lastImputedValues);
+								let lastImputedValues:number[] = Object.values(factorForContext.lastImputedValues);
 								this.setZoneValues(zones[i], j, lastImputedValues);
 								if(zones[i] == "FR") console.log("initialisation: FR:" + j + " = ", lastImputedValues);
 							}
@@ -11802,7 +11802,7 @@ export class ZonesService {
 	}
 	*/
 	
-	getFactorsValues(zoneId:String){
+	getFactorsValues(zoneId:String):number[]{
 		////var nbFactors = Object.keys().length;
 		//let ctxtNum = this.selectedContextNums.get(zoneId);
 		//let factorsCoef = this.getFactors(zoneId,ctxtNum);
@@ -11815,7 +11815,7 @@ export class ZonesService {
 		let res = undefined;
 		let ctxtNum = this.selectedContextNums.get(zoneId);
 		let factorsForContext = this.getFactorsForContext(zoneId,ctxtNum);
-		if(factorsForContext != undefined) res = factorsForContext.factorsCoef;
+		if (factorsForContext != undefined) {res = factorsForContext.factorsCoef;};
 		return res;	
 	}
 	
@@ -12001,7 +12001,7 @@ export class ZonesService {
 		//let ctxtNum = this.selectedContextNums.get(zone);
 		let factorsForContext = this.getFactorsForContext(zone,ctxtNum);
 		let interceptValue = factorsForContext.intercept;
-		let factorsCoefValues = Object.values(factorsForContext.factorsCoef);//take first !?	
+		let factorsCoefValues:number[] = Object.values(factorsForContext.factorsCoef);//take first !?	
 		if(factorsCoefValues === undefined) console.error("zse CAN'T CALCULATE INCIDENCE because factorsCoefValues === undefined",factorsCoefValues);
 		if(imputedValues.length != factorsCoefValues.length){
 			console.log("zse CAN'T CALCULATE INCIDENCE because");
@@ -12014,7 +12014,7 @@ export class ZonesService {
 		//if(values != undefined) {
 		console.log("zse imputedValues:",imputedValues);
 		console.log("zse factorsCoefValues:",factorsCoefValues);
-		let len = factorsCoefValues.length;
+		let len:number = factorsCoefValues.length;
 		for (let i = 0; i < len; i++) { 			
 			console.log("zse adding " + factorsCoefValues[i] + " * " + imputedValues[i]);
 			incidence += factorsCoefValues[i] * imputedValues[i];
@@ -12071,7 +12071,7 @@ export class ZonesService {
                 else {
 	*/
 				//,"africa","south-america"
-                    return Observable.of(["START","Europe","CH","DK","GB","IS","IT","NL","PL","SK","FR","ES","EE","Middle-East","IL","Asia","IN","JP","SG","Oceania","AU","Central-America","CR","North-America","CA","US"]);					
+                    return of(["START","Europe","CH","DK","GB","IS","IT","NL","PL","SK","FR","ES","EE","Middle-East","IL","Asia","IN","JP","SG","Oceania","AU","Central-America","CR","North-America","CA","US"]);					
     /*
 				}
             });
@@ -12099,7 +12099,7 @@ export class ZonesService {
                 }
                 else {
 				*/
-                    return Observable.of(["CH","DK","EE","GB","IS","IT","NL","PL","SK","FR","ES","IN","IL","JP","SG","AU","CR","CA","US"]);
+                    return of(["CH","DK","EE","GB","IS","IT","NL","PL","SK","FR","ES","IN","IL","JP","SG","AU","CR","CA","US"]);
 /*					
                 }
             }); */

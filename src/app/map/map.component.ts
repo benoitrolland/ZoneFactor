@@ -3,9 +3,9 @@ import { } from 'impress';
 import { ImpressService } from '../shared/impress.service';
 import { ZonesService } from '../shared/zones.service';
 import { ImpressComponent } from '../impress/impress.component';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material';
-
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 import { Observable } from "rxjs";
 
 @Component({

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 //http://www.learn-angular.fr/le-module-httpmodule/
 import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
@@ -18,7 +19,6 @@ import { ImpressModule } from './impress/impress.module';
 import { ImpressService } from "./shared/impress.service";
 import { ContextFormComponent } from './context-form/context-form.component';
 import { ContextSelectorsDirective } from './context-form/context-selectors.directive';
-
 
 @NgModule({
   entryComponents:[ 
@@ -45,6 +45,7 @@ import { ContextSelectorsDirective } from './context-form/context-selectors.dire
     ,FormsModule
     ,ReactiveFormsModule
     ,HttpModule
+    ,HttpClientModule
     ,JsonpModule
     ,FlexLayoutModule
     ,BrowserAnimationsModule
